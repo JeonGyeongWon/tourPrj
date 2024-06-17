@@ -14,27 +14,51 @@
 .loginbox .btn_a {padding: 30px 0 0 177px;}
 .loginbox .btn_a .btn {width: 160px; height: 50px; margin-right: 12px; border-radius: 8px; color: #fff; font-size: 18px; font-weight: 500; text-align: center; line-height: 50px; background: #169bd5;}
 
-.p_main .visual {width: 1400px; margin: 0 auto; padding: 0 50px;}
+
+
+
+.p_main .visual { width: 1400px; margin: 0 auto; padding: 0 50px;}
+
+
+
+
+
 .p_main .visual p {height: 320px; padding: 85px 0 0 70px; border-radius: 40px; color: #fff; font-weight: 700; background: url(../images/main_visual.png) no-repeat; box-shadow: 3px 8px 13px #ccc;}
 .p_main .visual p span {display: block;}
 .p_main .visual p .t1 {font-size: 24px;}
 .p_main .visual p .t2 {font-size: 48px;}
 .p_main .visual p .t3 {margin-top: 15px; color: #9cdafe; font-weight: 400;}
 
-.p_main .dash_board .inner {width: 1400px; margin: 70px auto 0; padding: 0 50px 65px 50px;}
+.p_main .dash_board .inner {max-width: 1400px;width: 100%; margin: 70px auto 0; padding: 0 50px 65px 50px;}
+
+
+
+/* 
 .p_main .dash_board .tab {font-size: 0; text-align: center;}
 .p_main .dash_board .tab li {display: inline-block;}
 .p_main .dash_board .tab li + li {margin-left: 52px;}
+
 .p_main .dash_board .tab li a {display: block; position: relative; padding-bottom: 24px; color: #ccc; font-size: 30px; font-weight: 700;}
+ 
 .p_main .dash_board .tab li a.cur {color: #222;}
+
 .p_main .dash_board .tab li a.cur::after {content: ""; display: block; position: absolute; left: 0; bottom: 0; width: 100%; height: 4px; background: #004986;}
+ 
+ */
+
+
 .p_main .dash_board .tab_contents {position: relative; margin-top: 50px;}
 .p_main .dash_board .more {display: block; position: absolute; right: 0; top: -60px; width: 60px; height: 60px; font-size: 0; background: url(../images/ico_more.png) no-repeat;}
 .p_main .dash_board .tab_item {display: none;}
 .p_main .dash_board .tab_item:first-child {display: block;}
 .p_main .dash_board .tab_item ul {padding: 0 20px;}
 .p_main .dash_board .tab_item ul::after {content: ""; display: block; clear: both;}
-.p_main .dash_board .tab_item ul li {float: left; width: 33.33%; padding: 0 20px;}
+
+
+/* .p_main .dash_board .tab_item ul li {float: left; width: 33.33%; padding: 0 20px;} */
+
+
+
 .p_main .dash_board .tab_item ul li:last-child {width: 33.34%;}
 .p_main .dash_board .tab_item ul li a span {display: block;}
 .p_main .dash_board .tab_item ul li .tit {color: #222; font-size: 24px; font-weight: 500; line-height: 28px;}

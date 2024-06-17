@@ -13,9 +13,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@ page import ="egovframework.com.cmm.LoginVO" %>
+<%-- <%@ page import ="pnuhPotal.com.cmm.LoginVO" %> --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html lang="ko">
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,31 +24,453 @@
 	<link rel="stylesheet" href="<c:url value='/'/>css/layout.css">
 	<link rel="stylesheet" href="<c:url value='/'/>css/component.css">
 	<link rel="stylesheet" href="<c:url value='/'/>css/page.css">
+	
+	<link rel="stylesheet" href="<c:url value='/'/>css/typark_main_visual.css">
+	
 	<script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
 	<script src="<c:url value='/'/>js/ui.js"></script>
 
 <title>경량환경 템플릿 포털사이트</title>
 </head>
+
+<style>
+	#location{display: none!important;}
+</style>
+
+
+
+<c:import url="/sym/mms/EgovHeader.do" />
+
 <body>
+
+
+
 <noscript><p>자바스크립트를 지원하지 않는 브라우저에서는 일부 기능을 사용하실 수 없습니다.</p></noscript>
 
-    <!-- skip navigation -->
-    <a href="#contents" class="skip_navi">본문 바로가기</a>
+   <!-- skip navigation -->
+   <!--  <a href="#contents" class="skip_navi">본문 바로가기</a> -->
 
     <div class="wrap">
         <!-- header start -->
-	    <c:import url="/sym/mms/EgovHeader.do" />
+	   
 	    <!-- //header end -->
+		 
+		
+        <div class="container" style="background: var(--background_color);">
+        	
+        
+        	
+	        <div class="container_p">
+	        
+	        
+	   <div id="contents" class="main_p_wrap">	
+		        
+		       
+		        
+		        
+		        
+		    	  <div class="swiper" style="width:45%; height:600px; display: inline-block;">
+		        <!-- Additional required wrapper -->
+		        <div class="swiper-wrapper">
+		          <!-- Slides -->
+		          <div class="swiper-slide slide_1">
+		<!--               	<h1> 핫한 지역정보<br><span style="color:#E6007E;"></span></h1> -->
+				        		
+				      
+				      <div class="main_title" style="text-align:center; width: 100%; height:20%;">
+		              			<h1> 지역축제 현황<br><span style="color:#E6007E;"></span></h1>
+				        		<p style="color:#D5D5D5"> 이미지 영역</p>
+				        		
+				      </div>
+				        	
+		<!-- 		        	<div class="main_visual"> -->
+		<%-- 		        		<img src="<c:url value='/'/>images/main_img.png" alt="메인이미지"> --%>
+				        		
+				        		
+		<!-- 		        	</div> -->
+		<!--           </div> -->
+				  </div>
+		          <div class="swiper-slide">
+		              <img src="https://com/200x200">
+		           </div>
+		          <div class="swiper-slide">
+		              <img src="https://com/200x200">
+		          </div>
+		          <div class="swiper-slide">
+		              <img src="https://com/200x200">
+		          </div>  
+		        </div>
+		        <!-- If we need navigation buttons -->
+		        <div class="swiper-button-next"></div>
+		        <div class="swiper-button-prev"></div>
+		        <div class="swiper-pagination"></div>
+		
+		        <!-- If we need scrollbar -->
+		        <div class="swiper-scrollbar"></div>
+		        
+		     <!--    
+		          Stop Button
+		  <button id="swiper-stop-button">Stop</button>
+		         -->
+		  </div>
+		  
+		  
+		  
+		  		        
+		    	 <div class="swiper" style="width:45%; height:600px; display: inline-block;">
+		        <!-- Additional required wrapper -->
+		        <div class="swiper-wrapper">
+		          <!-- Slides -->
+		          <div class="swiper-slide slide_1">
+		<!--               	<h1> 핫한 지역정보<br><span style="color:#E6007E;"></span></h1> -->
+				        		
+				      
+				        	
+				      <div class="main_title" style="text-align:center; width: 100%; height:20%;">
+		              			<h1> 핫한 지역정보<br><span style="color:#E6007E;"></span></h1>
+				        		<p style="color:#D5D5D5"> 이미지 영역</p>
+				        		
+				      </div>  	
+		<!-- 		        	<div class="main_visual"> -->
+		<%-- 		        		<img src="<c:url value='/'/>images/main_img.png" alt="메인이미지"> --%>
+				        		
+				        		
+		<!-- 		        	</div> -->
+		<!--           </div> -->
+				  </div>
+		          <div class="swiper-slide">
+		              <img src="https://com/200x200">
+		           </div>
+		          <div class="swiper-slide">
+		              <img src="https://com/200x200">
+		          </div>
+		          <div class="swiper-slide">
+		              <img src="https://com/200x200">
+		          </div>  
+		        </div>
+		        <!-- If we need navigation buttons -->
+		        <div class="swiper-button-next"></div>
+		        <div class="swiper-button-prev"></div>
+		        <div class="swiper-pagination"></div>
+		
+		        <!-- If we need scrollbar -->
+		        <div class="swiper-scrollbar"></div>
+		        
+		     <!--    
+		          Stop Button
+		  <button id="swiper-stop-button">Stop</button>
+		         -->
+		  </div>
+  
+  </div>
+		        	
+		        	
+<!-- 		        	<div class="main_p_boxarea"> -->
+<!-- 		        		<div class="main_p_box covalt_blue"> -->
+		        		
+<!-- 		        			<h2>의료 마이데이터 조회</h2> -->
 
-        <div class="container">
-            <div class="p_main">
+<!-- 		        			<div class="plus_ic"> -->
+<!-- 		        				<span></span> -->
+<!-- 		        				<span></span> -->
+<!-- 		        			</div> -->
+		        			
+<!-- 		        			 <i class="my_data_img"></i> -->
+<!-- 		        		</div> -->
+		        		
+<!-- 		        		<div class="main_p_box covalt_blue"> -->
+		        			
+<!-- 		        			<h2>제증명 발급하기</h2> -->
+<!-- 		        			<div class="plus_ic"> -->
+<!-- 		        				<span></span> -->
+<!-- 		        				<span></span> -->
+<!-- 		        			</div> -->
+		        			
+		        		
+<!-- 		        			<div class="gap8 p_flex_space-between mt16" style="align-items: unset;"> -->
+		        			
+<!-- 		        			<div style="font-size: 14px;"> -->
+<!-- 		        				<h3>발급가능 서류</h3> -->
+<!-- 		        				<ul style="padding: 8px 0 0 24px;">		        				 -->
+<!-- 		        					<li>처방전</li> -->
+<!-- 		        					<li>진료비 세부산정 내역</li> -->
+<!-- 		        					<li>진료비 계산서</li> -->
+<!-- 		        				</ul> -->
+<!-- 		        			</div> -->
+		        				
+<!-- 		        				 <i class="medi_certificate"></i> -->
+<!-- 		        			</div> -->
+		        			
+<!-- 		        		</div> -->
+		        		
+		        		
+		        	
+		        		
+		        		
+<!-- 		        	</div>	 -->
+		        	
+		        </div>
+		        
+		        
+		        
+
+		      
+		       
+	        </div>
+        
+        
+<!--         	<div class="contents_p_wrap"> -->
+		        		
+<!-- 	        				<div class="contents_p_area"> -->
+<!-- 							    <div class="contents2_p"> -->
+<!-- 							        <form class="search_wrap" action="" method="get"> -->
+<!-- 							        	<div class="search_p"> -->
+							                
+<!-- 							                <label class="skip" for="id">원하는 서비스를 검색하세요</label> -->
+<!-- 							                <input id="id" class="search_p_txt" type="text" name="" value="" placeholder="원하는 서비스 또는 건강정보를 찾아보세요"> -->
+							               
+							               
+<!-- 					           		 	</div> -->
+					           		 	
+<!-- 					           		 	<div class="search_p_btn"> -->
+<!-- 					           		 		 <button type="submit">검색</button> -->
+<!-- 					           		 	</div>			        	 -->
+<!-- 							        </form> -->
+							        
+							        
+							        
+							        
+<!-- 							        <div class="user_guide_area"> -->
+<!-- 							        	<i class="i_circle">  </i> -->
+<!-- 							        	<p>포털 이용안내 가이드</p> -->
+<!-- 							        </div> -->
+							        
+<!-- 							        <div class="app_down_area"> -->
+<!-- 							        	<div> 앱아이콘 </div> -->
+<!-- 							        	<p>부산의료 마이데이터<br>앱 다운로드</p> -->
+<!-- 							        </div> -->
+							        
+							        
+<!-- 						        </div> -->
+						        
+<!-- 						        <div class="contents3_p"> -->
+						        	
+<!-- 						        	<div class="point_menu"> -->
+<!-- 						        		<div class="p_menu p_menu_box1"> -->
+<!-- 						        			<div class="p_menu_ic01"></div> -->
+<!-- 						        			<p>내 의료데이터</p> -->
+<!-- 						        		</div> -->
+						        		
+<!-- 						        		<div class="p_menu p_menu_box2"> -->
+<!-- 						        			<div class="p_menu_ic02"></div> -->
+<!-- 						        			<p>내 건강데이터</p> -->
+<!-- 						        		</div> -->
+						        		
+<!-- 						        		<div class="p_menu p_menu_box3"> -->
+<!-- 						        			<div class="p_menu_ic03"></div> -->
+<!-- 						        			<p>영상검사 이력</p> -->
+<!-- 						        		</div> -->
+						        		
+<!-- 						        		<div class="p_menu p_menu_box4"> -->
+<!-- 						        			<div class="p_menu_ic04"></div> -->
+<!-- 						        			<p>제증명 보관함</p> -->
+<!-- 						        		</div> -->
+						        		
+<!-- 						        		<div class="p_menu p_menu_box5"> -->
+<!-- 						        			<div class="p_menu_ic05"></div> -->
+<!-- 						        			<p>건강문진</p> -->
+<!-- 						        		</div> -->
+						        		
+<!-- 						        		<div class="p_menu p_menu_box6"> -->
+						        			
+<!-- 							        			<div class="p_menu_ic06"></div> -->
+<!-- 							        			<p>응급정보 관리</p> -->
+<!-- 						        			</div> -->
+						        		
+						        		
+<!-- 						        	</div> -->
+						        
+<!-- 						        <div class="news_area"> -->
+<!-- 						        	<div class="c3_box gongzi_box">
+<!-- 						        		<ul> -->
+<!-- 						        			<li class="board_p"> -->
+<!-- 						        				<a href="#"> -->
+<!-- 						        					<span>공지사항</span> -->
+<!-- 						        				</a> -->
+						        				
+				
+						        				
+<!-- 						        				<ul> -->
+<!-- 						        					<li><a href="#">내용입력1내용입력1내용입력1내용입력1</a></li> -->
+<!-- 						        					<li><a href="#">내용입력1내용입력1내용입력1내용입력1</a></li> -->
+<!-- 						        					<li><a href="#">내용입력1내용입력1내용입력1내용입력1</a></li> -->
+<!-- 						        					<li><a href="#">내용입력1내용입력1내용입력1내용입력1</a></li> -->
+<!-- 						        				</ul> -->
+						        				
+<!-- 						        				<p>+</p>  -->
+						        				
+<!-- 						        			</li> -->
+<!-- 						        		</ul> -->
+						        		
+<!-- 						        		<ul> -->
+<!-- 						        			<li class="board_p"> -->
+<!-- 						        				<div class="board_title"> -->
+						        					
+<!-- 						        						<span>공지사항</span> -->
+						        				 	
+						        				 	
+<!-- 						        				 	<a href="#"> -->
+<!-- 						        				 		<i></i> -->
+<!-- 						        				 	</a>	 -->
+						        				 	
+<!-- 						        				 	<div> -->
+<!-- 						        				 	<a href="#"> -->
+<!-- 						        						<i></i> -->
+<!-- 						        						<i class="plus_p"></i> -->
+<!-- 						        				 	</a> -->
+<!-- 						        				 	</div> -->
+<!-- 						        				</div> -->
+						        				
+						        				
+				
+						        				
+<!-- 						        				<ul> -->
+<!-- 						        					<li class="board_txt_area"> -->
+<!-- 						        						<a href="#">내용입력1내용입력1내용입력1내용입력1</a> -->
+<!-- 						        						<ul> -->
+<!-- 						        							<li>2023.04.11</li> -->
+<!-- 						        						</ul> -->
+<!-- 						        					</li> -->
+						        					
+<!-- 						        					<li class="board_txt_area"> -->
+<!-- 						        						<a href="#">내용입력1내용입력1내용입력1내용입력1</a> -->
+<!-- 						        						<ul> -->
+<!-- 						        							<li>2023.04.11</li> -->
+<!-- 						        						</ul> -->
+<!-- 						        					</li> -->
+						        					
+<!-- 						        					<li class="board_txt_area"> -->
+<!-- 						        						<a href="#">내용입력1내용입력1내용입력1내용입력1</a> -->
+<!-- 						        						<ul> -->
+<!-- 						        							<li>2023.04.11</li> -->
+<!-- 						        						</ul> -->
+<!-- 						        					</li> -->
+						        					
+<!-- 						        					<li class="board_txt_area"> -->
+<!-- 						        						<a href="#">내용입력1내용입력1내용입력1내용입력1</a> -->
+<!-- 						        						<ul> -->
+<!-- 						        							<li>2023.04.11</li> -->
+<!-- 						        						</ul> -->
+<!-- 						        					</li> -->
+						        					
+<!-- 						        				</ul> -->
+						        				
+				
+<!-- 						        			</li> -->
+<!-- 						        		</ul> -->
+						        		
+<!-- 						        	</div> --> -->
+						        	
+						        	
+<!-- 						        	<div class="c3_box news_box"> -->
+<!-- 						        		<ul> -->
+<!-- 						        			<li class="board_p"> -->
+<!-- 						        				<div class="board_title"> -->
+						        					
+<!-- 						        						<span>새소식</span> -->
+						        				 
+						        				 	
+<!-- 						        				 	<a href="#"> -->
+<!-- 						        				 		<i></i> -->
+						        				 		
+<!-- 						        				 	</a> -->
+<!-- 						        				 	<div>
+<!-- 						        				 	<a href="#"> -->
+<!-- 						        						<i></i> -->
+<!-- 						        						<i class="plus_p"></i> -->
+<!-- 						        				 	</a> -->
+<!-- 						        				 	</div> --> -->
+<!-- 						        				</div> -->
+						        				
+						        				
+				
+						        				
+<!-- 						        				<ul> -->
+<!-- 						        					<li class="board_txt_area"> -->
+<!-- 						        						<a href="#">내용입력1내용입력1내용입력1내용입력1</a> -->
+<!-- 						        						<ul> -->
+<!-- 						        							<li>2023.04.11</li> -->
+<!-- 						        						</ul> -->
+<!-- 						        					</li> -->
+						        					
+<!-- 						        					<li class="board_txt_area"> -->
+<!-- 						        						<a href="#">내용입력1내용입력1내용입력1내용입력1</a> -->
+<!-- 						        						<ul> -->
+<!-- 						        							<li>2023.04.11</li> -->
+<!-- 						        						</ul> -->
+<!-- 						        					</li> -->
+						        					
+<!-- 						        					<li class="board_txt_area"> -->
+<!-- 						        						<a href="#">내용입력1내용입력1내용입력1내용입력1</a> -->
+<!-- 						        						<ul> -->
+<!-- 						        							<li>2023.04.11</li> -->
+<!-- 						        						</ul> -->
+<!-- 						        					</li> -->
+						        					
+<!-- 						        					<li class="board_txt_area"> -->
+<!-- 						        						<a href="#">내용입력1내용입력1내용입력1내용입력1</a> -->
+<!-- 						        						<ul> -->
+<!-- 						        							<li>2023.04.11</li> -->
+<!-- 						        						</ul> -->
+<!-- 						        					</li> -->
+						        					
+<!-- 						        				</ul> -->
+						        				
+				
+<!-- 						        			</li> -->
+<!-- 						        		</ul> -->
+<!-- 						        	</div> -->
+<!-- 						        	</div> -->
+						        	
+<!-- 						        </div> c3 -->
+<!-- 						    </div>    하늘색영역  -->
+						        
+<!-- 		      		</div> -->
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+            <%-- <div class="p_main">
                 <div class="visual">
                     <p>
-                        <span class="t1">표준프레임워크</span>
-                        <span class="t2">경량환경 포털</span>
+                        <span class="t1">표준프레임워크(사용자)</span>
+                        <span class="t2">경량환경 포털222</span>
                         <span class="t3">표준프레임워크 경량화 포탈에 대한 전반적인 지원을 약속합니다.</span>
+						<a href="<c:url value='/md/ph/medidataPrcthist.do'/>"><span class="t1">현수 타임 라인 테스트</span></a>
                     </p>
-                </div>    
+                </div>     
                 
                 <!-- 게시물 -->
                 <div class="dash_board">
@@ -169,6 +591,7 @@
                                     <li>
                                         <a href="">
                                             <span class="tit">전자정부 표준프레임워크 경량환경 포털 묻고답하기입니다.</span>
+                                           
                                             <span class="desc">안녕하세요. 전자정부 표준프레임워크 센터입니다. 
                                                 현재 전자정부 표준프레임워크 경량환경 포털 공지
                                                 사항입니다. 안녕하세요. 전자정부 표준프레임워크 
@@ -197,6 +620,7 @@
                 <div class="g_area">
                     <div class="inner">
                         <div class="left_col">
+                        
                             <!-- FAQ -->
                             <div class="faq">
                                 <div class="head">
@@ -212,6 +636,7 @@
                                 </c:forEach>
                                 
                                 <a href="<c:url value='/uss/olh/faq/FaqListInqire.do' />" class="more">더보기</a>
+                                
                             </div>
 
                             <!-- 홍보물 -->
@@ -243,8 +668,35 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div> --%>
+            
+
+        </div> 
+				      
+		      
+		      
+		    	
+<!-- 		    	<div class="contents4_p"> -->
+<!-- 		    		<div class="partner"> -->
+<%-- 		    			<span class="pnuh"><img src="<c:url value='/'/>images/pnuh.png" alt="부산대병원"></span> --%>
+<%-- 		    			<span class="BTP"><img src="<c:url value='/'/>images/BTP.png" alt="부산테크노파크"></span> --%>
+<%-- 		    			<span class="iteyes"><img src="<c:url value='/'/>images/iteyes.png" alt="아이티아이즈"></span> --%>
+<%-- 		    			<span class="hi-webnet"><img src="<c:url value='/'/>images/hi-webnet.png" alt="하이웹넷"></span> --%>
+<%-- 		    			<span class="mega-bridege"><img src="<c:url value='/'/>images/mega-bridege.png" alt="메가브릿지"></span> --%>
+<!-- 		    		</div> -->
+<!-- 		    	</div> -->
+		      
+		      
+		      
+
+
+	
+
+
+
+
+
+
 
         <!-- footer 시작 -->
 	    <c:import url="/sym/mms/EgovFooter.do" />
@@ -252,4 +704,114 @@
     </div>
     
 </body>
+
+
+  <!-- 배너 스와이프 -->
+
+
+ <script>
+    const swiper = new Swiper('.swiper', {
+    
+    	/* //반응형 관련
+    	breakpoints: { 
+    		640: {  //640이상일경우
+    		slidesPerView: 2,  //레이아웃 2
+    		 }, 
+    		
+    		768: { slidesPerView: 3, }, 1024: { slidesPerView: 4, }, 
+    		
+    	} }); */
+    		
+    
+    		
+    	
+    	
+    	
+      // Optional parameters
+      loop: true,
+    ﻿  slidesPerView: 1,
+      // If we need pagination
+      pagination: {
+        el: '.swiper-pagination',
+        type:'fraction',
+        clickable: true,
+      },
+    
+      
+    
+
+      
+      
+     /*  autoplay:{
+    	  delay: 3000, 
+    	  disableOnInteraction: false 
+    	  }, */
+      
+      // Navigation arrows
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    
+      // And if we need scrollbar
+      scrollbar: {
+        el: '.swiper-scrollbar',
+      },
+    });
+    </script> 
+    
+    
+    <!-- <script>
+const swiper = new Swiper('.swiper', {
+	  loop: true,
+	  slidesPerView: 1,
+	  pagination: {
+	    el: '.swiper-pagination',
+	    type: 'fraction',
+	    clickable: true,
+	  },
+	  autoplay: {
+	    delay: 2000, 
+	    disableOnInteraction: false 
+	  },
+	  navigation: {
+	    nextEl: '.swiper-button-next',
+	    prevEl: '.swiper-button-prev',
+	  },
+	  scrollbar: {
+	    el: '.swiper-scrollbar',
+	  },
+	});
+
+	// Stop button functionality
+	const stopButton = document.getElementById('swiper-stop-button');
+	stopButton.addEventListener('click', () => {
+	  swiper.autoplay.stop();
+	  console.log('Autoplay stopped');
+	});
+
+
+</script> -->
+    
+    
+    
+
+
+  <!-- //배너 호버 정지 -->
+<script>
+
+/* $('.swiper').hover(function() {    swiper.autoplay.stop();}, function(){    swiper.autoplay.start();}); */
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
 </html>
