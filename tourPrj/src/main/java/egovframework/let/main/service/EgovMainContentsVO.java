@@ -19,7 +19,6 @@ import java.io.Serializable;
  * </pre>
  */
 public class EgovMainContentsVO implements Serializable {
-
 	/**
 	 * serialVersionUID
 	 */

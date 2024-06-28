@@ -27,10 +27,10 @@
 			</field>				
 		</form>
 		<form name="boardUseInf" >
-			<field property="bbsId" depends="required">
+			<field property="bbsNm" depends="required">
         		<arg0 key="cop.bbsNm" />
 			</field>			
-			<field property="trgetId" depends="required">
+			<field property="trgetNm" depends="required">
         		<arg0 key="cop.trgetNm" />
 			</field>		
 		</form>		

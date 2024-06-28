@@ -229,6 +229,7 @@
                 oMaxLength = new maxlength();
                 for (x in oMaxLength) {
                     var field = form[oMaxLength[x][0]];
+                    
                     if (field.type == 'text' ||
                         field.type == 'textarea') {
                         

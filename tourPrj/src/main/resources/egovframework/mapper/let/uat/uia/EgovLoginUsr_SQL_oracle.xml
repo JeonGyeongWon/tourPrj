@@ -27,7 +27,7 @@
 	</resultMap>
 	
 	<!-- 일반 로그인 -->
-	<select id="actionLogin" resultMap="login">
+	<select id="loginDAO.actionLogin" resultMap="login">
 		<!-- 일반회원 -->
 		<if test="userSe == &quot;GNR&quot;">
 			
@@ -38,7 +38,7 @@
 			     , mber_email_adres AS email
 			     , 'GNR' AS userSe
 			     , '-' AS orgnztId
-			     , esntl_id AS uniqId
+			     , ESNTL_ID AS uniqId
 			  FROM LETTNGNRLMBER
 			 WHERE mber_id = #{id}
 			   AND password = #{password}
@@ -55,7 +55,7 @@
 			     , applcnt_email_adres AS email
 			     , 'ENT' AS userSe
 			     , '-' AS orgnztId
-			     , esntl_id AS uniqId
+			     , ESNTL_ID AS uniqId
 			  FROM LETTNENTRPRSMBER
 			 WHERE entrprsmber_id = #{id}
 			   AND entrprs_mber_password = #{password}
@@ -66,13 +66,13 @@
 		<if test="userSe == &quot;USR&quot;">
 			
 			SELECT emplyr_id AS id
-			     , user_nm AS name
+			     , USER_NM AS name
 			     , password AS password
 			     , ihidnum AS ihidNum
 			     , email_adres AS email
 			     , 'USR' AS userSe
 			     , orgnzt_id AS orgnztId
-			     , esntl_id AS uniqId
+			     , ESNTL_ID AS uniqId
 			  FROM LETTNEMPLYRINFO
 			 WHERE emplyr_id = #{id}
 			   AND password = #{password}
@@ -82,23 +82,23 @@
 	</select>
 	
 	<!-- 인증서 로그인 -->
-	<select id="actionCrtfctLogin" resultMap="login">
+	<select id="loginDAO.actionCrtfctLogin" resultMap="login">
 		
 		SELECT emplyr_id AS id
-		     , user_nm AS name
+		     , USER_NM AS name
 		     , password AS password
 		     , ihidnum AS ihidNum
 		     , email_adres AS email
 		     , 'USR' AS userSe
 		     , orgnzt_id AS orgnztId
-		     , esntl_id AS uniqId
+		     , ESNTL_ID AS uniqId
 		  FROM LETTNEMPLYRINFO
 		 WHERE sub_dn = #{dn}
 		
 	</select>
 	
 	<!-- 아이디 찾기 -->
-	<select id="searchId" resultMap="id">
+	<select id="loginDAO.searchId" resultMap="id">
 		<!-- 일반회원 -->
 		<if test="userSe == &quot;GNR&quot;">
 			
@@ -124,7 +124,7 @@
 			
 			SELECT emplyr_id AS id
 			  FROM LETTNEMPLYRINFO
-			 WHERE user_nm = #{name}
+			 WHERE USER_NM = #{name}
 			   AND email_adres = #{email}
 			   AND emplyr_sttus_code = 'P'
 			
@@ -132,7 +132,7 @@
 	</select>
 	
 	<!-- 비밀번호 찾기 -->
-	<select id="searchPassword" resultMap="password">
+	<select id="loginDAO.searchPassword" resultMap="password">
 		<!-- 일반회원 -->
 		<if test="userSe == &quot;GNR&quot;">
 			
@@ -165,7 +165,7 @@
 			SELECT password AS password
 			  FROM LETTNEMPLYRINFO
 			 WHERE emplyr_id = #{id}
-			   AND user_nm = #{name}
+			   AND USER_NM = #{name}
 			   AND email_adres = #{email}
 			   AND password_hint = #{passwordHint}
 			   AND password_cnsr = #{passwordCnsr}
@@ -175,7 +175,7 @@
 	</select>
 	
 	<!-- 변경된 비밀번호를 저장 -->
-	<update id="updatePassword">
+	<update id="loginDAO.updatePassword">
 		<!-- 일반회원 -->
 		<if test="userSe == &quot;GNR&quot;">
 			

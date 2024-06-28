@@ -31,7 +31,9 @@ public class EgovUserDetailsSessionServiceImpl extends EgovAbstractServiceImpl i
 
 	@Override
 	public Object getAuthenticatedUser() {
+
 		return RequestContextHolder.getRequestAttributes().getAttribute("loginVO", RequestAttributes.SCOPE_SESSION);
+
 	}
 
 	@Override
@@ -46,6 +48,7 @@ public class EgovUserDetailsSessionServiceImpl extends EgovAbstractServiceImpl i
 	@Override
 	public Boolean isAuthenticated() {
 		// 인증된 유저인지 확인한다.
+
 		if (RequestContextHolder.getRequestAttributes() == null) {
 			return false;
 		} else {

@@ -73,7 +73,7 @@ public class EgovAuthorManageController {
 	 */
 	@RequestMapping(value = "/sec/ram/EgovAuthorList.do")
 	public String selectAuthorList(@ModelAttribute("authorManageVO") AuthorManageVO authorManageVO, ModelMap model) throws Exception {
-
+		
 		/** paging */
 		PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(authorManageVO.getPageIndex());

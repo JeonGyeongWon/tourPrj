@@ -1,27 +1,8 @@
 $(function() {
 
-    // Submenu
-    var allMenu = {
-        init: function() {
-            this.$tartet = $('.all_menu');
-            this.$btn = $('.util_menu .allmenu');
-            this.addEvent();
-        },
-        addEvent: function() {
-            var objAllMenu = this.$tartet;
-            this.$btn.on('click', function(e) {
-                e.preventDefault();
-                if (objAllMenu.is(':visible')) {
-                    objAllMenu.slideUp(100);
-                    $(this).removeClass('on');
-                } else {
-                    objAllMenu.slideDown(100);
-                    $(this).addClass('on');
-                }
-            });
-        }
-    }
-    $('.allmenu').length && allMenu.init();
+    // init
+    $('.popup').length && popup.init();
+
 
     // Form
 
@@ -101,7 +82,8 @@ $(function() {
                 }
             }
         });
-        $('.f_rdo input').on('click', function() {
+        $('.f_rdo input').on('click', function(e) {
+            e.preventDefault();
             if ($(this).parents('.rdoSet') < 1) {
                 $(this).parent().toggleClass('on');
             } else {
@@ -110,40 +92,98 @@ $(function() {
             }
         });
 
-
-
-    
-    // Main
-        // dashboard tab
-        $('.dash_board .tab li a').on('click', function(e) {
-            e.preventDefault();
-            $(this).addClass('cur');
-            $(this).parent().siblings().find('a').removeClass('cur');
-
-            var idx = $('.dash_board .tab li a').index(this);
-            $('.dash_board .tab_contents .tab_item').hide();
-            $('.dash_board .tab_contents .tab_item').eq(idx).show();
-        });
     
 
-    
-    $('.popup').length && popup.init();
+    // All menu
+    var allMenu = {
+        init: function() {
+            this.$tartet = $('.all_menu');
+            this.$btn = $('.util_menu .allmenu');
+            
+            this.addEvent();
+        },
+        addEvent: function() {
+            var _this = this.$tartet;
+            this.$btn.on('click', function(e) {
+                e.preventDefault();
+                if (_this.is(':visible')) {
+                    _this.fadeOut(100);
+                    $(this).removeClass('on');
+                } else {
+                    _this.fadeIn(100);
+                    $(this).addClass('on');
+                }
+            });
+        }
+    }
+    $('.all_menu').length && allMenu.init();
+
+
+
+    // 
+    var tempIntro = {
+        init: function() {
+            this.$tartet = $('.POP_TEMPLATE_INTRO');
+            this.$btn = $('.header .go');
+            this.addEvent();
+        },
+        addEvent: function(e) {
+            var _this = this.$tartet;
+            this.$btn.on('click', function(e) {
+                e.preventDefault();
+                _this.show();
+            });
+        }
+    }
+    tempIntro.init();
+
+
+    $('.tree-ui').length && tree.init();
     
 });
+
 
 // Popup
 var popup = {
     init: function() {
-        this.$target = $('.popup');
-        this.$close = this.$target.find('.pop_header .close');
+        this.$tartet = $('.popup');
+        this.$popClose = this.$tartet.find('.pop_header .close');
         this.addEvent();
     },
     open: function(obj) {
         $('.' + obj).show();
+        $('body').css('overflow', 'hidden');
     },
     addEvent: function() {
-        this.$close.on('click', function() {
+        this.$popClose.on('click', function() {
             $(this).parents('.popup').hide();
+            $('body').css('overflow', 'visible');
+        });
+    }
+}
+
+
+
+// 메뉴생성
+var tree = {
+    init: function() {
+        this.$tartet = $('.tree-ui');
+        this.$allChk = this.$tartet.find('.all-chk');
+        this.$combo = this.$tartet.find('.list .f_chk_only');
+        this.addEvent();
+    },
+    addEvent: function() {
+        this.$allChk.on('click', function() {
+            if ($(this).find('input').prop('checked')) {
+                $(this).parents('.tree-ui').find('.list .f_chk_only').addClass('on');
+                $(this).parents('.tree-ui').find('.list .f_chk_only input').prop('checked', true);
+            } else {
+                $(this).parents('.tree-ui').find('.list .f_chk_only').removeClass('on');
+                $(this).parents('.tree-ui').find('.list .f_chk_only input').prop('checked', false);
+            }
+        });
+        this.$combo.on('click', function() {
+
         });
     }
 }

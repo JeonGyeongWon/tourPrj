@@ -10,8 +10,8 @@ public class EgovComOthersExcepHndlr implements ExceptionHandler {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(EgovComOthersExcepHndlr.class);
 
-    @Override
-	public void occur(Exception exception, String packageName) {
+    public void occur(Exception exception, String packageName) {
+    	//log.debug(" EgovServiceExceptionHandler run...............");
     	LOGGER.error(packageName, exception);
     }
 }

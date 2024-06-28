@@ -1,5 +1,4 @@
 package egovframework.let.cop.bbs.web;
-
 import java.util.List;
 import java.util.Map;
 
@@ -45,202 +44,204 @@ import org.springmodules.validation.commons.DefaultBeanValidator;
 @Controller
 public class EgovBBSLoneMasterController {
 
-	@Resource(name = "EgovBBSLoneMasterService")
-	private EgovBBSLoneMasterService bbsLoneService;
+    @Resource(name = "EgovBBSLoneMasterService")
+    private EgovBBSLoneMasterService bbsLoneService;
 
-	@Resource(name = "EgovCmmUseService")
-	private EgovCmmUseService cmmUseService;
+    @Resource(name = "EgovCmmUseService")
+    private EgovCmmUseService cmmUseService;
 
-	@Resource(name = "propertiesService")
-	protected EgovPropertyService propertyService;
+    @Resource(name = "propertiesService")
+    protected EgovPropertyService propertyService;
 
-	@Autowired
-	private DefaultBeanValidator beanValidator;
+    @Autowired
+    private DefaultBeanValidator beanValidator;
 
-	/**
-	 * 신규 게시판 마스터 등록을 위한 등록페이지로 이동한다.
-	 *
-	 * @param boardMasterVO
-	 * @param model
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping("/cop/bbs/addBoardMaster.do")
-	public String addBoardMaster(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, ModelMap model) throws Exception {
-		BoardMaster boardMaster = new BoardMaster();
+    /**
+     * 신규 게시판 마스터 등록을 위한 등록페이지로 이동한다.
+     *
+     * @param boardMasterVO
+     * @param model
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/cop/bbs/addBoardMaster.do")
+    public String addBoardMaster(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, ModelMap model) throws Exception {
+	BoardMaster boardMaster = new BoardMaster();
 
-		ComDefaultCodeVO vo = new ComDefaultCodeVO();
+	ComDefaultCodeVO vo = new ComDefaultCodeVO();
 
-		vo.setCodeId("COM004");
+	vo.setCodeId("COM004");
 
-		List<?> codeResult = cmmUseService.selectCmmCodeDetail(vo);
+	List<?> codeResult = cmmUseService.selectCmmCodeDetail(vo);
 
-		model.addAttribute("typeList", codeResult);
+	model.addAttribute("typeList", codeResult);
 
-		vo.setCodeId("COM009");
+	vo.setCodeId("COM009");
 
-		codeResult = cmmUseService.selectCmmCodeDetail(vo);
+	codeResult = cmmUseService.selectCmmCodeDetail(vo);
 
-		model.addAttribute("attrbList", codeResult);
-		model.addAttribute("boardMaster", boardMaster);
+	model.addAttribute("attrbList", codeResult);
+	model.addAttribute("boardMaster", boardMaster);
 
-		return "cop/bbs/EgovBBSLoneMstrRegist";
+
+	return "cop/bbs/EgovBBSLoneMstrRegist";
+    }
+
+    /**
+     * 신규 게시판 마스터 정보를 등록한다.
+     *
+     * @param boardMasterVO
+     * @param boardMaster
+     * @param status
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/cop/bbs/insertBoardMaster.do")
+    public String insertBoardMaster(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, @ModelAttribute("boardMaster") BoardMaster boardMaster,
+	    BindingResult bindingResult, SessionStatus status, ModelMap model) throws Exception {
+
+	LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
+	Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+
+	beanValidator.validate(boardMaster, bindingResult);
+	if (bindingResult.hasErrors()) {
+
+	    ComDefaultCodeVO vo = new ComDefaultCodeVO();
+
+	    vo.setCodeId("COM004");
+
+	    List<?> codeResult = cmmUseService.selectCmmCodeDetail(vo);
+
+	    model.addAttribute("typeList", codeResult);
+
+	    vo.setCodeId("COM009");
+
+	    codeResult = cmmUseService.selectCmmCodeDetail(vo);
+
+	    model.addAttribute("attrbList", codeResult);
+
+	    return "cop/bbs/EgovBBSLoneMstrRegist";
 	}
 
-	/**
-	 * 신규 게시판 마스터 정보를 등록한다.
-	 *
-	 * @param boardMasterVO
-	 * @param boardMaster
-	 * @param status
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping("/cop/bbs/insertBoardMaster.do")
-	public String insertBoardMaster(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, @ModelAttribute("boardMaster") BoardMaster boardMaster, BindingResult bindingResult,
-			SessionStatus status, ModelMap model) throws Exception {
+	if (isAuthenticated) {
+	    boardMaster.setFrstRegisterId(user.getUniqId());
+	    boardMaster.setUseAt("Y");
+	    boardMaster.setTrgetId("SYSTEMDEFAULT_REGIST");
 
-		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
-
-		beanValidator.validate(boardMaster, bindingResult);
-		if (bindingResult.hasErrors()) {
-
-			ComDefaultCodeVO vo = new ComDefaultCodeVO();
-
-			vo.setCodeId("COM004");
-
-			List<?> codeResult = cmmUseService.selectCmmCodeDetail(vo);
-
-			model.addAttribute("typeList", codeResult);
-
-			vo.setCodeId("COM009");
-
-			codeResult = cmmUseService.selectCmmCodeDetail(vo);
-
-			model.addAttribute("attrbList", codeResult);
-
-			return "cop/bbs/EgovBBSLoneMstrRegist";
-		}
-
-		if (isAuthenticated) {
-			boardMaster.setFrstRegisterId(user.getUniqId());
-			boardMaster.setUseAt("Y");
-			boardMaster.setTrgetId("SYSTEMDEFAULT_REGIST");
-
-			bbsLoneService.insertMaster(boardMaster);
-		}
-
-		return "forward:/cop/bbs/selectBoardMasterList.do";
+	    bbsLoneService.insertMaster(boardMaster);
 	}
 
-	/**
-	 * 게시판 마스터 목록을 조회한다.
-	 *
-	 * @param boardMasterVO
-	 * @param model
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping("/cop/bbs/selectBoardMasterList.do")
-	public String selectBoardMasterList(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, ModelMap model) throws Exception {
-		boardMasterVO.setPageUnit(propertyService.getInt("pageUnit"));
-		boardMasterVO.setPageSize(propertyService.getInt("pageSize"));
+	return "forward:/cop/bbs/selectBoardMasterList.do";
+    }
 
-		PaginationInfo paginationInfo = new PaginationInfo();
+    /**
+     * 게시판 마스터 목록을 조회한다.
+     *
+     * @param boardMasterVO
+     * @param model
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/cop/bbs/selectBoardMasterList.do")
+    public String selectBoardMasterList(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, ModelMap model) throws Exception {
+	boardMasterVO.setPageUnit(propertyService.getInt("pageUnit"));
+	boardMasterVO.setPageSize(propertyService.getInt("pageSize"));
 
-		paginationInfo.setCurrentPageNo(boardMasterVO.getPageIndex());
-		paginationInfo.setRecordCountPerPage(boardMasterVO.getPageUnit());
-		paginationInfo.setPageSize(boardMasterVO.getPageSize());
+	PaginationInfo paginationInfo = new PaginationInfo();
 
-		boardMasterVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
-		boardMasterVO.setLastIndex(paginationInfo.getLastRecordIndex());
-		boardMasterVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+	paginationInfo.setCurrentPageNo(boardMasterVO.getPageIndex());
+	paginationInfo.setRecordCountPerPage(boardMasterVO.getPageUnit());
+	paginationInfo.setPageSize(boardMasterVO.getPageSize());
 
-		Map<String, Object> map = bbsLoneService.selectMasterList(boardMasterVO);
-		int totCnt = Integer.parseInt((String) map.get("resultCnt"));
+	boardMasterVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
+	boardMasterVO.setLastIndex(paginationInfo.getLastRecordIndex());
+	boardMasterVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 
-		paginationInfo.setTotalRecordCount(totCnt);
+	Map<String, Object> map = bbsLoneService.selectMasterList(boardMasterVO);
+	int totCnt = Integer.parseInt((String)map.get("resultCnt"));
 
-		model.addAttribute("resultList", map.get("resultList"));
-		model.addAttribute("resultCnt", map.get("resultCnt"));
-		model.addAttribute("paginationInfo", paginationInfo);
+	paginationInfo.setTotalRecordCount(totCnt);
 
-		return "cop/bbs/EgovBBSLoneMstrList";
+	model.addAttribute("resultList", map.get("resultList"));
+	model.addAttribute("resultCnt", map.get("resultCnt"));
+	model.addAttribute("paginationInfo", paginationInfo);
+
+	return "cop/bbs/EgovBBSLoneMstrList";
+    }
+
+    /**
+     * 게시판 마스터 상세내용을 조회한다.
+     *
+     * @param boardMasterVO
+     * @param model
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/cop/bbs/selectBoardMaster.do")
+    public String selectBoardMaster(@ModelAttribute("searchVO") BoardMasterVO searchVO, ModelMap model) throws Exception {
+	BoardMasterVO vo = bbsLoneService.selectMaster(searchVO);
+
+	model.addAttribute("result", vo);
+
+	model.addAttribute("provdUrl", "/cop/bbs/selectBoardList.do?bbsId=" + vo.getBbsId());
+
+	return "cop/bbs/EgovBBSLoneMstrUpdt";
+    }
+
+    /**
+     * 게시판 마스터 정보를 수정한다.
+     *
+     * @param boardMasterVO
+     * @param boardMaster
+     * @param model
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/cop/bbs/updateBoardMaster.do")
+    public String updateBoardMaster(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, @ModelAttribute("boardMaster") BoardMaster boardMaster,
+	    BindingResult bindingResult, ModelMap model) throws Exception {
+
+	LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
+	Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+
+	beanValidator.validate(boardMaster, bindingResult);
+	if (bindingResult.hasErrors()) {
+	    BoardMasterVO vo = bbsLoneService.selectMaster(boardMasterVO);
+
+	    model.addAttribute("result", vo);
+
+	    return "cop/bbs/EgovBBSLoneMstrUpdt";
 	}
 
-	/**
-	 * 게시판 마스터 상세내용을 조회한다.
-	 *
-	 * @param boardMasterVO
-	 * @param model
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping("/cop/bbs/selectBoardMaster.do")
-	public String selectBoardMaster(@ModelAttribute("searchVO") BoardMasterVO searchVO, ModelMap model) throws Exception {
-		BoardMasterVO vo = bbsLoneService.selectMaster(searchVO);
-
-		model.addAttribute("result", vo);
-
-		model.addAttribute("provdUrl", "/cop/bbs/selectBoardList.do?bbsId=" + vo.getBbsId());
-
-		return "cop/bbs/EgovBBSLoneMstrUpdt";
+	if (isAuthenticated) {
+	    boardMaster.setLastUpdusrId(user.getUniqId());
+	    bbsLoneService.updateMaster(boardMaster);
 	}
 
-	/**
-	 * 게시판 마스터 정보를 수정한다.
-	 *
-	 * @param boardMasterVO
-	 * @param boardMaster
-	 * @param model
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping("/cop/bbs/updateBoardMaster.do")
-	public String updateBoardMaster(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, @ModelAttribute("boardMaster") BoardMaster boardMaster, BindingResult bindingResult,
-			ModelMap model) throws Exception {
+	return "forward:/cop/bbs/selectBoardMasterList.do";
+    }
 
-		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+    /**
+     * 게시판 마스터 정보를 삭제한다.
+     *
+     * @param boardMasterVO
+     * @param boardMaster
+     * @param status
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/cop/bbs/deleteBoardMaster.do")
+    public String deleteBoardMaster(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, @ModelAttribute("boardMaster") BoardMaster boardMaster,
+	    SessionStatus status) throws Exception {
 
-		beanValidator.validate(boardMaster, bindingResult);
-		if (bindingResult.hasErrors()) {
-			BoardMasterVO vo = bbsLoneService.selectMaster(boardMasterVO);
+	LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
+	Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 
-			model.addAttribute("result", vo);
-
-			return "cop/bbs/EgovBBSLoneMstrUpdt";
-		}
-
-		if (isAuthenticated) {
-			boardMaster.setLastUpdusrId(user.getUniqId());
-			bbsLoneService.updateMaster(boardMaster);
-		}
-
-		return "forward:/cop/bbs/selectBoardMasterList.do";
+	if (isAuthenticated) {
+	    boardMaster.setLastUpdusrId(user.getUniqId());
+	    bbsLoneService.deleteMaster(boardMaster);
 	}
-
-	/**
-	 * 게시판 마스터 정보를 삭제한다.
-	 *
-	 * @param boardMasterVO
-	 * @param boardMaster
-	 * @param status
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping("/cop/bbs/deleteBoardMaster.do")
-	public String deleteBoardMaster(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, @ModelAttribute("boardMaster") BoardMaster boardMaster, SessionStatus status)
-			throws Exception {
-
-		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
-
-		if (isAuthenticated) {
-			boardMaster.setLastUpdusrId(user.getUniqId());
-			bbsLoneService.deleteMaster(boardMaster);
-		}
-		return "forward:/cop/bbs/selectBoardMasterList.do";
-	}
+	// status.setComplete();
+	return "forward:/cop/bbs/selectBoardMasterList.do";
+    }
 }

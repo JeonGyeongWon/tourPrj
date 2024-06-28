@@ -17,6 +17,7 @@ import org.egovframe.rte.fdl.security.userdetails.util.EgovUserDetailsHelper;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -74,6 +75,7 @@ public class EgovBBSAttributeManageController {
 		if (user == null) {
 			throw new EgovBizException("인증된 사용자 정보가 존재하지 않습니다.");
 		}
+
 	}
 
 	/**
@@ -167,7 +169,11 @@ public class EgovBBSAttributeManageController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/cop/bbs/SelectBBSMasterInfs.do")
-	public String selectBBSMasterInfs(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, ModelMap model) throws Exception {
+	public String selectBBSMasterInfs(@ModelAttribute("searchVO") BoardMasterVO boardMasterVO, ModelMap model, HttpServletRequest request) throws Exception {
+		
+		// 메인화면에서 넘어온 경우 메뉴 갱신을 위해 추가
+		request.getSession().setAttribute("baseMenuNo", "5000000");
+		
 		boardMasterVO.setPageUnit(propertyService.getInt("pageUnit"));
 		boardMasterVO.setPageSize(propertyService.getInt("pageSize"));
 
@@ -206,12 +212,11 @@ public class EgovBBSAttributeManageController {
 		BoardMasterVO vo = bbsAttrbService.selectBBSMasterInf(searchVO);
 
 		model.addAttribute("result", vo);
-		
+
 		String flag = propertyService.getString("Globals.addedOptions");
 		if (flag != null && flag.trim().equalsIgnoreCase("true")) {
 			model.addAttribute("addedOptions", "true");
 		}
-		////-------------------------------
 
 		return "cop/bbs/EgovBoardMstrUpdt";
 	}

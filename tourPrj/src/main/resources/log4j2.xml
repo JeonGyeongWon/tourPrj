@@ -1,30 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE xml>
 <Configuration>
-    <Appenders>
-        <Console name="console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d %5p [%c] %m%n" />
-        </Console>
-    </Appenders>
-    <Loggers>
-        <Logger name="java.sql" level="INFO" additivity="false">
+<!-- 	<Appenders> -->
+<!-- 		<Console name="console" target="SYSTEM_OUT"> -->
+<!--             <PatternLayout pattern="%d %5p [%c] %m%n" /> -->
+<!--             <PatternLayout pattern="%5p [%t - %c] %m%n" /> -->
+<!-- 		</Console> -->
+<!-- 	</Appenders> -->
+	
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+            <!-- <PatternLayout pattern="%d %5p [%c] %m%n" /> -->
+            <PatternLayout pattern="%5p %d{yyyy-MM-dd HH:mm:ss}  [%t - %c] %m%n" />
+		</Console>
+	</Appenders>
+
+	<Loggers>
+		
+		<Logger name="egovframework" level="DEBUG" additivity="false">
+            <AppenderRef ref="file" />
+			<AppenderRef ref="console" />
+		</Logger>
+		<Logger name="org.springframework" level="DEBUG" additivity="false">
+            <AppenderRef ref="file" />
+			<AppenderRef ref="console" />
+ 		</Logger>
+
+		<Logger name="java.sql" level="DEBUG" additivity="false">
             <AppenderRef ref="console" />
         </Logger>
-        <Logger name="egovframework" level="DEBUG" additivity="false">
+        <!-- log SQL 관련로그 -->
+        <Logger name="jdbc.connection" level="DEBUG" additivity="false">
             <AppenderRef ref="console" />
         </Logger>
-        <Logger name="org.egovframe" level="DEBUG" additivity="false">
+        <Logger name="jdbc.sqltiming" level="DEBUG" additivity="false">
             <AppenderRef ref="console" />
         </Logger>
-          <!-- log SQL with timing information, post execution -->
-        <Logger name="jdbc.sqltiming" level="INFO" additivity="false">
+        <Logger name="jdbc.audit" level="DEBUG" additivity="false">
             <AppenderRef ref="console" />
         </Logger>
-        <Logger name="org.springframework" level="INFO" additivity="false">
+        <Logger name="jdbc.resultset" level="DEBUG" additivity="false">
             <AppenderRef ref="console" />
         </Logger>
-        <Root level="ERROR">
+        <Logger name="jdbc.sqlonly" level="DEBUG" additivity="false">
             <AppenderRef ref="console" />
-        </Root>
-    </Loggers>
+        </Logger>
+        <Logger name="jdbc.resultsettable" level="DEBUG" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
+        <Logger name="org.springframework" level="DEBUG">
+            <AppenderRef ref="console" />
+        </Logger>
+
+		<Root level="DEBUG">
+			<AppenderRef ref="console" />
+			<AppenderRef ref="file" />
+		</Root>
+	</Loggers>
 </Configuration>

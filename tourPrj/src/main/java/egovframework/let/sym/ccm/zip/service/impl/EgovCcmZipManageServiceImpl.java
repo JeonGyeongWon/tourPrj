@@ -8,6 +8,7 @@ import egovframework.let.sym.ccm.zip.service.Zip;
 import egovframework.let.sym.ccm.zip.service.ZipVO;
 
 import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
+import org.egovframe.rte.fdl.excel.EgovExcelService;
 
 import javax.annotation.Resource;
 
@@ -40,8 +41,8 @@ public class EgovCcmZipManageServiceImpl extends EgovAbstractServiceImpl impleme
     @Resource(name="ZipManageDAO")
     private ZipManageDAO zipManageDAO;
 
-    //@Resource(name = "excelZipService")
-    //private EgovExcelService excelZipService;
+    @Resource(name = "excelZipService")
+    private EgovExcelService excelZipService;
 
 	/**
 	 * 우편번호를 삭제한다.
@@ -75,8 +76,8 @@ public class EgovCcmZipManageServiceImpl extends EgovAbstractServiceImpl impleme
 
 	@Override
 	public void insertExcelZip(InputStream file) throws Exception {
-//		zipManageDAO.insertExcelZip();
-//		excelZipService.uploadExcel("ZipManageDAO.insertExcelZip", file, 2, (long) 5000);
+		zipManageDAO.insertExcelZip();
+		excelZipService.uploadExcel("ZipManageDAO.insertExcelZip", file, 2, 5000);
 	}
 
 

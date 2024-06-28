@@ -16,7 +16,7 @@
         <result property="creatDt" column="CREAT_DT"/>
     </resultMap>
 
-    <select id="selectAuthorRoleList" parameterType="egovframework.let.sec.ram.service.AuthorRoleManageVO" resultMap="authorRole">
+    <select id="authorRoleManageDAO.selectAuthorRoleList" parameterType="egovframework.let.sec.ram.service.AuthorRoleManageVO" resultMap="authorRole">
         
 
             SELECT  * 
@@ -47,7 +47,7 @@
         
     </select>
 
-    <select id="selectAuthorRoleListTotCnt" parameterType="egovframework.let.sec.ram.service.AuthorRoleManageVO" resultType="int">
+    <select id="authorRoleManageDAO.selectAuthorRoleListTotCnt" parameterType="egovframework.let.sec.ram.service.AuthorRoleManageVO" resultType="int">
 
             SELECT COUNT(*) totcnt
               FROM LETTNROLEINFO A 
@@ -55,7 +55,7 @@
                 ON A.ROLE_CODE = B.ROLE_CODE
     </select>
 
-    <insert id="insertAuthorRole" parameterType="egovframework.let.sec.ram.service.AuthorRoleManage">
+    <insert id="authorRoleManageDAO.insertAuthorRole" parameterType="egovframework.let.sec.ram.service.AuthorRoleManage">
         
             INSERT INTO LETTNAUTHORROLERELATE 
                   ( AUTHOR_CODE
@@ -67,7 +67,7 @@
         
     </insert>
 
-    <delete id="deleteAuthorRole">
+    <delete id="authorRoleManageDAO.deleteAuthorRole">
         
             DELETE FROM LETTNAUTHORROLERELATE 
              WHERE AUTHOR_CODE=#{authorCode}

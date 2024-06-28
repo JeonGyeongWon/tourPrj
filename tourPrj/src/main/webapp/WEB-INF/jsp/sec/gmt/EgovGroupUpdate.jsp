@@ -5,10 +5,10 @@
  
       수정일         수정자                   수정내용
     -------    --------    ---------------------------
-     2009.02.01    lee.m.j          최초 생성
-     2011.08.31  JJY       경량환경 버전 생성
+     2009.02.01    lee.m.j              최초 생성
+     2011.08.31   JJY       경량환경 버전 생성
  
-    author   : 공통서비스개발팀 lee.m.j
+    author   : 공통서비스 개발팀 lee.m.j
     since    : 2009.02.01
 --%>
 <%@ page contentType="text/html; charset=utf-8"%>
@@ -36,7 +36,7 @@
 	<script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
 	<script src="<c:url value='/'/>js/ui.js"></script>
 
-<title>샘플 포털 > 포털시스템관리 > 사용자권한관리 > 사용자그룹관리</title>
+<title>내부업무 사이트 > 내부시스템관리 > 사용자그룹관리</title>
 <script type="text/javascript" src="<c:url value="/validator.do"/>"></script>
 <validator:javascript formName="groupManage" staticJavascript="false" xhtml="true" cdata="false"/>
 <script type="text/javaScript" language="javascript">
@@ -51,7 +51,7 @@ function fncGroupInsert() {
     var varFrom = document.getElementById("groupManage");
     varFrom.action = "<c:url value='/sec/gmt/EgovGroupInsert.do'/>";
 
-    if(confirm('<spring:message code="common.regist.msg" />')) {
+    if(confirm('<spring:message code="common.regist.msg" />')){
         if(!validateGroupManage(varFrom)){           
             return;
         }else{
@@ -64,7 +64,7 @@ function fncGroupUpdate() {
     var varFrom = document.getElementById("groupManage");
     varFrom.action = "<c:url value='/sec/gmt/EgovGroupUpdate.do'/>";
 
-    if(confirm('<spring:message code="common.update.msg" />')) {
+    if(confirm('<spring:message code="common.update.msg" />')){
         if(!validateGroupManage(varFrom)){           
             return;
         }else{
@@ -85,22 +85,23 @@ function fncGroupDelete() {
 </head>
 
 <body>
+<noscript>자바스크립트를 지원하지 않는 브라우저에서는 일부 기능을 사용하실 수 없습니다.</noscript>
 
     <!-- Skip navigation -->
     <a href="#contents" class="skip_navi">본문 바로가기</a>
 
     <div class="wrap">
-        <!-- header start -->
-	    <c:import url="/sym/mms/EgovHeader.do" />
-	    <!-- //header end -->
+        <!-- Header -->
+		<c:import url="/sym/mms/EgovHeader.do" />
+		<!--// Header -->
 
         <div class="container">
             <div class="sub_layout">
                 <div class="sub_in">
                     <div class="layout">
                         <!-- Left menu -->
-	                    <c:import url="/sym/mms/EgovMenuLeft.do" />
-	                    <!--// Left menu -->
+						<c:import url="/sym/mms/EgovMenuLeft.do" />
+						<!--// Left menu -->
         
                         <div class="content_wrap">
                             <div id="contents" class="content">
@@ -108,7 +109,7 @@ function fncGroupDelete() {
                                 <div class="location">
                                     <ul>
                                         <li><a class="home" href="">Home</a></li>
-                                        <li><a href="">포털시스템관리</a></li>
+                                        <li><a href="">내부시스템관리</a></li>
                                         <li><a href="">사용자권한관리</a></li>
                                         <li>사용자그룹관리</li>
                                     </ul>
@@ -117,24 +118,19 @@ function fncGroupDelete() {
 
 								<form:form modelAttribute="groupManage" method="post" >
 
-                                <h1 class="tit_1">포털시스템관리</h1>
+                                <h1 class="tit_1">내부시스템관리</h1>
 
-                                <p class="txt_1">포털시스템의 사용자 및 권한에 대한 제반사항을 관리합니다.</p>
-
-                                <h2 class="tit_2">사용자권한관리</h2>
-
-                                <h3 class="tit_3">사용자그룹관리</h3>
-
+                                <h2 class="tit_2">사용자그룹관리</h2>
+                                
                                 <div class="board_view2">
-                                    <table>
+                                    <table summary="그룹을 수정하는 테이블입니다.그룹 ID,그룹 명,설명,등록일자 정보를 담고 있습니다.">
                                         <colgroup>
                                             <col style="width: 190px;">
                                             <col style="width: auto;">
                                         </colgroup>
                                         <tr>
                                             <td class="lb">
-                                                <label for="groupId">그룹 ID</label>
-                                                <span class="req">필수</span>
+                                                <label for="groupId">그룹ID</label>
                                             </td>
                                             <td>
                                                 <input name="groupId" id="groupId" class="f_txt" type="text" readonly="readonly" value="<c:out value='${groupManage.groupId}'/>" title="그룹 ID" />
@@ -142,12 +138,12 @@ function fncGroupDelete() {
                                         </tr>
                                         <tr>
                                             <td class="lb">
-                                                <label for="groupNm">그룹 명</label>
+                                                <label for="groupNm">그룹명</label>
                                                 <span class="req">필수</span>
                                             </td>
                                             <td>
                                                 <input name="groupNm" id="groupNm" class="f_txt" type="text" value="<c:out value='${groupManage.groupNm}'/>" maxLength="50" title="그룹명" />
-                                                <form:errors path="groupNm" />
+                                                &nbsp;<form:errors path="groupNm" />
                                             </td>
                                         </tr>
                                         <tr>
@@ -155,7 +151,7 @@ function fncGroupDelete() {
                                                 <label for="groupDc">설명</label>
                                             </td>
                                             <td>
-                                                <input name="groupDc" id="groupDc" class="f_txt" type="text" value="<c:out value='${groupManage.groupDc}'/>" maxLength="50" title="설명" />
+                                                <input name="groupDc" id="groupDc" class="f_txt w_full" type="text" value="<c:out value='${groupManage.groupDc}'/>" maxLength="50" title="설명" />
                                             </td>
                                         </tr>
                                         <tr>
@@ -169,40 +165,35 @@ function fncGroupDelete() {
                                     </table>
                                 </div>
 
-								<!-- 목록/저장버튼  시작-->
+								<!-- 목록/저장버튼  -->
                                 <div class="board_view_bot">
                                     <div class="left_col btn3">
                                     	<c:if test="${registerFlag == 'UPDATE'}">
-                                        <a href="#LINK" class="btn btn_skyblue_h46 w_100" onclick="javascript:fncGroupDelete()" style="selector-dummy:expression(this.hideFocus=false);">삭제</a><!-- 삭제 -->
-                                        </c:if>
+                                    		<a href="#LINK" class="btn btn_blue_46 w_100" onclick="javascript:fncGroupDelete()"><spring:message code='button.delete' /></a><!-- 삭제 -->
+                                    	</c:if>
                                     </div>
 
                                     <div class="right_col btn1">
                                     	<c:if test="${registerFlag == 'INSERT'}">
-                                        <a href="#LINK" class="btn btn_blue_46 w_100" onclick="javascript:fncGroupInsert()" style="selector-dummy:expression(this.hideFocus=false);">저장</a><!-- 저장 -->
+                                        	<a href="#LINK" class="btn btn_blue_46 w_100" onclick="javascript:fncGroupInsert()"><spring:message code='button.save' /></a><!-- 저장 -->
                                         </c:if>
                                         <c:if test="${registerFlag == 'UPDATE'}">
-                                        <a href="#LINK" class="btn btn_blue_46 w_100" onclick="javascript:fncGroupUpdate()" style="selector-dummy:expression(this.hideFocus=false);">저장</a><!-- 저장 -->
-                                        </c:if>
-                                        <a href="#LINK" class="btn btn_blue_46 w_100" onclick="javascript:fncSelectGroupList()" style="selector-dummy:expression(this.hideFocus=false);">목록</a><!-- 목록 -->
+                                    		<a href="#LINK" class="btn btn_blue_46 w_100" onclick="javascript:fncGroupUpdate()"><spring:message code='button.save' /></a><!-- 삭제 -->
+                                    	</c:if>
+                                        <a href="#LINK" class="btn btn_blue_46 w_100" onclick="javascript:fncSelectGroupList()"><spring:message code='button.list' /></a><!-- 목록 -->
                                     </div>
                                 </div>
-                                <!-- 목록/저장버튼  끝-->
+                                <!-- // 목록/저장버튼 끝  -->
                                 
-                                <c:if test="${registerFlag == 'UPDATE'}">
-								<input type="hidden" name="searchCondition" value="<c:out value='${groupManageVO.searchCondition}'/>"/>
-								<input type="hidden" name="searchKeyword" value="<c:out value='${groupManageVO.searchKeyword}'/>"/>
-								<input type="hidden" name="pageIndex" value="<c:out value='${groupManageVO.pageIndex}'/>"/>
+                                <!-- 검색조건 유지 -->
+								<c:if test="${registerFlag == 'UPDATE'}">
+									<input type="hidden" name="searchCondition" value="<c:out value='${groupManageVO.searchCondition}'/>"/>
+									<input type="hidden" name="searchKeyword" value="<c:out value='${groupManageVO.searchKeyword}'/>"/>
+									<input type="hidden" name="pageIndex" value="<c:out value='${groupManageVO.pageIndex}'/>"/>
 								</c:if>
 								
-								<%-- 
-							    <div align="right">
-							        <input type="text" name="message" value="<c:out value='${message}'/>" size="30" readonly="readonly" title="메시지" />
-							    </div>
-								 --%>
-								
-					            </form:form>
-                                
+								</form:form>
+
                             </div>
                         </div>
                     </div>
@@ -210,9 +201,9 @@ function fncGroupDelete() {
             </div>
         </div>
 
-        <!-- footer 시작 -->
-	    <c:import url="/sym/mms/EgovFooter.do" />
-	    <!-- //footer 끝 -->
+        <!-- Footer -->
+		<c:import url="/sym/mms/EgovFooter.do" />
+		<!--// Footer -->
     </div>
     
 </body>

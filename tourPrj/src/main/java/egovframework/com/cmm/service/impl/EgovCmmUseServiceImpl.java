@@ -56,7 +56,8 @@ public class EgovCmmUseServiceImpl extends EgovAbstractServiceImpl implements Eg
 	 * @throws Exception
 	 */
 	@Override
-	public Map<String, List<CmmnDetailCode>> selectCmmCodeDetails(List<?> voList) throws Exception {
+	@SuppressWarnings("rawtypes")
+	public Map<String, List<CmmnDetailCode>> selectCmmCodeDetails(List voList) throws Exception {
 		ComDefaultCodeVO vo;
 		Map<String, List<CmmnDetailCode>> map = new HashMap<String, List<CmmnDetailCode>>();
 

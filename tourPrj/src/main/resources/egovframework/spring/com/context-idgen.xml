@@ -55,7 +55,7 @@
         <property name="cipers" value="13" />
         <property name="fillChar" value="0" />
     </bean>
-    
+            
     <!-- 그룹 ID Generation  Config-->
     <bean name="egovGroupIdGnrService"
         class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
@@ -90,6 +90,24 @@
         <property name="prefix" value="" />
         <property name="cipers" value="6" />
         <property name="fillChar" value="0" />
+    </bean> 
+    
+    <!-- 접속로그 ID Generation  Config-->        
+    <bean name="egovLoginLogIdGnrService"
+        class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
+        destroy-method="destroy">
+        <property name="dataSource" ref="dataSource" />
+        <property name="strategy"   ref="loginLogStrategy" />
+        <property name="blockSize"  value="10"/>
+        <property name="table"      value="IDS"/>
+        <property name="tableName"  value="LOGINLOG_ID"/>
+    </bean>
+    <!-- 접속로그 ID Generation  Strategy Config -->
+    <bean name="loginLogStrategy"
+        class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+        <property name="prefix" value="LOGIN_" />
+        <property name="cipers" value="14" />
+        <property name="fillChar" value="0" />
     </bean>
     
     <!-- 사용자 ID Generation  Config-->
@@ -110,204 +128,24 @@
         <property name="fillChar" value="0" />
     </bean>
     
-    <!-- 배너 ID Generation  Config-->
-    <bean name="egovBannerIdGnrService"
+    <!-- System Log... START-->         
+    <bean name="egovSysLogIdGnrService"
         class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
         destroy-method="destroy">
         <property name="dataSource" ref="dataSource" />
-        <property name="strategy"   ref="bannerIdStrategy" />
+        <property name="strategy"   ref="sysLogStrategy" />
         <property name="blockSize"  value="10"/>
-        <property name="table"      value="IDS"/>
-        <property name="tableName"  value="BANNER_ID"/>
+        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="tableName"  value="SYSLOG_ID"/>
     </bean>
-    <!-- 배너 ID Generation  Strategy Config -->
-    <bean name="bannerIdStrategy"
+    <bean name="sysLogStrategy"
         class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
-        <property name="prefix" value="BANNER_" />
+        <property name="prefix" value="SYSLOG_" />
         <property name="cipers" value="13" />
         <property name="fillChar" value="0" />
-    </bean>
+    </bean>     
+    <!-- System Log... END-->
     
-    <!-- FAQ ID Generation  Config-->          
-    <bean name="egovFaqManageIdGnrService"
-        class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
-        destroy-method="destroy">
-        <property name="dataSource" ref="dataSource" />
-        <property name="strategy"   ref="faqManageStrategy" />
-        <property name="blockSize"  value="10"/>
-        <property name="table"      value="IDS"/>
-        <property name="tableName"  value="FAQ_ID"/>
-    </bean>
-    <!-- FAQ ID Generation  Strategy Config -->
-    <bean name="faqManageStrategy"
-        class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
-        <property name="prefix" value="FAQ_" />
-        <property name="cipers" value="16" />
-        <property name="fillChar" value="0" />
-    </bean>
-    
-    <!-- QNA ID Generation  Config-->            
-    <bean name="egovQnaManageIdGnrService"
-        class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
-        destroy-method="destroy">
-        <property name="dataSource" ref="dataSource" />
-        <property name="strategy"   ref="qnaManageStrategy" />
-        <property name="blockSize"  value="10"/>
-        <property name="table"      value="IDS"/>
-        <property name="tableName"  value="QA_ID"/>
-    </bean>
-    <!-- QNA ID Generation  Strategy Config -->
-    <bean name="qnaManageStrategy"
-        class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
-        <property name="prefix" value="QA_" />
-        <property name="cipers" value="17" />
-        <property name="fillChar" value="0" />
-    </bean>
-    
-    <!-- 설문템플릿 ID Generation  Config-->
-        <bean name="egovQustnrTmplatManageIdGnrService"
-        class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
-        destroy-method="destroy">
-        <property name="dataSource" ref="dataSource" />
-        <property name="strategy" ref="QustnrTmplatManageInfotrategy" />
-        <property name="blockSize"  value="10"/>
-        <property name="table"      value="IDS"/>
-        <property name="tableName"  value="QUSTNRTMPLA_ID"/>
-    </bean>
-    <!-- 설문템플릿 ID Generation  Strategy Config -->
-    <bean name="QustnrTmplatManageInfotrategy"
-        class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
-        <property name="prefix" value="QTMPLA_" />
-        <property name="cipers" value="13" />
-        <property name="fillChar" value="0" />
-    </bean>
-    
-    <!-- 설문관리 ID Generation  Config-->
-    <bean name="egovQustnrManageIdGnrService"
-        class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
-        destroy-method="destroy">
-        <property name="dataSource" ref="dataSource" />
-        <property name="strategy" ref="QustnrManageInfotrategy" />
-        <property name="blockSize"  value="10"/>
-        <property name="table"      value="IDS"/>
-        <property name="tableName"  value="QUSTNRTMPLA_ID"/>
-    </bean>
-    <!-- 설문관리 ID Generation  Strategy Config -->
-    <bean name="QustnrManageInfotrategy"
-        class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
-        <property name="prefix" value="QMANAGE_" />
-        <property name="cipers" value="12" />
-        <property name="fillChar" value="0" />
-    </bean>
-    
-    <!-- 설문문항 ID Generation  Config-->
-    <bean name="egovQustnrQestnManageIdGnrService"
-        class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
-        destroy-method="destroy">
-        <property name="dataSource" ref="dataSource" />
-        <property name="strategy" ref="QustnrQestnManageInfotrategy" />
-        <property name="blockSize"  value="10"/>
-        <property name="table"      value="IDS"/>
-        <property name="tableName"  value="QUSTNRQESTN_ID"/>
-    </bean>
-    <!-- 설문문항 ID Generation  Strategy Config -->
-    <bean name="QustnrQestnManageInfotrategy"
-        class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
-        <property name="prefix" value="QQESTN_" />
-        <property name="cipers" value="13" />
-        <property name="fillChar" value="0" />
-    </bean>
-    
-    <!-- 설문항목 ID Generation  Config-->
-    <bean name="egovQustnrItemManageIdGnrService"
-        class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
-        destroy-method="destroy">
-        <property name="dataSource" ref="dataSource" />
-        <property name="strategy" ref="QustnrItemManageInfotrategy" />
-        <property name="blockSize"  value="10"/>
-        <property name="table"      value="IDS"/>
-        <property name="tableName"  value="QESTNR_QESITM_ID"/>
-    </bean>
-    <!-- 설문항목 ID Generation  Strategy Config -->
-    <bean name="QustnrItemManageInfotrategy"
-        class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
-        <property name="prefix" value="QESITM_" />
-        <property name="cipers" value="13" />
-        <property name="fillChar" value="0" />
-    </bean>
-    
-    <!-- 설문응답자 ID Generation  Config-->
-    <bean name="qustnrRespondManageIdGnrService"
-        class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
-        destroy-method="destroy">
-        <property name="dataSource" ref="dataSource" />
-        <property name="strategy" ref="QustnrRespondManageInfotrategy" />
-        <property name="blockSize"  value="10"/>
-        <property name="table"      value="IDS"/>
-        <property name="tableName"  value="QESTNR_RPD_ID"/>
-    </bean>
-    <!-- 설문응답자 ID Generation  Strategy Config -->
-    <bean name="QustnrRespondManageInfotrategy"
-        class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
-        <property name="prefix" value="QRPD_" />
-        <property name="cipers" value="15" />
-        <property name="fillChar" value="0" />
-    </bean>
-    
-    <!-- 설문조사 ID Generation  Config-->
-    <bean name="qustnrRespondInfoIdGnrService"
-        class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
-        destroy-method="destroy">
-        <property name="dataSource" ref="dataSource" />
-        <property name="strategy" ref="QustnrRespondInfotrategy" />
-        <property name="blockSize"  value="10"/>
-        <property name="table"      value="IDS"/>
-        <property name="tableName"  value="QESRSPNS_ID"/>
-    </bean>
-    <!-- 설문조사 ID Generation  Strategy Config -->
-    <bean name="QustnrRespondInfotrategy"
-        class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
-        <property name="prefix" value="QRSPNS_" />
-        <property name="cipers" value="13" />
-        <property name="fillChar" value="0" />
-    </bean>
-    
-    <!-- 개정정보보호정책 ID Generation  Config-->
-    <bean name="egovIndvdlInfoPolicyIdGnrService"
-        class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
-        destroy-method="destroy">
-        <property name="dataSource" ref="dataSource" />
-        <property name="strategy" ref="indvdlInfoPolicyIdMsgtrategy" />
-        <property name="blockSize"  value="10"/>
-        <property name="table"      value="IDS"/>
-        <property name="tableName"  value="INDVDL_INFO_ID"/>
-    </bean>
-    <!-- 개정정보보호정책 ID Generation  Strategy Config -->
-    <bean name="indvdlInfoPolicyIdMsgtrategy"
-        class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
-        <property name="prefix" value="INDVDL_" />
-        <property name="cipers" value="13" />
-        <property name="fillChar" value="0" />
-    </bean>
-    
-    <!-- StplatManage... START-->           
-    <bean name="egovStplatManageIdGnrService"
-        class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
-        destroy-method="destroy">
-        <property name="dataSource" ref="dataSource" />
-        <property name="strategy"   ref="stplatManageStrategy" />
-        <property name="blockSize"  value="10"/>
-        <property name="table"      value="IDS"/>
-        <property name="tableName"  value="USE_STPLAT_ID"/>
-    </bean>
-
-
-    <bean name="stplatManageStrategy"
-        class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
-        <property name="prefix" value="STPLAT_" />
-        <property name="cipers" value="13" />
-        <property name="fillChar" value="0" />
-    </bean>
     
     <!-- 공통컴포넌트 3차사업 IDGEN -->
     <!-- 위키북마크 -->
@@ -602,6 +440,23 @@
         <property name="fillChar" value="0" />
     </bean> 
     
+    <!-- 개정정보보호정책확인 -->
+    <bean name="egovIndvdlInfoPolicyIdGnrService"
+        class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
+        destroy-method="destroy">
+        <property name="dataSource" ref="egov.dataSource" />
+        <property name="strategy" ref="indvdlInfoPolicyIdMsgtrategy" />
+        <property name="blockSize"  value="10"/>
+        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="tableName"  value="INDVDL_INFO_ID"/>
+    </bean>
+    <bean name="indvdlInfoPolicyIdMsgtrategy"
+        class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+        <property name="prefix" value="INDVDL_" />
+        <property name="cipers" value="13" />
+        <property name="fillChar" value="0" />
+    </bean> 
+    
     <!-- 통합링크 -->
     <bean name="egovUnityLinkIdGnrService"
         class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
@@ -750,7 +605,7 @@
         <property name="cipers" value="13" />
         <property name="fillChar" value="0" />
     </bean>         
-                
+
     <bean name="egovMailMsgIdGnrService"
         class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
         destroy-method="destroy">
@@ -846,6 +701,104 @@
         <property name="fillChar" value="0" />
     </bean>
 
+    <!-- 설문템플릿 -->  
+        <bean name="egovQustnrTmplatManageIdGnrService"
+        class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
+        destroy-method="destroy">
+        <property name="dataSource" ref="egov.dataSource" />
+        <property name="strategy" ref="QustnrTmplatManageInfotrategy" />
+        <property name="blockSize"  value="10"/>
+        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="tableName"  value="QUSTNRTMPLA_ID"/>
+    </bean>
+    <bean name="QustnrTmplatManageInfotrategy"
+        class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+        <property name="prefix" value="QTMPLA_" />
+        <property name="cipers" value="13" />
+        <property name="fillChar" value="0" />
+    </bean>
+    <!-- 설문관리 -->
+    <bean name="egovQustnrManageIdGnrService"
+        class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
+        destroy-method="destroy">
+        <property name="dataSource" ref="egov.dataSource" />
+        <property name="strategy" ref="QustnrManageInfotrategy" />
+        <property name="blockSize"  value="10"/>
+        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="tableName"  value="QUSTNRTMPLA_ID"/>
+    </bean>
+    <bean name="QustnrManageInfotrategy"
+        class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+        <property name="prefix" value="QMANAGE_" />
+        <property name="cipers" value="12" />
+        <property name="fillChar" value="0" />
+    </bean>
+    <!-- 설문문항  -->
+    <bean name="egovQustnrQestnManageIdGnrService"
+        class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
+        destroy-method="destroy">
+        <property name="dataSource" ref="egov.dataSource" />
+        <property name="strategy" ref="QustnrQestnManageInfotrategy" />
+        <property name="blockSize"  value="10"/>
+        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="tableName"  value="QUSTNRQESTN_ID"/>
+    </bean>
+    <bean name="QustnrQestnManageInfotrategy"
+        class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+        <property name="prefix" value="QQESTN_" />
+        <property name="cipers" value="13" />
+        <property name="fillChar" value="0" />
+    </bean>
+    <!-- 설문항목 -->
+    <bean name="egovQustnrItemManageIdGnrService"
+        class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
+        destroy-method="destroy">
+        <property name="dataSource" ref="egov.dataSource" />
+        <property name="strategy" ref="QustnrItemManageInfotrategy" />
+        <property name="blockSize"  value="10"/>
+        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="tableName"  value="QESTNR_QESITM_ID"/>
+    </bean>
+    <bean name="QustnrItemManageInfotrategy"
+        class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+        <property name="prefix" value="QESITM_" />
+        <property name="cipers" value="13" />
+        <property name="fillChar" value="0" />
+    </bean>
+    <!-- 설문응답자정보 -->
+    <bean name="qustnrRespondManageIdGnrService"
+        class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
+        destroy-method="destroy">
+        <property name="dataSource" ref="egov.dataSource" />
+        <property name="strategy" ref="QustnrRespondManageInfotrategy" />
+        <property name="blockSize"  value="10"/>
+        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="tableName"  value="QESTNR_RPD_ID"/>
+    </bean>
+    <bean name="QustnrRespondManageInfotrategy"
+        class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+        <property name="prefix" value="QRPD_" />
+        <property name="cipers" value="15" />
+        <property name="fillChar" value="0" />
+    </bean>
+    
+    <!-- 설문조사 -->
+    <bean name="qustnrRespondInfoIdGnrService"
+        class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
+        destroy-method="destroy">
+        <property name="dataSource" ref="egov.dataSource" />
+        <property name="strategy" ref="QustnrRespondInfotrategy" />
+        <property name="blockSize"  value="10"/>
+        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="tableName"  value="QESRSPNS_ID"/>
+    </bean>
+    <bean name="QustnrRespondInfotrategy"
+        class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+        <property name="prefix" value="QRSPNS_" />
+        <property name="cipers" value="13" />
+        <property name="fillChar" value="0" />
+    </bean>
+    
     <!-- 부서일정관리 -->
     <bean name="deptSchdulManageIdGnrService"
         class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
@@ -955,6 +908,25 @@
     </bean>     
     <!-- NewsManage... END-->       
     
+    <!-- FaqManage... START-->          
+    <bean name="egovFaqManageIdGnrService"
+        class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
+        destroy-method="destroy">
+        <property name="dataSource" ref="egov.dataSource" />
+        <property name="strategy"   ref="faqManageStrategy" />
+        <property name="blockSize"  value="10"/>
+        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="tableName"  value="FAQ_ID"/>
+    </bean>
+
+    <bean name="faqManageStrategy"
+        class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+        <property name="prefix" value="FAQ_" />
+        <property name="cipers" value="16" />
+        <property name="fillChar" value="0" />
+    </bean>     
+    <!-- FaqManage... END-->        
+    
     <!--  명함 -->
         <bean name="egovNcrdIdGnrService"
         class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
@@ -1003,6 +975,25 @@
         <property name="cipers" value="11" />
         <property name="fillChar" value="0" />
     </bean> 
+    
+    <!-- StplatManage... START-->           
+    <bean name="egovStplatManageIdGnrService"
+        class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
+        destroy-method="destroy">
+        <property name="dataSource" ref="egov.dataSource" />
+        <property name="strategy"   ref="stplatManageStrategy" />
+        <property name="blockSize"  value="10"/>
+        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="tableName"  value="USE_STPLAT_ID"/>
+    </bean>
+
+    <bean name="stplatManageStrategy"
+        class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+        <property name="prefix" value="STPLAT_" />
+        <property name="cipers" value="13" />
+        <property name="fillChar" value="0" />
+    </bean>     
+    <!-- StplatManage... END-->     
 
     <!-- CpyrhtPrtcPolicy... START-->           
     <bean name="egovCpyrhtPrtcPolicyIdGnrService"
@@ -1022,6 +1013,25 @@
         <property name="fillChar" value="0" />
     </bean>     
     <!-- CpyrhtPrtcPolicy... END-->
+    
+    <!-- Qna... START-->            
+    <bean name="egovQnaManageIdGnrService"
+        class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
+        destroy-method="destroy">
+        <property name="dataSource" ref="egov.dataSource" />
+        <property name="strategy"   ref="qnaManageStrategy" />
+        <property name="blockSize"  value="10"/>
+        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="tableName"  value="QA_ID"/>
+    </bean>
+
+    <bean name="qnaManageStrategy"
+        class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+        <property name="prefix" value="QA_" />
+        <property name="cipers" value="17" />
+        <property name="fillChar" value="0" />
+    </bean>     
+    <!-- Qna... END-->      
             
     <!-- Cnslt... START-->          
     <bean name="egovCnsltManageIdGnrService"
@@ -1042,44 +1052,6 @@
     </bean>     
     <!-- Cnslt... END-->        
 
-    <!-- Login Log... START-->          
-    <bean name="egovLoginLogIdGnrService"
-        class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
-        destroy-method="destroy">
-        <property name="dataSource" ref="egov.dataSource" />
-        <property name="strategy"   ref="loginLogStrategy" />
-        <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
-        <property name="tableName"  value="LOGINLOG_ID"/>
-    </bean>
-
-    <bean name="loginLogStrategy"
-        class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
-        <property name="prefix" value="LOGIN_" />
-        <property name="cipers" value="14" />
-        <property name="fillChar" value="0" />
-    </bean>     
-    <!-- Login Log... END-->        
-        
-    <!-- System Log... START-->         
-    <bean name="egovSysLogIdGnrService"
-        class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
-        destroy-method="destroy">
-        <property name="dataSource" ref="egov.dataSource" />
-        <property name="strategy"   ref="sysLogStrategy" />
-        <property name="blockSize"  value="10"/>
-        <property name="table"      value="COMTECOPSEQ"/>
-        <property name="tableName"  value="SYSLOG_ID"/>
-    </bean>
-
-    <bean name="sysLogStrategy"
-        class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
-        <property name="prefix" value="SYSLOG_" />
-        <property name="cipers" value="13" />
-        <property name="fillChar" value="0" />
-    </bean>     
-    <!-- System Log... END-->       
-        
     <!-- Web Log... START-->            
     <bean name="egovWebLogIdGnrService"
         class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
@@ -1117,6 +1089,25 @@
         <property name="fillChar" value="0" />
     </bean>     
     <!-- Trsmrcv Log... END-->      
+        
+    <!--  배너 ID -->
+    <bean name="egovBannerIdGnrService"
+        class="org.egovframe.rte.fdl.idgnr.impl.EgovTableIdGnrServiceImpl"
+        destroy-method="destroy">
+        <property name="dataSource" ref="egov.dataSource" />
+        <property name="strategy"   ref="bannerIdStrategy" />
+        <property name="blockSize"  value="10"/>
+        <property name="table"      value="COMTECOPSEQ"/>
+        <property name="tableName"  value="BANNER_ID"/>
+    </bean>
+
+    <bean name="bannerIdStrategy"
+        class="org.egovframe.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+        <property name="prefix" value="BANNER_" />
+        <property name="cipers" value="13" />
+        <property name="fillChar" value="0" />
+    </bean> 
+    <!-- 배너 ID -->
 
     <!--  로그인화면이미지 ID -->
     <bean name="egovLoginScrinImageIdGnrService"
@@ -1975,5 +1966,4 @@
         <property name="fillChar" value="0" />
     </bean>     
     <!-- ProcessMonLog... END-->      
-    
 </beans>

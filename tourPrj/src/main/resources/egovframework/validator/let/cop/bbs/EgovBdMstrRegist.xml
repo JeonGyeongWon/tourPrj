@@ -39,7 +39,7 @@
 			<field property="posblAtchFileNumber" depends="required">
         		<arg0 key="cop.posblAtchFileNumber" />
 			</field>
-			<field property="tmplatId" depends="required">
+			<field property="tmplatNm" depends="required">
         		<arg0 key="cop.tmplatId" />
 			</field>			
 					

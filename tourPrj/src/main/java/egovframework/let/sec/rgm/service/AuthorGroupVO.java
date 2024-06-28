@@ -41,4 +41,5 @@ public class AuthorGroupVO extends AuthorGroup {
 		this.authorGroupList = authorGroupList;
 	}
 
+
 }

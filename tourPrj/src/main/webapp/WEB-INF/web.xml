@@ -2,30 +2,20 @@
 <web-app id="WebApp_ID" version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <display-name>egovframework.pst</display-name>
-    <filter>
-        <filter-name>encodingFilter</filter-name>
-        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-        <init-param>
-            <param-name>encoding</param-name>
-            <param-value>utf-8</param-value>
-        </init-param>
-    </filter>
+	<display-name>egovframework.ebt</display-name>
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
     <filter-mapping>
-        <filter-name>encodingFilter</filter-name>
-        <url-pattern>*.do</url-pattern>
-    </filter-mapping>
-
-
-    
-    <!--
-		HTMLTagFilter의 경우는 파라미터에 대하여 XSS 오류 방지를 위한 변환을 처리합니다.
-		XSS 보안 위험 방지를 위하여 반드시 설정 하셔야 합니다.
-		(<c:out />의 경우 해당 뷰단의 사용한 곳에 한정하여 데이터 출력시 XSS 방지 처리가 됨)
-		
-		HTMLTagFilter 사용 시 multipart/form-data Request의 필터링을 위해 springMultipartFilter를 모든페이지에서 사용해야 합니다. 
-	-->
-
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	
 	<!--
 		Tomcat의 경우 allowCasualMultipartParsing="true" 추가
 		<Context docBase="" path="/" reloadable="true" allowCasualMultipartParsing="true">
@@ -39,8 +29,11 @@
 		<filter-name>springMultipartFilter</filter-name>
 		<url-pattern>*.do</url-pattern>
 	</filter-mapping>
-   <!--
-		HTMLTagFilter 설정 부분
+    
+    <!--
+		HTMLTagFilter의 경우는 파라미터에 대하여 XSS 오류 방지를 위한 변환을 처리합니다.
+		XSS 보안 위험 방지를 위하여 반드시 설정 하셔야 합니다.
+		(<c:out />의 경우 해당 뷰단의 사용한 곳에 한정하여 데이터 출력시 XSS 방지 처리가 됨)
 	-->
 	<filter>
 		<filter-name>HTMLTagFilter</filter-name>
@@ -64,6 +57,8 @@
     <listener>
         <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
     </listener>
+   
+    
     <!-- security end -->
 
     <context-param>

@@ -82,7 +82,7 @@ public class ZipManageDAO extends EgovAbstractMapper {
      * @return List(우편번호 목록)
      * @throws Exception
      */
-    public List<?> selectZipList(ZipVO searchVO) throws Exception {
+	public List<?> selectZipList(ZipVO searchVO) throws Exception {
         return list("ZipManageDAO.selectZipList", searchVO);
     }
 

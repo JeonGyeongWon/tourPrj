@@ -1,21 +1,24 @@
 <%--
-  Class Name : EgovMainView.jsp
+  Class Name : EgovMainView.jsp 
   Description : 메인화면
   Modification Information
-
+ 
       수정일         수정자                   수정내용
     -------    --------    ---------------------------
      2011.08.31   JJY       경량환경 버전 생성
-
+ 
     author   : 실행환경개발팀 JJY
-    since    : 2011.08.31
+    since    : 2011.08.31 
 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%-- <%@ page import ="pnuhPotal.com.cmm.LoginVO" %> --%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="ko">
+<html>
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,794 +27,102 @@
 	<link rel="stylesheet" href="<c:url value='/'/>css/layout.css">
 	<link rel="stylesheet" href="<c:url value='/'/>css/component.css">
 	<link rel="stylesheet" href="<c:url value='/'/>css/page.css">
-	
-	<link rel="stylesheet" href="<c:url value='/'/>css/typark_main_visual.css">
-	
 	<script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
 	<script src="<c:url value='/'/>js/ui.js"></script>
-
-<title>경량환경 템플릿 포털사이트</title>
+	
+<title>표준프레임워크 경량환경 내부업무템플릿</title>
 </head>
-
-<style>
-	#location{display: none!important;}
-</style>
-
-
-
-<c:import url="/sym/mms/EgovHeader.do" />
+<body>
+<noscript>자바스크립트를 지원하지 않는 브라우저에서는 일부 기능을 사용하실 수 없습니다.</noscript>	
+<!-- 전체 레이어 시작 -->
 
 <body>
 
-
-
-<noscript><p>자바스크립트를 지원하지 않는 브라우저에서는 일부 기능을 사용하실 수 없습니다.</p></noscript>
-
-   <!-- skip navigation -->
-   <!--  <a href="#contents" class="skip_navi">본문 바로가기</a> -->
+    <!-- Skip navigation -->
+    <a href="#contents" class="skip_navi">본문 바로가기</a>
 
     <div class="wrap">
-        <!-- header start -->
-	   
-	    <!-- //header end -->
-		 
-		
-        <div class="container" style="background: var(--background_color);">
-        	
-        
-        	
-	        <div class="container_p">
-	        
-	        
-	   <div id="contents" class="main_p_wrap">	
-		        
-		       
-		        
-		        
-		        
-		    	  <div class="swiper" style="width:45%; height:600px; display: inline-block;">
-		        <!-- Additional required wrapper -->
-		        <div class="swiper-wrapper">
-		          <!-- Slides -->
-		          <div class="swiper-slide slide_1">
-		<!--               	<h1> 핫한 지역정보<br><span style="color:#E6007E;"></span></h1> -->
-				        		
-				      
-				      <div class="main_title" style="text-align:center; width: 100%; height:20%;">
-		              			<h1> 지역축제 현황<br><span style="color:#E6007E;"></span></h1>
-				        		<p style="color:#D5D5D5"> 이미지 영역</p>
-				        		
-				      </div>
-				        	
-		<!-- 		        	<div class="main_visual"> -->
-		<%-- 		        		<img src="<c:url value='/'/>images/main_img.png" alt="메인이미지"> --%>
-				        		
-				        		
-		<!-- 		        	</div> -->
-		<!--           </div> -->
-				  </div>
-		          <div class="swiper-slide">
-		              <img src="https://com/200x200">
-		           </div>
-		          <div class="swiper-slide">
-		              <img src="https://com/200x200">
-		          </div>
-		          <div class="swiper-slide">
-		              <img src="https://com/200x200">
-		          </div>  
-		        </div>
-		        <!-- If we need navigation buttons -->
-		        <div class="swiper-button-next"></div>
-		        <div class="swiper-button-prev"></div>
-		        <div class="swiper-pagination"></div>
-		
-		        <!-- If we need scrollbar -->
-		        <div class="swiper-scrollbar"></div>
-		        
-		     <!--    
-		          Stop Button
-		  <button id="swiper-stop-button">Stop</button>
-		         -->
-		  </div>
-		  
-		  
-		  
-		  		        
-		    	 <div class="swiper" style="width:45%; height:600px; display: inline-block;">
-		        <!-- Additional required wrapper -->
-		        <div class="swiper-wrapper">
-		          <!-- Slides -->
-		          <div class="swiper-slide slide_1">
-		<!--               	<h1> 핫한 지역정보<br><span style="color:#E6007E;"></span></h1> -->
-				        		
-				      
-				        	
-				      <div class="main_title" style="text-align:center; width: 100%; height:20%;">
-		              			<h1> 핫한 지역정보<br><span style="color:#E6007E;"></span></h1>
-				        		<p style="color:#D5D5D5"> 이미지 영역</p>
-				        		
-				      </div>  	
-		<!-- 		        	<div class="main_visual"> -->
-		<%-- 		        		<img src="<c:url value='/'/>images/main_img.png" alt="메인이미지"> --%>
-				        		
-				        		
-		<!-- 		        	</div> -->
-		<!--           </div> -->
-				  </div>
-		          <div class="swiper-slide">
-		              <img src="https://com/200x200">
-		           </div>
-		          <div class="swiper-slide">
-		              <img src="https://com/200x200">
-		          </div>
-		          <div class="swiper-slide">
-		              <img src="https://com/200x200">
-		          </div>  
-		        </div>
-		        <!-- If we need navigation buttons -->
-		        <div class="swiper-button-next"></div>
-		        <div class="swiper-button-prev"></div>
-		        <div class="swiper-pagination"></div>
-		
-		        <!-- If we need scrollbar -->
-		        <div class="swiper-scrollbar"></div>
-		        
-		     <!--    
-		          Stop Button
-		  <button id="swiper-stop-button">Stop</button>
-		         -->
-		  </div>
-  
-  </div>
-		        	
-		        	
-<!-- 		        	<div class="main_p_boxarea"> -->
-<!-- 		        		<div class="main_p_box covalt_blue"> -->
-		        		
-<!-- 		        			<h2>의료 마이데이터 조회</h2> -->
+        <!-- Header -->
+        <c:import url="/sym/mms/EgovHeader.do" />
+        <!--// Header -->
 
-<!-- 		        			<div class="plus_ic"> -->
-<!-- 		        				<span></span> -->
-<!-- 		        				<span></span> -->
-<!-- 		        			</div> -->
-		        			
-<!-- 		        			 <i class="my_data_img"></i> -->
-<!-- 		        		</div> -->
-		        		
-<!-- 		        		<div class="main_p_box covalt_blue"> -->
-		        			
-<!-- 		        			<h2>제증명 발급하기</h2> -->
-<!-- 		        			<div class="plus_ic"> -->
-<!-- 		        				<span></span> -->
-<!-- 		        				<span></span> -->
-<!-- 		        			</div> -->
-		        			
-		        		
-<!-- 		        			<div class="gap8 p_flex_space-between mt16" style="align-items: unset;"> -->
-		        			
-<!-- 		        			<div style="font-size: 14px;"> -->
-<!-- 		        				<h3>발급가능 서류</h3> -->
-<!-- 		        				<ul style="padding: 8px 0 0 24px;">		        				 -->
-<!-- 		        					<li>처방전</li> -->
-<!-- 		        					<li>진료비 세부산정 내역</li> -->
-<!-- 		        					<li>진료비 계산서</li> -->
-<!-- 		        				</ul> -->
-<!-- 		        			</div> -->
-		        				
-<!-- 		        				 <i class="medi_certificate"></i> -->
-<!-- 		        			</div> -->
-		        			
-<!-- 		        		</div> -->
-		        		
-		        		
-		        	
-		        		
-		        		
-<!-- 		        	</div>	 -->
-		        	
-		        </div>
-		        
-		        
-		        
-
-		      
-		       
-	        </div>
-        
-        
-<!--         	<div class="contents_p_wrap"> -->
-		        		
-<!-- 	        				<div class="contents_p_area"> -->
-<!-- 							    <div class="contents2_p"> -->
-<!-- 							        <form class="search_wrap" action="" method="get"> -->
-<!-- 							        	<div class="search_p"> -->
-							                
-<!-- 							                <label class="skip" for="id">원하는 서비스를 검색하세요</label> -->
-<!-- 							                <input id="id" class="search_p_txt" type="text" name="" value="" placeholder="원하는 서비스 또는 건강정보를 찾아보세요"> -->
-							               
-							               
-<!-- 					           		 	</div> -->
-					           		 	
-<!-- 					           		 	<div class="search_p_btn"> -->
-<!-- 					           		 		 <button type="submit">검색</button> -->
-<!-- 					           		 	</div>			        	 -->
-<!-- 							        </form> -->
-							        
-							        
-							        
-							        
-<!-- 							        <div class="user_guide_area"> -->
-<!-- 							        	<i class="i_circle">  </i> -->
-<!-- 							        	<p>포털 이용안내 가이드</p> -->
-<!-- 							        </div> -->
-							        
-<!-- 							        <div class="app_down_area"> -->
-<!-- 							        	<div> 앱아이콘 </div> -->
-<!-- 							        	<p>부산의료 마이데이터<br>앱 다운로드</p> -->
-<!-- 							        </div> -->
-							        
-							        
-<!-- 						        </div> -->
-						        
-<!-- 						        <div class="contents3_p"> -->
-						        	
-<!-- 						        	<div class="point_menu"> -->
-<!-- 						        		<div class="p_menu p_menu_box1"> -->
-<!-- 						        			<div class="p_menu_ic01"></div> -->
-<!-- 						        			<p>내 의료데이터</p> -->
-<!-- 						        		</div> -->
-						        		
-<!-- 						        		<div class="p_menu p_menu_box2"> -->
-<!-- 						        			<div class="p_menu_ic02"></div> -->
-<!-- 						        			<p>내 건강데이터</p> -->
-<!-- 						        		</div> -->
-						        		
-<!-- 						        		<div class="p_menu p_menu_box3"> -->
-<!-- 						        			<div class="p_menu_ic03"></div> -->
-<!-- 						        			<p>영상검사 이력</p> -->
-<!-- 						        		</div> -->
-						        		
-<!-- 						        		<div class="p_menu p_menu_box4"> -->
-<!-- 						        			<div class="p_menu_ic04"></div> -->
-<!-- 						        			<p>제증명 보관함</p> -->
-<!-- 						        		</div> -->
-						        		
-<!-- 						        		<div class="p_menu p_menu_box5"> -->
-<!-- 						        			<div class="p_menu_ic05"></div> -->
-<!-- 						        			<p>건강문진</p> -->
-<!-- 						        		</div> -->
-						        		
-<!-- 						        		<div class="p_menu p_menu_box6"> -->
-						        			
-<!-- 							        			<div class="p_menu_ic06"></div> -->
-<!-- 							        			<p>응급정보 관리</p> -->
-<!-- 						        			</div> -->
-						        		
-						        		
-<!-- 						        	</div> -->
-						        
-<!-- 						        <div class="news_area"> -->
-<!-- 						        	<div class="c3_box gongzi_box">
-<!-- 						        		<ul> -->
-<!-- 						        			<li class="board_p"> -->
-<!-- 						        				<a href="#"> -->
-<!-- 						        					<span>공지사항</span> -->
-<!-- 						        				</a> -->
-						        				
-				
-						        				
-<!-- 						        				<ul> -->
-<!-- 						        					<li><a href="#">내용입력1내용입력1내용입력1내용입력1</a></li> -->
-<!-- 						        					<li><a href="#">내용입력1내용입력1내용입력1내용입력1</a></li> -->
-<!-- 						        					<li><a href="#">내용입력1내용입력1내용입력1내용입력1</a></li> -->
-<!-- 						        					<li><a href="#">내용입력1내용입력1내용입력1내용입력1</a></li> -->
-<!-- 						        				</ul> -->
-						        				
-<!-- 						        				<p>+</p>  -->
-						        				
-<!-- 						        			</li> -->
-<!-- 						        		</ul> -->
-						        		
-<!-- 						        		<ul> -->
-<!-- 						        			<li class="board_p"> -->
-<!-- 						        				<div class="board_title"> -->
-						        					
-<!-- 						        						<span>공지사항</span> -->
-						        				 	
-						        				 	
-<!-- 						        				 	<a href="#"> -->
-<!-- 						        				 		<i></i> -->
-<!-- 						        				 	</a>	 -->
-						        				 	
-<!-- 						        				 	<div> -->
-<!-- 						        				 	<a href="#"> -->
-<!-- 						        						<i></i> -->
-<!-- 						        						<i class="plus_p"></i> -->
-<!-- 						        				 	</a> -->
-<!-- 						        				 	</div> -->
-<!-- 						        				</div> -->
-						        				
-						        				
-				
-						        				
-<!-- 						        				<ul> -->
-<!-- 						        					<li class="board_txt_area"> -->
-<!-- 						        						<a href="#">내용입력1내용입력1내용입력1내용입력1</a> -->
-<!-- 						        						<ul> -->
-<!-- 						        							<li>2023.04.11</li> -->
-<!-- 						        						</ul> -->
-<!-- 						        					</li> -->
-						        					
-<!-- 						        					<li class="board_txt_area"> -->
-<!-- 						        						<a href="#">내용입력1내용입력1내용입력1내용입력1</a> -->
-<!-- 						        						<ul> -->
-<!-- 						        							<li>2023.04.11</li> -->
-<!-- 						        						</ul> -->
-<!-- 						        					</li> -->
-						        					
-<!-- 						        					<li class="board_txt_area"> -->
-<!-- 						        						<a href="#">내용입력1내용입력1내용입력1내용입력1</a> -->
-<!-- 						        						<ul> -->
-<!-- 						        							<li>2023.04.11</li> -->
-<!-- 						        						</ul> -->
-<!-- 						        					</li> -->
-						        					
-<!-- 						        					<li class="board_txt_area"> -->
-<!-- 						        						<a href="#">내용입력1내용입력1내용입력1내용입력1</a> -->
-<!-- 						        						<ul> -->
-<!-- 						        							<li>2023.04.11</li> -->
-<!-- 						        						</ul> -->
-<!-- 						        					</li> -->
-						        					
-<!-- 						        				</ul> -->
-						        				
-				
-<!-- 						        			</li> -->
-<!-- 						        		</ul> -->
-						        		
-<!-- 						        	</div> --> -->
-						        	
-						        	
-<!-- 						        	<div class="c3_box news_box"> -->
-<!-- 						        		<ul> -->
-<!-- 						        			<li class="board_p"> -->
-<!-- 						        				<div class="board_title"> -->
-						        					
-<!-- 						        						<span>새소식</span> -->
-						        				 
-						        				 	
-<!-- 						        				 	<a href="#"> -->
-<!-- 						        				 		<i></i> -->
-						        				 		
-<!-- 						        				 	</a> -->
-<!-- 						        				 	<div>
-<!-- 						        				 	<a href="#"> -->
-<!-- 						        						<i></i> -->
-<!-- 						        						<i class="plus_p"></i> -->
-<!-- 						        				 	</a> -->
-<!-- 						        				 	</div> --> -->
-<!-- 						        				</div> -->
-						        				
-						        				
-				
-						        				
-<!-- 						        				<ul> -->
-<!-- 						        					<li class="board_txt_area"> -->
-<!-- 						        						<a href="#">내용입력1내용입력1내용입력1내용입력1</a> -->
-<!-- 						        						<ul> -->
-<!-- 						        							<li>2023.04.11</li> -->
-<!-- 						        						</ul> -->
-<!-- 						        					</li> -->
-						        					
-<!-- 						        					<li class="board_txt_area"> -->
-<!-- 						        						<a href="#">내용입력1내용입력1내용입력1내용입력1</a> -->
-<!-- 						        						<ul> -->
-<!-- 						        							<li>2023.04.11</li> -->
-<!-- 						        						</ul> -->
-<!-- 						        					</li> -->
-						        					
-<!-- 						        					<li class="board_txt_area"> -->
-<!-- 						        						<a href="#">내용입력1내용입력1내용입력1내용입력1</a> -->
-<!-- 						        						<ul> -->
-<!-- 						        							<li>2023.04.11</li> -->
-<!-- 						        						</ul> -->
-<!-- 						        					</li> -->
-						        					
-<!-- 						        					<li class="board_txt_area"> -->
-<!-- 						        						<a href="#">내용입력1내용입력1내용입력1내용입력1</a> -->
-<!-- 						        						<ul> -->
-<!-- 						        							<li>2023.04.11</li> -->
-<!-- 						        						</ul> -->
-<!-- 						        					</li> -->
-						        					
-<!-- 						        				</ul> -->
-						        				
-				
-<!-- 						        			</li> -->
-<!-- 						        		</ul> -->
-<!-- 						        	</div> -->
-<!-- 						        	</div> -->
-						        	
-<!-- 						        </div> c3 -->
-<!-- 						    </div>    하늘색영역  -->
-						        
-<!-- 		      		</div> -->
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-            <%-- <div class="p_main">
-                <div class="visual">
-                    <p>
-                        <span class="t1">표준프레임워크(사용자)</span>
-                        <span class="t2">경량환경 포털222</span>
-                        <span class="t3">표준프레임워크 경량화 포탈에 대한 전반적인 지원을 약속합니다.</span>
-						<a href="<c:url value='/md/ph/medidataPrcthist.do'/>"><span class="t1">현수 타임 라인 테스트</span></a>
+        <div class="container main">
+            <div class="P_MAIN">
+                <div class="inner">
+                    <p class="visual">
+                        <span class="t_1">표준프레임워크</span>
+                        <span class="t_2">경량환경 내부업무</span>
+                        <span class="t_3">표준프레임워크 경량환경 내부업무에 대한 전반적인 지원을 약속합니다.</span>
                     </p>
-                </div>     
-                
-                <!-- 게시물 -->
-                <div class="dash_board">
-                    <div class="inner">
-                        <ul class="tab">
-                            <li><a href="" class="cur">공지사항</a></li>
-                            <li><a href="">자유게시판</a></li>
-                            <!-- <li><a href="">묻고 답하기</a></li> -->
-                        </ul>
-
-                        <div class="tab_contents">
-                        
-                        	<!-- 공지사항 -->
-                            <div class="tab_item">
-                                <h2 class="blind">공지사항</h2>
-                                <ul>
-                                
-                                	<c:if test="${fn:length(notiList) == 0}" >
-				                        <li>최신 게시물이 없습니다.</li>
-				                    </c:if>
-                                
-                                	<c:forEach var="result" items="${notiList}" begin="0" end="2" step="1" varStatus="status">
-                                    <li>
-                                        <a href="<c:url value='/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_AAAAAAAAAAAA'/>">
-                                        	<c:if test="${!(result.isExpired=='Y' || result.useAt == 'N')}">
-	                                            <span class="tit">
-	                                            	<c:choose>
-	                                            		<c:when test="${fn:length(result.nttSj) > 51 }">
-	                                            			<c:out value="${fn:substring(result.nttSj, 0, 50)}" />...
-	                                            		</c:when>
-	                                            		<c:otherwise>
-	                                            			<c:out value="${result.nttSj }"></c:out>
-	                                            		</c:otherwise>
-	                                            	</c:choose>
-	                                            </span>
-	                                            <span class="desc">
-	                                            	<c:choose>
-	                                            		<c:when test="${fn:length(result.nttCn) > 151 }">
-	                                            			<c:out value="${fn:substring(result.nttCn, 0, 150)}" />...
-	                                            		</c:when>
-	                                            		<c:otherwise>
-	                                            			<c:out value="${result.nttCn }"></c:out>
-	                                            		</c:otherwise>
-	                                            	</c:choose>
-	                                            </span>
-	                                            <span class="dates">
-	                                            	<c:out value="${result.frstRegisterPnttm}"/>
-	                                            </span>
-                                            </c:if>
-                                        </a>
-                                    </li>
-                                    </c:forEach>
-                                </ul>
-                                <a href="<c:url value='/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_AAAAAAAAAAAA'/>" class="more">더보기</a>
-                            </div>
-                        
-                            <!-- 자유게시판 -->
-                            <div class="tab_item">
-                                <h2 class="blind">자유게시판</h2>
-                                <ul>
-                                
-                                	<c:if test="${fn:length(bbsList) == 0}" >
-				                        <li>최신 게시물이 없습니다.</li>
-				                    </c:if>
-				                    
-				                    <c:forEach var="result" items="${bbsList}" begin="0" end="2" step="1" varStatus="status">
-                                    <li>
-                                        <a href="<c:url value='/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_BBBBBBBBBBBB'/>">
-                                            <c:if test="${!(result.isExpired=='Y' || result.useAt == 'N')}">
-	                                            <span class="tit">
-	                                            	<c:choose>
-	                                            		<c:when test="${fn:length(result.nttSj) > 51 }">
-	                                            			<c:out value="${fn:substring(result.nttSj, 0, 50)}" />...
-	                                            		</c:when>
-	                                            		<c:otherwise>
-	                                            			<c:out value="${result.nttSj }"></c:out>
-	                                            		</c:otherwise>
-	                                            	</c:choose>
-	                                            </span>
-	                                            <span class="desc">
-	                                            	<c:choose>
-	                                            		<c:when test="${fn:length(result.nttCn) > 151 }">
-	                                            			<c:out value="${fn:substring(result.nttCn, 0, 150)}" />...
-	                                            		</c:when>
-	                                            		<c:otherwise>
-	                                            			<c:out value="${result.nttCn }"></c:out>
-	                                            		</c:otherwise>
-	                                            	</c:choose>
-	                                            </span>
-	                                            <span class="dates">
-	                                            	<c:out value="${result.frstRegisterPnttm}"/>
-	                                            </span>
-                                            </c:if>
-                                        </a>
-                                    </li>
-                                    </c:forEach>
-                                    
-                                </ul>
-                                <a href="<c:url value='/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_BBBBBBBBBBBB'/>" class="more">더보기</a>
-                            </div>
-
-                            
-
-                            <!-- 묻고답하기 -->
-                            <div class="tab_item">
-                                <h2 class="blind">묻고답하기</h2>
-                                <ul>
-                                    <li>
-                                        <a href="<c:url value='/uss/olh/qna/QnaListInqire.do'/>">
-                                            <span class="tit">전자정부 표준프레임워크 경량환경 포털 묻고답하기입니다.</span>
-                                            <span class="desc">안녕하세요. 전자정부 표준프레임워크 센터입니다. 
-                                                현재 전자정부 표준프레임워크 경량환경 포털 공지
-                                                사항입니다. 안녕하세요. 전자정부 표준프레임워크 
-                                                센터입니다. 현재 전자정부 표준프레임워크...</span>
-                                            <span class="dates">2021-06-30</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="">
-                                            <span class="tit">전자정부 표준프레임워크 경량환경 포털 묻고답하기입니다.</span>
-                                           
-                                            <span class="desc">안녕하세요. 전자정부 표준프레임워크 센터입니다. 
-                                                현재 전자정부 표준프레임워크 경량환경 포털 공지
-                                                사항입니다. 안녕하세요. 전자정부 표준프레임워크 
-                                                센터입니다. 현재 전자정부 표준프레임워크...</span>
-                                            <span class="dates">2021-06-30</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="">
-                                            <span class="tit">전자정부 표준프레임워크 경량환경 포털 묻고답하기입니다.</span>
-                                            <span class="desc">안녕하세요. 전자정부 표준프레임워크 센터입니다. 
-                                                현재 전자정부 표준프레임워크 경량환경 포털 공지
-                                                사항입니다. 안녕하세요. 전자정부 표준프레임워크 
-                                                센터입니다. 현재 전자정부 표준프레임워크...</span>
-                                            <span class="dates">2021-06-30</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <a href="<c:url value='/uss/olh/qna/QnaListInqire.do'/>" class="more">더보기</a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <!--// 게시물 -->
 
-                <div class="g_area">
-                    <div class="inner">
+                <div class="bot">
+                    <div class="col">
                         <div class="left_col">
-                        
-                            <!-- FAQ -->
-                            <div class="faq">
+                            <div class="box">
                                 <div class="head">
-                                    <h2>자주하는 질문<span>FAQ</span></h2>
-                                    <p>표준프레임워크 경량화 서비스에 대한 자주하는 질문의 답변들을 볼 수 있습니다.</p>
+                                    <h2>오늘의 <span>할일</span></h2>
+                                    <a href="<c:url value='/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_CCCCCCCCCCCC'/>" class="more">더보기</a>
                                 </div>
-                                
-                                <c:forEach var="result" items="${faqList}" varStatus="status">
-                                <dl>
-                                    <dt><span class="q">Q</span><a href="<c:url value='/uss/olh/faq/FaqListInqire.do' />"><c:out value="${result.qestnSj}"/></a></dt>
-                                    <dd><span class="a">A</span><c:out value="${fn:substring(fn:escapeXml(result.answerCn), 0, 70)}" /></dd>
-                                </dl>
-                                </c:forEach>
-                                
-                                <a href="<c:url value='/uss/olh/faq/FaqListInqire.do' />" class="more">더보기</a>
-                                
-                            </div>
-
-                            <!-- 홍보물 -->
-                            <div class="promotion">
-                                <h2>홍보물</h2>
-                                <p><strong>발간자료 / 뉴스기사</strong> 등의 홍보자료를 제공하고 있습니다.</p>
-                                <a href="#LINK" class="more">더보기</a>
+                                <ul class="list">
+                                	<c:forEach var="result" items="${bbsList}" varStatus="status">
+                                	<c:if test="${!(result.isExpired=='Y' || result.useAt == 'N')}">
+                                    <li>
+                                        <a href="<c:url value='/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_CCCCCCCCCCCC'/>">
+                                        	<c:out value="${result.nttSj}" />
+                                        </a>
+                                        <span><c:out value="${result.frstRegisterPnttm}"/></span>
+                                    </li>
+                                    </c:if>
+                                    </c:forEach>
+                                </ul>
                             </div>
                         </div>
                         <div class="right_col">
-                            <!-- 한방에 신청하는 민원 -->
-                            <div class="complaint">
-                                <h2>한방에 신청하는 <span>민원</span></h2>
-                                <ul>
-                                    <li><a href="#LINK" class="tech" onclick="javascript:goMenuPage('2000000'); return false;">기술지원 필요시<br>유지보수 민원</a></li>
-                                    <li><a href="#LINK" class="buy" onclick="javascript:goMenuPage('2000000'); return false;">구매 제품<br>A/S 민원</a></li>
-                                </ul>
-                                <a href="#LINK" class="more" onclick="javascript:goMenuPage('2000000'); return false;">더보기</a>
-                            </div>
-
-                            <!-- 포털 설문 참여 -->
-                            <div class="survey">
-                                <h2>포털 설문 <span>참여</span></h2>
-                                <p>표준프레임워크 경량환경 포털 홈페이지<br>
-                                    이용에 대해서 사용자 여러분들께<br>
-                                    설문조사를 진행합니다.</p>
-                                <a href="<c:url value='/uss/olp/qnn/EgovQustnrRespondInfoManageList.do'/>">참여하기</a>
+                            <div class="box">
+                                <div class="head">
+                                    <h2>최신 업무공지 <span>정보</span></h2>
+                                    <a href="<c:url value='/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_AAAAAAAAAAAA'/>" class="more">더보기</a>
+                                </div>
+                                <div class="list">
+                                    <table>
+                                        <colgroup>
+                                            <col style="width: auto;">
+                                            <col style="width: 80px">
+                                            <col style="width: 110px">
+                                        </colgroup>
+                                        <c:forEach var="result" items="${notiList}" varStatus="status">
+                                        <c:if test="${!(result.isExpired=='Y' || result.useAt == 'N')}">
+                                        <tr>
+                                            <td>
+                                            	<c:if test="${result.replyLc!=0}">
+                                        			<c:forEach begin="0" end="${result.replyLc}" step="1">
+                                        				&nbsp;
+                                        			</c:forEach>
+                                        			<img src="<c:url value='/'/>images/ico_reply.png" alt="reply arrow">
+                                        		</c:if>
+                                            	<a href="<c:url value='/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_AAAAAAAAAAAA'/>">
+                                            		<c:out value="${result.nttSj}" />
+                                            	</a>
+                                            	<span>NEW</span>
+                                            </td>
+                                            <td class="al_c"><c:out value="${result.frstRegisterNm}" /></td>
+                                            <td class="al_r date"><c:out value="${result.frstRegisterPnttm}" /></td>
+                                        </tr>
+                                        </c:if>
+                                        </c:forEach>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div> --%>
-            
+            </div>
+        </div>
 
-        </div> 
-				      
-		      
-		      
-		    	
-<!-- 		    	<div class="contents4_p"> -->
-<!-- 		    		<div class="partner"> -->
-<%-- 		    			<span class="pnuh"><img src="<c:url value='/'/>images/pnuh.png" alt="부산대병원"></span> --%>
-<%-- 		    			<span class="BTP"><img src="<c:url value='/'/>images/BTP.png" alt="부산테크노파크"></span> --%>
-<%-- 		    			<span class="iteyes"><img src="<c:url value='/'/>images/iteyes.png" alt="아이티아이즈"></span> --%>
-<%-- 		    			<span class="hi-webnet"><img src="<c:url value='/'/>images/hi-webnet.png" alt="하이웹넷"></span> --%>
-<%-- 		    			<span class="mega-bridege"><img src="<c:url value='/'/>images/mega-bridege.png" alt="메가브릿지"></span> --%>
-<!-- 		    		</div> -->
-<!-- 		    	</div> -->
-		      
-		      
-		      
-
-
-	
-
-
-
-
-
-
-
-        <!-- footer 시작 -->
-	    <c:import url="/sym/mms/EgovFooter.do" />
-	    <!-- //footer 끝 -->
+        <!-- Footer -->
+        <c:import url="/sym/mms/EgovFooter.do" />
+        <!--// Footer -->
     </div>
-    
 </body>
-
-
-  <!-- 배너 스와이프 -->
-
-
- <script>
-    const swiper = new Swiper('.swiper', {
-    
-    	/* //반응형 관련
-    	breakpoints: { 
-    		640: {  //640이상일경우
-    		slidesPerView: 2,  //레이아웃 2
-    		 }, 
-    		
-    		768: { slidesPerView: 3, }, 1024: { slidesPerView: 4, }, 
-    		
-    	} }); */
-    		
-    
-    		
-    	
-    	
-    	
-      // Optional parameters
-      loop: true,
-    ﻿  slidesPerView: 1,
-      // If we need pagination
-      pagination: {
-        el: '.swiper-pagination',
-        type:'fraction',
-        clickable: true,
-      },
-    
-      
-    
-
-      
-      
-     /*  autoplay:{
-    	  delay: 3000, 
-    	  disableOnInteraction: false 
-    	  }, */
-      
-      // Navigation arrows
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    
-      // And if we need scrollbar
-      scrollbar: {
-        el: '.swiper-scrollbar',
-      },
-    });
-    </script> 
-    
-    
-    <!-- <script>
-const swiper = new Swiper('.swiper', {
-	  loop: true,
-	  slidesPerView: 1,
-	  pagination: {
-	    el: '.swiper-pagination',
-	    type: 'fraction',
-	    clickable: true,
-	  },
-	  autoplay: {
-	    delay: 2000, 
-	    disableOnInteraction: false 
-	  },
-	  navigation: {
-	    nextEl: '.swiper-button-next',
-	    prevEl: '.swiper-button-prev',
-	  },
-	  scrollbar: {
-	    el: '.swiper-scrollbar',
-	  },
-	});
-
-	// Stop button functionality
-	const stopButton = document.getElementById('swiper-stop-button');
-	stopButton.addEventListener('click', () => {
-	  swiper.autoplay.stop();
-	  console.log('Autoplay stopped');
-	});
-
-
-</script> -->
-    
-    
-    
-
-
-  <!-- //배너 호버 정지 -->
-<script>
-
-/* $('.swiper').hover(function() {    swiper.autoplay.stop();}, function(){    swiper.autoplay.start();}); */
-
-</script>
-
-
-
-
-
-
-
-
-
-
-
 </html>

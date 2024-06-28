@@ -62,5 +62,6 @@ public class RoleManageVO extends RoleManage {
 	public void setDelYn(String[] delYn) {
 		this.delYn = delYn;
 	}
+
 	
 }

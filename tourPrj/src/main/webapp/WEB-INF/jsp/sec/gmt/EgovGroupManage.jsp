@@ -5,10 +5,10 @@
 
       수정일         수정자                   수정내용
     -------    --------    ---------------------------
-     2009.02.01    lee.m.j          최초 생성
-     2011.08.31  JJY       경량환경 버전 생성
+     2009.02.01    lee.m.j              최초 생성
+     2011.08.31   JJY       경량환경 버전 생성
 
-    author   : 공통서비스개발팀 lee.m.j
+    author   : 공통서비스 개발팀 lee.m.j
     since    : 2009.02.01
 --%>
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
@@ -31,7 +31,7 @@
 	<script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
 	<script src="<c:url value='/'/>js/ui.js"></script>
 
-<title>샘플 포털 > 포털시스템관리 > 사용자권한관리 > 사용자그룹관리</title>
+<title>내부업무 사이트 > 내부시스템관리 > 사용자그룹관리</title>
 
 <script type="text/javaScript" language="javascript" defer="defer">
 <!--
@@ -73,7 +73,7 @@ function fncManageChecked() {
         if(checkField.length > 1) {
             for(var i=0; i<checkField.length; i++) {
                 if(checkField[i].checked) {
-                	checkCount++;
+                    checkCount++;
                     checkField[i].value = checkId[i].value;
 
                     if(returnValue == "")
@@ -89,7 +89,7 @@ function fncManageChecked() {
                 returnBoolean = false;
             }
         } else {
-        	 if(document.listForm.delYn.checked == false) {
+             if(document.listForm.delYn.checked == false) {
                 alert("선택된 그룹이 없습니다.");
                 returnBoolean = false;
             }
@@ -125,12 +125,12 @@ function fncAddGroupInsert() {
 }
 
 function fncGroupListDelete() {
-	if(fncManageChecked()) {
-	    if(confirm('<spring:message code="common.delete.msg" />')) {
+    if(fncManageChecked()) {
+        if(confirm('<spring:message code="common.delete.msg" />')) {
             document.listForm.action = "<c:url value='/sec/gmt/EgovGroupListDelete.do'/>";
             document.listForm.submit();
-	    }
-	}
+        }
+    }
 }
 
 function linkPage(pageNo){
@@ -143,7 +143,7 @@ function linkPage(pageNo){
 function press() {
 
     if (event.keyCode==13) {
-    	fncSelectGroupList('1');
+        fncSelectGroupList('1');
     }
 }
 //-->
@@ -152,22 +152,24 @@ function press() {
 </head>
 
 <body>
+<noscript>자바스크립트를 지원하지 않는 브라우저에서는 일부 기능을 사용하실 수 없습니다.</noscript>
+<body>
 
     <!-- Skip navigation -->
     <a href="#contents" class="skip_navi">본문 바로가기</a>
 
     <div class="wrap">
-        <!-- header start -->
-	    <c:import url="/sym/mms/EgovHeader.do" />
-	    <!-- //header end -->
+        <!-- Header -->
+		<c:import url="/sym/mms/EgovHeader.do" />
+		<!--// Header -->
 
         <div class="container">
             <div class="sub_layout">
                 <div class="sub_in">
                     <div class="layout">
                         <!-- Left menu -->
-	                    <c:import url="/sym/mms/EgovMenuLeft.do" />
-	                    <!--// Left menu -->
+						<c:import url="/sym/mms/EgovMenuLeft.do" />
+						<!--// Left menu -->
         
                         <div class="content_wrap">
                             <div id="contents" class="content">
@@ -175,78 +177,71 @@ function press() {
                                 <div class="location">
                                     <ul>
                                         <li><a class="home" href="">Home</a></li>
-                                        <li><a href="">포털시스템관리</a></li>
+                                        <li><a href="">내부시스템관리</a></li>
                                         <li><a href="">사용자권한관리</a></li>
                                         <li>사용자그룹관리</li>
                                     </ul>
                                 </div>
                                 <!--// Location -->
 
-								<form:form name="listForm" action="<c:url value='/sec/gmt/EgovAuthorList.do'/>" method="post">
+								<form:form id="listForm" name="listForm" action="<c:url value='/sec/gmt/EgovAuthorList.do'/>" method="post">
 
-                                <h1 class="tit_1">포털시스템관리</h1>
+                                <h1 class="tit_1">내부시스템관리</h1>
 
-                                <p class="txt_1">포털시스템의 사용자 및 권한에 대한 제반사항을 관리합니다.</p>
-
-                                <h2 class="tit_2">사용자권한관리</h2>
-
-                                <h3 class="tit_3">사용자그룹관리</h3>
-
+                                <h2 class="tit_2">사용자그룹관리</h2>
+                                
                                 <!-- 검색조건 -->
                                 <div class="condition2">
-                                    <label class="lb item" for="searchWord">그룹명: </label>
-
+                                    <span class="lb mr10">그룹 명 : </span>
                                     <span class="item f_search">
-                                        <input id="searchWord" class="f_input w_500" name="searchKeyword" type="text" value="<c:out value='${groupManageVO.searchKeyword}'/>" title="검색" onkeypress="press();" />
-                                        <button class="btn" type="submit" onclick="javascript:fncSelectGroupList('1')" style="selector-dummy:expression(this.hideFocus=false);">조회</button><!-- 조회 -->
+                                        <input id="searchKeyword" class="f_input w_500" name="searchKeyword" type="text" value="<c:out value='${groupManageVO.searchKeyword}'/>" title="검색" onkeypress="press();" />
+                                        <button class="btn" type="submit" onclick="javascript:fncSelectGroupList('1')"><spring:message code='button.inquire' /></button><!-- 조회 -->
                                     </span>
                                 </div>
                                 <!--// 검색조건 -->
 
-                                <!-- 게시판 -->
-                                <div class="board_list_top" style="margin-top: 25px;">
+                                <div class="board_list_top">
                                     <div class="left_col">
                                     </div>
 
                                     <div class="right_col">
-                                        <a href="#LINK" class="btn btn_blue_46 w_100" onclick="javascript:fncGroupListDelete()" style="selector-dummy:expression(this.hideFocus=false);">삭제</a><!-- 삭제 -->
-                                        <a href="#LINK" class="btn btn_blue_46 w_100" onclick="javascript:fncAddGroupInsert()" style="selector-dummy:expression(this.hideFocus=false);">등록</a><!-- 등록 -->
+                                        <a href="#LINK" class="btn btn_blue_46 w_100" onclick="javascript:fncGroupListDelete()"><spring:message code='button.delete' /></a><!-- 삭제 -->
+                                        <a href="#LINK" class="btn btn_blue_46 w_100" onclick="javascript:fncAddGroupInsert()"><spring:message code='button.create' /></a><!-- 등록 -->
                                     </div>
                                 </div>
 
+                                <!-- 게시판 -->
                                 <div class="board_list">
-                                    <table summary="SUMMARY">
-                                    	<caption>그룹목록</caption>
+                                    <table summary="그룹 관리에 관한 테이블입니다.그룹 ID,그룹 명,설명,등록일자의 정보를 담고 있습니다.">
+                                    	<caption>그룹 관리</caption>
                                         <colgroup>
-                                            <col style="width: 70px;">
-                                            <col style="width: 200px;">
-                                            <col style="width: 130px;">
+                                            <col style="width: 80px;">
                                             <col style="width: auto;">
-                                            <col style="width: 180px;">
-                                            <col style="width: 120px;">
+                                            <col style="width: auto;">
+                                            <col style="width: auto;">
+                                            <col style="width: auto;">
                                         </colgroup>
                                         <thead>
                                             <tr>
                                                 <th scope="col">
                                                     <span class="f_chk_only chkAll">
-                                                        <input type="checkbox" name="">
+                                                        <input type="checkbox" name="checkAll" onclick="javascript:fncCheckAll()" title="전체선택">
                                                     </span>
                                                 </th>
-                                                <th scope="col">ID</th>
-                                                <th scope="col">그룹 명</th>
+                                                <th scope="col">그룹ID</th>
+                                                <th scope="col">그룹명</th>
                                                 <th scope="col">설명</th>
                                                 <th scope="col">등록일자</th>
-                                                <th scope="col"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        
-                                        	<c:if test="${fn:length(groupList) == 0}">
-							                <tr>
-							                      <td colspan="6"><spring:message code="common.nodata.msg" /></td>
-							                </tr>
-							                </c:if>
-                                        
+                                        	
+                                        	<c:if test="${empty groupList}">
+                                        		<tr>
+                                        			<td colspan="5"><spring:message code="common.nodata.msg" /></td>
+                                        		</tr>
+                                        	</c:if>
+                                        	
                                         	<c:forEach var="group" items="${groupList}" varStatus="status">
                                             <tr>
                                                 <td>
@@ -256,18 +251,11 @@ function press() {
                                                     </span>
                                                 </td>
                                                 <td>
-                                                	<a href="#LINK" class="lnk" onclick="javascript:fncSelectGroup('<c:out value="${group.groupId}"/>')">
-                                                		<c:out value="${group.groupId}"/>
-                                                	</a>
+                                                    <a href="#LINK" class="lnk" onclick="javascript:fncSelectGroup('<c:out value="${group.groupId}"/>')"><c:out value="${group.groupId}"/></a>
                                                 </td>
                                                 <td><c:out value="${group.groupNm}"/></td>
                                                 <td><c:out value="${group.groupDc}"/></td>
                                                 <td><c:out value="${group.groupCreatDe}"/></td>
-                                                <td>
-                                                	<a href="#LINK" class="btn btn_blue_30 w_80" onclick="javascript:fncSelectGroup('<c:out value="${group.groupId}"/>')">
-                                                		상세보기
-                                                	</a>
-                                                </td>
                                             </tr>
                                             </c:forEach>
                                             
@@ -275,31 +263,26 @@ function press() {
                                     </table>
                                 </div>
 
-								<!-- 페이징 -->
+								<!-- 페이지 네비게이션 시작 -->
+								<c:if test="${!empty groupManageVO.pageIndex }">
                                 <div class="board_list_bot">
                                     <div class="paging" id="paging_div">
                                         <ul>
-                                            <ui:pagination paginationInfo = "${paginationInfo}" type="renew" jsFunction="linkPage" />
+                                            <ui:pagination paginationInfo = "${paginationInfo}" type="image" jsFunction="linkPage" />
                                         </ul>
                                     </div>
-                                    
-                                    <%-- 
-                                    <div align="right">
-                                    	<input type="text" name="message" value="<c:out value='${message}'/>" size="30" readonly="readonly" title="메시지"/>
-                                    </div>
-                                     --%>
-                                    
                                 </div>
-                                <!-- // 페이징 끝 -->
+                                </c:if>
+                                <!-- //페이지 네비게이션 끝 -->
+                                <!--// 게시판 -->
                                 
                                 <input type="hidden" name="groupId"/>
 								<input type="hidden" name="groupIds"/>
 								<input type="hidden" name="pageIndex" value="<c:out value='${groupManageVO.pageIndex}'/>"/>
 								<input type="hidden" name="searchCondition"/>
-					
+								
 								</form:form>
                                 
-                                <!--// 게시판 -->
                             </div>
                         </div>
                     </div>
@@ -307,9 +290,9 @@ function press() {
             </div>
         </div>
 
-        <!-- footer 시작 -->
-	    <c:import url="/sym/mms/EgovFooter.do" />
-	    <!-- //footer 끝 -->
+        <!-- Footer -->
+		<c:import url="/sym/mms/EgovFooter.do" />
+		<!--// Footer -->
     </div>
     
 </body>

@@ -45,7 +45,7 @@ import egovframework.com.cmm.service.FileVO;
 @Controller
 public class EgovFileMngController {
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(EgovFileMngController.class);
+private static final Logger LOGGER = LoggerFactory.getLogger(EgovFileMngController.class);
 	
 	/** 암호화서비스 */
 	private static EgovCryptoService cryptoService;
@@ -141,7 +141,7 @@ public class EgovFileMngController {
 		model.addAttribute("updateFlag", "Y");
 		model.addAttribute("fileListCnt", result.size());
 		model.addAttribute("atchFileId", param_atchFileId);
-		
+
 		return "cmm/fms/EgovFileList";
 	}
 

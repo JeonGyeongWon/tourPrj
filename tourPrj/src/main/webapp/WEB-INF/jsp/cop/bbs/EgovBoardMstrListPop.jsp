@@ -5,8 +5,8 @@
  
       수정일         수정자                   수정내용
     -------    --------    ---------------------------
-     2009.03.12   이삼섭          최초 생성
-     2011.08.31  JJY       경량환경 버전 생성
+     2009.03.12   이삼섭              최초 생성
+     2011.08.31   JJY       경량환경 버전 생성
  
     author   : 공통서비스 개발팀 이삼섭
     since    : 2009.03.12
@@ -14,7 +14,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -58,13 +58,14 @@
 
 </head>
 <body>
+
+	<form name="frm" method="post" action="<c:url value='/cop/bbs/SelectBBSMasterInfsPop.do'/>">
 	
-	<form name="frm" method="post" action="${pageContext.request.contextPath}/cop/bbs/SelectBBSMasterInfsPop.do">
-	
-	<input type="hidden" name="bbsId" value="">
-	
-	<!-- 게시판 정보 팝업 -->
-    <div class="popup EgovBoardMstrListPop" style="background-color: white;">
+    <input type="hidden" name="bbsId" value="">
+
+	<!-- 게시판정보 팝업 -->
+    <!-- default : display: none 상태 -->
+    <div class="popup POP_BOARD_INFO" style="display: block;">
         <div class="pop_inner">
             <div class="pop_header">
                 <h1>게시판 정보</h1>
@@ -74,15 +75,15 @@
             <div class="pop_container">
                 <!-- 검색조건 -->
                 <div class="condition">
-                    <label class="item f_select" for="sel111">
-                        <select id="sel111" name="searchCondition" title="검색조건 선택">
+                    <label class="item f_select" for="sel1">
+                        <select name="searchCnd" class="select" title="검색유형선력">
                             <option value="0" <c:if test="${searchVO.searchCnd == '0'}">selected="selected"</c:if> >게시판명</option>
                             <option value="1" <c:if test="${searchVO.searchCnd == '1'}">selected="selected"</c:if> >게시판유형</option>
                         </select>
                     </label>
 
                     <span class="item f_search">
-                        <input class="f_input w_500" name="searchWrd" title="검색어" type="text" value='<c:out value="${searchVO.searchWrd}"/>' maxlength="35" onkeypress="press(event);"/>
+                        <input id="searchWrd" class="f_input w_500" name="searchWrd" type="text" value='<c:out value="${searchVO.searchWrd}"/>' maxlength="35" onkeypress="press(event);">
                         <button class="btn" type="submit" onclick="javascript:fn_egov_select_brdMstr('1'); return false;"><spring:message code='button.inquire' /></button><!-- 조회 -->
                     </span>
                 </div>
@@ -94,11 +95,11 @@
                     	<caption>게시판정보</caption>
                         <colgroup>
                             <col style="width: 80px;">
+                            <col style="width: 150px;">
+                            <col style="width: 130px;">
                             <col style="width: auto;">
-                            <col style="width: 100px;">
-                            <col style="width: 100px;">
-                            <col style="width: 100px;">
-                            <col style="width: 100px;">
+                            <col style="width: 150px;">
+                            <col style="width: 150px;">
                             <col style="width: 100px;">
                         </colgroup>
                         <thead>
@@ -123,7 +124,7 @@
                         	<c:forEach var="result" items="${resultList}" varStatus="status">
                             <tr>
                                 <td><c:out value="${(searchVO.pageIndex-1) * searchVO.pageSize + status.count}"/></td>
-                                <td class="al"><c:out value="${result.bbsNm}"/></td>
+                                <td><c:out value="${result.bbsNm}"/></td>
                                 <td><c:out value="${result.bbsTyCodeNm}"/></td>
                                 <td><c:out value="${result.bbsAttrbCodeNm}"/></td>
                                 <td><c:out value="${result.frstRegisterPnttm}"/></td>
@@ -147,7 +148,7 @@
                 <div class="board_list_bot">
                     <div class="paging" id="paging_div">
                         <ul>
-                            <ui:pagination paginationInfo = "${paginationInfo}" type="renew" jsFunction="fn_egov_select_brdMstr" />
+                            <ui:pagination paginationInfo = "${paginationInfo}" type="image" jsFunction="fn_egov_select_brdMstr" />
                         </ul>
                     </div>
                 </div>
@@ -156,7 +157,7 @@
             </div>
         </div>
     </div>
-    <!--// 게시판 정보 팝업 -->
+    <!--// 게시판정보 팝업 -->
     
     <input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>"/>
     

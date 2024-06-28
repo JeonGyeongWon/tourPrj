@@ -55,8 +55,52 @@ public class EgovBBSUseInfoManageController {
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertyService;
 
+	//SHT-CUSTOMIZING//@Resource(name = "EgovCommunityManageService")
+	//SHT-CUSTOMIZING//private EgovCommunityManageService cmmntyService;	// 커뮤니티 관리자 권한 확인
+
+	//SHT-CUSTOMIZING//@Resource(name = "EgovClubManageService")
+	//SHT-CUSTOMIZING//private EgovClubManageService clubService;		// 동호회 운영자 권한 확인
+
 	@Autowired
 	private DefaultBeanValidator beanValidator;
+
+	/**
+	 * 커뮤니티 관리자 및 동호회 운영자 권한을 확인한다.
+	 *
+	 * @param boardUseInf
+	 * @throws EgovBizException
+	 */
+	//SHT-CUSTOMIZING//protected void checkAuthority(BoardUseInf boardUseInf) throws Exception {
+	//SHT-CUSTOMIZING//String targetId = boardUseInf.getTrgetId();
+
+	//SHT-CUSTOMIZING//LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
+
+	//SHT-CUSTOMIZING//if (user == null) {
+	//SHT-CUSTOMIZING//throw new EgovBizException("인증된 사용자 정보가 존재하지 않습니다.");
+	//SHT-CUSTOMIZING//}
+
+	//SHT-CUSTOMIZING//if (targetId.startsWith("CMMNTY_")) {
+	//SHT-CUSTOMIZING//CommunityUser cmmntyUser = new CommunityUser();
+
+	//SHT-CUSTOMIZING//cmmntyUser.setCmmntyId(boardUseInf.getTrgetId());
+	//SHT-CUSTOMIZING//cmmntyUser.setEmplyrId(user.getUniqId());
+
+	//SHT-CUSTOMIZING//if (!cmmntyService.isManager(cmmntyUser)) {
+	//SHT-CUSTOMIZING//throw new EgovBizException("해당 커뮤니티 관리자만 사용하실 수 있습니다.");
+	//SHT-CUSTOMIZING//}
+	//SHT-CUSTOMIZING//} else if (targetId.startsWith("CLB_")) {
+	//SHT-CUSTOMIZING//ClubUser clubUser = new ClubUser();
+
+	//SHT-CUSTOMIZING//clubUser.setClbId(boardUseInf.getTrgetId());
+	//SHT-CUSTOMIZING//clubUser.setEmplyrId(user.getUniqId());
+
+	//SHT-CUSTOMIZING//if (!clubService.isOperator(clubUser)) {
+	//SHT-CUSTOMIZING//throw new EgovBizException("해당 동호회 운영자만 사용하실 수 있습니다.");
+	//SHT-CUSTOMIZING//}
+	//SHT-CUSTOMIZING//} else {
+	//SHT-CUSTOMIZING//throw new EgovBizException("대상ID 정보가 정확하지 않습니다.");
+	//SHT-CUSTOMIZING//}
+	//SHT-CUSTOMIZING//}
 
 	/**
 	 * 게시판 사용 정보를 삭제한다.
@@ -194,7 +238,6 @@ public class EgovBBSUseInfoManageController {
 	@RequestMapping("/cop/com/updateBBSUseInf.do")
 	public String updateBBSUseInf(@ModelAttribute("searchVO") BoardUseInfVO bdUseVO, @ModelAttribute("boardUseInf") BoardUseInf boardUseInf, HttpServletRequest request,
 			ModelMap model) throws Exception {
-
 		if (EgovUserDetailsHelper.isAuthenticated()) {
 			bbsUseService.updateBBSUseInf(boardUseInf);
 		}
@@ -238,6 +281,7 @@ public class EgovBBSUseInfoManageController {
 	 */
 	@RequestMapping("/cop/com/selectBBSUseInfsByTrget.do")
 	public String selectBBSUseInfsByTrget(@ModelAttribute("searchVO") BoardUseInfVO bdUseVO, ModelMap model) throws Exception {
+		//SHT-CUSTOMIZING//checkAuthority(bdUseVO);	// server-side 권한 확인
 
 		bdUseVO.setPageUnit(propertyService.getInt("pageUnit"));
 		bdUseVO.setPageSize(propertyService.getInt("pageSize"));
@@ -280,8 +324,11 @@ public class EgovBBSUseInfoManageController {
 	public String updateBBSUseInfByTrget(@ModelAttribute("searchVO") BoardUseInfVO bdUseVO, @ModelAttribute("boardUseInf") BoardUseInf boardUseInf,
 			@RequestParam Map<String, Object> commandMap, SessionStatus status, ModelMap model) throws Exception {
 
+		//SHT-CUSTOMIZING//checkAuthority(bdUseVO);	// server-side 권한 확인
+
 		String param_trgetId = (String) commandMap.get("param_trgetId");
 
+		//LoginVO user = (LoginVO)EgovUserDetailsHelper.getAuthenticatedUser();
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 
 		if (isAuthenticated) {
@@ -305,6 +352,8 @@ public class EgovBBSUseInfoManageController {
 	@RequestMapping("/cop/com/insertBBSUseInfByTrget.do")
 	public String insertBBSUseInfByTrget(@ModelAttribute("searchVO") BoardUseInfVO bdUseVO, @ModelAttribute("boardUseInf") BoardUseInf boardUseInf,
 			@RequestParam Map<String, Object> commandMap, SessionStatus status, ModelMap model) throws Exception {
+
+		//SHT-CUSTOMIZING//checkAuthority(bdUseVO);	// server-side 권한 확인
 
 		String paramTrgetId = (String) commandMap.get("param_trgetId");
 		String bbsId = (String) commandMap.get("bbsId");

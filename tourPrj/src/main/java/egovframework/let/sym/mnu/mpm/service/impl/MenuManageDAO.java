@@ -2,6 +2,7 @@ package egovframework.let.sym.mnu.mpm.service.impl;
 
 import java.util.List;
 
+import egovframework.com.cmm.ComDefaultVO;
 import egovframework.let.sym.mnu.mpm.service.MenuManageVO;
 
 import org.egovframe.rte.psl.dataaccess.EgovAbstractMapper;
@@ -29,6 +30,131 @@ import org.springframework.stereotype.Repository;
 
 @Repository("menuManageDAO")
 public class MenuManageDAO extends EgovAbstractMapper{
+
+	/**
+	 * 메뉴목록을 조회
+	 * @param vo ComDefaultVO
+	 * @return List
+	 * @exception Exception
+	 */
+	public List<?> selectMenuManageList(ComDefaultVO vo) throws Exception{
+		return list("menuManageDAO.selectMenuManageList_D", vo);
+	}
+
+    /**
+	 * 메뉴목록관리 총건수를 조회한다.
+	 * @param vo ComDefaultVO
+	 * @return int
+	 * @exception Exception
+	 */
+    public int selectMenuManageListTotCnt(ComDefaultVO vo) {
+        return (Integer)selectOne("menuManageDAO.selectMenuManageListTotCnt_S", vo);
+    }
+
+	/**
+	 * 메뉴목록관리 기본정보를 조회
+	 * @param vo ComDefaultVO
+	 * @return MenuManageVO
+	 * @exception Exception
+	 */
+	public MenuManageVO selectMenuManage(ComDefaultVO vo)throws Exception{
+		return (MenuManageVO)selectOne("menuManageDAO.selectMenuManage_D", vo);
+	}
+
+	/**
+	 * 메뉴목록 기본정보를 등록
+	 * @param vo MenuManageVO
+	 * @exception Exception
+	 */
+	public void insertMenuManage(MenuManageVO vo){
+		insert("menuManageDAO.insertMenuManage_S", vo);
+	}
+
+	/**
+	 * 메뉴목록 기본정보를 수정
+	 * @param vo MenuManageVO
+	 * @exception Exception
+	 */
+	public void updateMenuManage(MenuManageVO vo){
+		update("menuManageDAO.updateMenuManage_S", vo);
+	}
+
+	/**
+	 * 메뉴목록 기본정보를 삭제
+	 * @param vo MenuManageVO
+	 * @exception Exception
+	 */
+	public void deleteMenuManage(MenuManageVO vo){
+		delete("menuManageDAO.deleteMenuManage_S", vo);
+	}
+
+	/**
+	 * 메뉴 전체목록을 조회
+	 * @return list
+	 * @exception Exception
+	 */
+	public List<?> selectMenuList() throws Exception{
+		ComDefaultVO vo  = new ComDefaultVO();
+		return list("menuManageDAO.selectMenuListT_D", vo);
+	}
+
+
+	/**
+	 * 메뉴번호 존재여부를 조회
+	 * @param vo MenuManageVO
+	 * @return int
+	 * @exception Exception
+	 */
+	public int selectMenuNoByPk(MenuManageVO vo) throws Exception{
+		return (Integer)selectOne("menuManageDAO.selectMenuNoByPk", vo);
+	}
+
+
+
+	/**
+	 * 메뉴번호를 상위메뉴로 참조하고 있는 메뉴 존재여부를 조회
+	 * @param vo MenuManageVO
+	 * @return int
+	 * @exception Exception
+	 */
+	public int selectUpperMenuNoByPk(MenuManageVO vo) throws Exception{
+		return (Integer)selectOne("menuManageDAO.selectUpperMenuNoByPk", vo);
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/**
+	 * 메뉴정보 전체삭제 초기화
+	 * @return boolean
+	 * @exception Exception
+	 */
+	public boolean deleteAllMenuList(){
+		MenuManageVO vo = new MenuManageVO();
+		insert("menuManageDAO.deleteAllMenuList", vo);
+		return true;
+	}
+
+    /**
+	 * 메뉴정보 존재여부 조회한다.
+	 * @return int
+	 * @exception Exception
+	 */
+    public int selectMenuListTotCnt() {
+    	MenuManageVO vo = new MenuManageVO();
+        return (Integer)selectOne("menuManageDAO.selectMenuListTotCnt", vo);
+    }
+
 
 	/*### 메뉴관련 프로세스 ###*/
 	/**
@@ -80,25 +206,4 @@ public class MenuManageDAO extends EgovAbstractMapper{
 	public int selectLastMenuNoCnt(MenuManageVO vo) throws Exception{
 		return (Integer)selectOne("menuManageDAO.selectLastMenuNoCnt", vo);
 	}
-
-	/**
-	 * MainMenu Head Menu 조회 - Anonymous
-	 * @param vo MenuManageVO
-	 * @return List
-	 * @exception Exception
-	 */
-	public List<?> selectMainMenuHeadByAuthor(MenuManageVO vo) throws Exception{
-		return list("menuManageDAO.selectMainMenuHeadByAuthor", vo);
-	}
-
-	/**
-	 * MainMenu Left Menu 조회 - Anonymous
-	 * @param vo MenuManageVO
-	 * @return List
-	 * @exception Exception
-	 */
-	public List<?> selectMainMenuLeftByAuthor(MenuManageVO vo) throws Exception{
-		return list("menuManageDAO.selectMainMenuLeftByAuthor", vo);
-	}
-
 }

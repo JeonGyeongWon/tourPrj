@@ -5,9 +5,9 @@
  
       수정일         수정자                   수정내용
     -------    --------    ---------------------------
-     2009.04.01   이중호          최초 생성
-     2011.08.31   JJY       	경량환경 버전 생성
-     2023.06.09   김신해 			NSR 보안조치 (우편번호 조회 크로스사이트 스크립트 방지)
+     2009.04.01   이중호      최초 생성
+     2011.08.31   JJY       경량환경 버전 생성
+     2023.06.09   우시재 		NSR 보안조치 (우편코드 크로스사이트 스크립트 방지)
  
     author   : 공통서비스 개발팀 이중호
     since    : 2009.04.01
@@ -119,9 +119,9 @@ function fn_egov_cancel_popup() {
                         	<c:forEach items="${resultList}" var="resultInfo" varStatus="status">
                             <tr>
                                 <td><c:out value='${fn:substring(resultInfo.zip, 0,3)}'/>-<c:out value='${fn:substring(resultInfo.zip, 3,6)}'/></td>
-                                <td class="al_l">${resultInfo.ctprvnNm} ${resultInfo.signguNm} ${resultInfo.emdNm} ${resultInfo.liBuldNm} ${resultInfo.lnbrDongHo}</td>
+                                <td class="al_l"><c:out value="${resultInfo.ctprvnNm}"/> <c:out value="${resultInfo.signguNm}"/> <c:out value="${resultInfo.emdNm}"/> <c:out value="${resultInfo.liBuldNm}"/> <c:out value="${resultInfo.lnbrDongHo}"/></td>
                                 <td>
-                                	<a href="#LINK" class="btn btn_blue_30 w_80" onclick="javascript:fn_egov_return_Zip( '${resultInfo.zip}', '${resultInfo.ctprvnNm} ${resultInfo.signguNm} ${resultInfo.emdNm} ${resultInfo.liBuldNm}');">
+                                	<a href="#LINK" class="btn btn_blue_30 w_80" onclick="javascript:fn_egov_return_Zip( '<c:out value="${resultInfo.zip}"/>', '<c:out value="${resultInfo.ctprvnNm}"/> <c:out value="${resultInfo.signguNm}"/> <c:out value="${resultInfo.emdNm}"/> <c:out value="${resultInfo.liBuldNm}"/>');">
                                 		선택
                                 	</a>
                                 </td>

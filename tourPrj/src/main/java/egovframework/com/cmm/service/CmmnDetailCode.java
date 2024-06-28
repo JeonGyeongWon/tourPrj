@@ -25,42 +25,42 @@ public class CmmnDetailCode implements Serializable {
 	/*
 	 * 코드ID
 	 */
-    private String codeId = "";
+	private String codeId = "";
 
-    /*
-     * 코드ID명
-     */
-    private String codeIdNm = "";
+	/*
+	 * 코드ID명
+	 */
+	private String codeIdNm = "";
 
-    /*
-     * 코드
-     */
+	/*
+	 * 코드
+	 */
 	private String code = "";
 
 	/*
 	 * 코드명
 	 */
-    private String codeNm = "";
+	private String codeNm = "";
 
-    /*
-     * 코드설명
-     */
-    private String codeDc = "";
+	/*
+	 * 코드설명
+	 */
+	private String codeDc = "";
 
-    /*
-     * 사용여부
-     */
-    private String useAt = "";
+	/*
+	 * 사용여부
+	 */
+	private String useAt = "";
 
-    /*
-     * 최초등록자ID
-     */
-    private String frstRegisterId = "";
+	/*
+	 * 최초등록자ID
+	 */
+	private String frstRegisterId = "";
 
-    /*
-     * 최종수정자ID
-     */
-    private String lastUpdusrId   = "";
+	/*
+	 * 최종수정자ID
+	 */
+	private String lastUpdusrId = "";
 
 	/**
 	 * codeId attribute 를 리턴한다.
@@ -189,6 +189,5 @@ public class CmmnDetailCode implements Serializable {
 	public void setLastUpdusrId(String lastUpdusrId) {
 		this.lastUpdusrId = lastUpdusrId;
 	}
-
 
 }

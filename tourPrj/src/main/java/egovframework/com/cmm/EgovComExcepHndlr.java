@@ -24,12 +24,12 @@ public class EgovComExcepHndlr implements ExceptionHandler {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(EgovComExcepHndlr.class);
 
-    /**
-     * 발생된 Exception을 처리한다.
-     */
-    @Override
+	/**
+	 * 발생된 Exception을 처리한다.
+	 */
+	@Override
 	public void occur(Exception ex, String packageName) {
-    	LOGGER.debug("[HANDLER][PACKAGE]::: {}", packageName);
-		LOGGER.debug("[HANDLER][Exception]:::{}", ex);
-    }
+		LOGGER.debug("[HANDLER][PACKAGE]::: {}", packageName);
+		LOGGER.debug("[HANDLER][Exception]:::", ex);
+	}
 }

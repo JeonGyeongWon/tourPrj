@@ -15,7 +15,6 @@ import egovframework.let.cop.bbs.service.BoardMasterVO;
 import egovframework.let.cop.bbs.service.BoardVO;
 import egovframework.let.cop.bbs.service.EgovBBSAttributeManageService;
 import egovframework.let.cop.bbs.service.EgovBBSManageService;
-import egovframework.let.utl.sim.service.EgovFileScrty;
 
 import org.egovframe.rte.fdl.property.EgovPropertyService;
 import org.egovframe.rte.fdl.security.userdetails.util.EgovUserDetailsHelper;
@@ -34,7 +33,6 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springmodules.validation.commons.DefaultBeanValidator;
-
 
 /**
  * 게시물 관리를 위한 컨트롤러 클래스
@@ -120,28 +118,21 @@ public class EgovBBSAdminManageController {
 	 */
 	@RequestMapping("/cop/bbs/admin/selectBoardList.do")
 	public String selectBoardArticles(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model, HttpServletRequest request) throws Exception {
-		System.out.println(boardVO.getBbsId());
 		// 메인화면에서 넘어온 경우 메뉴 갱신을 위해 추가
-		request.getSession().setAttribute("menuNo", "5000000");
-		
-		LoginVO user;
-		if (EgovUserDetailsHelper.isAuthenticated()) {
-			user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-		} else {
-			user = new LoginVO();
-			user.setUniqId("anonymous");
-		}
-		
+		request.getSession().setAttribute("baseMenuNo", "5000000");
+
+		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+
 		boardVO.setBbsId(boardVO.getBbsId());
 		boardVO.setBbsNm(boardVO.getBbsNm());
-		
+
 		BoardMasterVO vo = new BoardMasterVO();
-		
+
 		vo.setBbsId(boardVO.getBbsId());
 		vo.setUniqId(user.getUniqId());
-		
+
 		BoardMasterVO master = bbsAttrbService.selectBBSMasterInf(vo);
-		
+
 		//-------------------------------
 		// 방명록이면 방명록 URL로 forward
 		//-------------------------------
@@ -149,7 +140,7 @@ public class EgovBBSAdminManageController {
 			return "forward:/cop/bbs/selectGuestList.do";
 		}
 		////-----------------------------
-		
+
 		boardVO.setPageUnit(propertyService.getInt("pageUnit"));
 		boardVO.setPageSize(propertyService.getInt("pageSize"));
 
@@ -162,7 +153,7 @@ public class EgovBBSAdminManageController {
 		boardVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
 		boardVO.setLastIndex(paginationInfo.getLastRecordIndex());
 		boardVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
-		
+
 		Map<String, Object> map = bbsMngService.selectBoardArticles(boardVO, vo.getBbsAttrbCode());
 		int totCnt = Integer.parseInt((String) map.get("resultCnt"));
 
@@ -181,7 +172,7 @@ public class EgovBBSAdminManageController {
 		model.addAttribute("boardVO", boardVO);
 		model.addAttribute("brdMstrVO", master);
 		model.addAttribute("paginationInfo", paginationInfo);
-		
+
 		return "cop/bbs/admin/EgovNoticeList";
 	}
 
@@ -196,23 +187,22 @@ public class EgovBBSAdminManageController {
 	 */
 	@RequestMapping("/cop/bbs/admin/selectBoardArticle.do")
 	public String selectBoardArticle(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model) throws Exception {
-		LoginVO user = new LoginVO();
-		if (EgovUserDetailsHelper.isAuthenticated()) {
-			user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-		}
+		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+
 		// 조회수 증가 여부 지정
 		boardVO.setPlusCount(true);
 
 		if (!boardVO.getSubPageIndex().equals("")) {
 			boardVO.setPlusCount(false);
 		}
+		////-------------------------------
 
 		boardVO.setLastUpdusrId(user.getUniqId());
 		BoardVO vo = bbsMngService.selectBoardArticle(boardVO);
 
 		model.addAttribute("result", vo);
-
 		model.addAttribute("sessionUniqId", user.getUniqId());
+
 		//----------------------------
 		// template 처리 (기본 BBS template 지정  포함)
 		//----------------------------
@@ -243,12 +233,9 @@ public class EgovBBSAdminManageController {
 	 */
 	@RequestMapping("/cop/bbs/admin/addBoardArticle.do")
 	public String addBoardArticle(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model) throws Exception {
-		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
-		if (!isAuthenticated) {
-			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
-			return "uat/uia/EgovLoginUsr";
-		}
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+
 		BoardMasterVO bdMstr = new BoardMasterVO();
 
 		if (isAuthenticated) {
@@ -256,6 +243,7 @@ public class EgovBBSAdminManageController {
 			BoardMasterVO vo = new BoardMasterVO();
 			vo.setBbsId(boardVO.getBbsId());
 			vo.setUniqId(user.getUniqId());
+
 			bdMstr = bbsAttrbService.selectBBSMasterInf(vo);
 			model.addAttribute("bdMstr", bdMstr);
 		}
@@ -269,7 +257,7 @@ public class EgovBBSAdminManageController {
 
 		model.addAttribute("brdMstrVO", bdMstr);
 		////-----------------------------
-		
+
 		return "cop/bbs/admin/EgovNoticeRegist";
 	}
 
@@ -337,6 +325,7 @@ public class EgovBBSAdminManageController {
 			bbsMngService.insertBoardArticle(board);
 		}
 
+		//status.setComplete();
 		return "forward:/cop/bbs/admin/selectBoardList.do";
 	}
 
@@ -351,11 +340,6 @@ public class EgovBBSAdminManageController {
 	 */
 	@RequestMapping("/cop/bbs/admin/addReplyBoardArticle.do")
 	public String addReplyBoardArticle(@ModelAttribute("searchVO") BoardVO boardVO, ModelMap model) throws Exception {
-		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
-		if (!isAuthenticated) {
-			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
-			return "uat/uia/EgovLoginUsr";
-		}
 		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 
 		BoardMasterVO master = new BoardMasterVO();
@@ -561,10 +545,10 @@ public class EgovBBSAdminManageController {
 
 			board.setNtcrNm(""); // dummy 오류 수정 (익명이 아닌 경우 validator 처리를 위해 dummy로 지정됨)
 			board.setPassword(""); // dummy 오류 수정 (익명이 아닌 경우 validator 처리를 위해 dummy로 지정됨)
-
 			board.setNttCn(unscript(board.getNttCn())); // XSS 방지
 
 			bbsMngService.updateBoardArticle(board);
+
 		}
 
 		return "forward:/cop/bbs/admin/selectBoardList.do";

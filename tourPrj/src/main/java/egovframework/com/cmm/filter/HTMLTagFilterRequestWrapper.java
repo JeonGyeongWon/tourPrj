@@ -45,10 +45,10 @@ public class HTMLTagFilterRequestWrapper extends HttpServletRequestWrapper {
 				values[i] = null;
 			}
 		}
-		
+
 		return values;
 	}
-	
+
 	public String getParameter(String parameter) {
 		
 		String value = super.getParameter(parameter);

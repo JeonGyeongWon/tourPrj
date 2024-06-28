@@ -51,7 +51,7 @@ import egovframework.com.cmm.service.FileVO;
  */
 @Controller
 public class EgovFileDownloadController {
-	
+
 	/** 로그설정 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(EgovFileDownloadController.class);
 	
@@ -61,10 +61,9 @@ public class EgovFileDownloadController {
 
 	@Resource(name = "EgovFileMngService")
 	private EgovFileMngService fileService;
-
+	
 	// 주의 : 반드시 기본값 "egovframe"을 다른것으로 변경하여 사용하시기 바랍니다.
 	public static final String ALGORITHM_KEY = EgovProperties.getProperty("Globals.File.algorithmKey");
-		
 
 	/**
 	 * 브라우저 구분 얻기.
@@ -120,6 +119,7 @@ public class EgovFileDownloadController {
 			}
 			encodedFilename = sb.toString();
 		} else {
+			//throw new RuntimeException("Not supported browser");
 			throw new IOException("Not supported browser");
 		}
 
@@ -143,10 +143,10 @@ public class EgovFileDownloadController {
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 
 		if (isAuthenticated) {
-			
+
 			// 암호화된 atchFileId 를 복호화. (2022.12.06 추가) - 파일아이디가 유추 불가능하도록 조치
 			String param_atchFileId = (String) commandMap.get("atchFileId");
-			param_atchFileId = param_atchFileId.replaceAll(" ", "+");
+			   param_atchFileId = param_atchFileId.replaceAll(" ", "+");
 			byte[] decodedBytes = Base64.getDecoder().decode(param_atchFileId);
 			String decodedString = new String(cryptoService.decrypt(decodedBytes, ALGORITHM_KEY));
 			String decodedFileId = StringUtils.substringAfter(decodedString, "|");
@@ -198,7 +198,9 @@ public class EgovFileDownloadController {
 				}
 
 			} else {
+		
 				request.getRequestDispatcher("/cmm/error/egovBizException.jsp").forward(request, response);
+							
 			}
 		}
 	}

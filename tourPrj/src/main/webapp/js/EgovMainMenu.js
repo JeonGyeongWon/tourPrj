@@ -123,7 +123,7 @@ function addTreeNode(parentNode, recursedNodes) {
 			var lastSibling	= lastTreeSibling(nodeValues[0], nodeValues[1]);
 			var hasChildNode	= hasChildTreeNode(nodeValues[0]);
 			var isNodeOpen = isTreeNodeOpen(nodeValues[0]);
-			vHtmlCodeBg      ="<div><li class='leftmenu_dept01'>";
+			vHtmlCodeBg      ="<li class='leftmenu_dept01'>";
 			vHtmlCodeBgList  ="<li class='dept02'>";
 			
 			vHtmlCodeEmpty = "";
@@ -136,11 +136,11 @@ function addTreeNode(parentNode, recursedNodes) {
 			else recursedNodes.push(1);
 
 			if (hasChildNode) {
-				vHtmlCode +=vHtmlCodeBg+"<a href='#'>"+nodeValues[2]+"</a></li></div>";
+				vHtmlCode +=vHtmlCodeBg+"<a href='#'>"+nodeValues[2]+"</a></li>";
 			} else{
 				// Start link
 				if(recursedNodes.length==1){
-				   vHtmlCode +=vHtmlCodeBg+"<a href=javascript:fn_MovePage('" + i + "');>"+nodeValues[2]+"</a></li></div>";
+				   vHtmlCode +=vHtmlCodeBg+"<a href=javascript:fn_MovePage('" + i + "');>"+nodeValues[2]+"</a></li>";
 				}else{
 				   vHtmlCode +=vHtmlCodeBgList+"<a href=javascript:fn_MovePage('" + i + "');>"+nodeValues[2]+"</a></li>";
 				}

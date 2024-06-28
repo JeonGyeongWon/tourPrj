@@ -26,11 +26,8 @@
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
 blockquote, pre, a, abbr, acronym, address, big, cite, code, del, em, font, img, ins, q, s, small, strike, strong, sub, sup,
 dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, thead, tbody, tfoot, tr, th, td, input {
-    margin: 0; padding: 0; color:#2b2b2b;
+    margin: 0; padding: 0;
 }
-
-
-
 
 blockquote, button, fieldset, iframe {border: 0;}
 cite, em, u, address, i {font-style: normal;}
@@ -40,14 +37,6 @@ caption {text-indent: -9999px; font-size: 0;}
 li {list-style: none;}
 table {width: 100%; table-layout: fixed; border-collapse: collapse;}
 a:link, a:visited, a:hover, a:active {text-decoration: none;}
-
-.sky_blue {
-	background: var(--point_color);
-}
-
-.covalt_blue {
-	background: #11327B;
-}
 
 /* Blind 숨김처리 */
 .blind {position: absolute; left: -9999px; top: -9999px;}
@@ -59,8 +48,9 @@ button {cursor: pointer;}
 
 
 /* 정렬 */
-.al_c {text-align: center;}
-.al_r {text-align: right;}
+.al_c {text-align: center !important;}
+.al_r {text-align: right !important;}
+.al_l {text-align: left !important;}
 
 .vat {vertical-align: top;}
 .vam {vertical-align: middle;}
@@ -68,12 +58,14 @@ button {cursor: pointer;}
 
 /* 가로길이 */
 .w_full {width: 100% !important;}
-
+.w_half {width: 50% !important;}
 .w_quarter {width: 25% !important;}
 .w_20 {width: 20px !important;}
 .w_50 {width: 50px !important;}
+.w_70 {width: 70px !important;}
 .w_80 {width: 80px !important;}
-.w_100 {width: 100px}
+.w_90 {width: 90px !important;}
+.w_100 {width: 100px !important;}
 .w_130 {width: 130px !important;}
 .w_150 {width: 150px !important;}
 .w_200 {width: 200px !important;}

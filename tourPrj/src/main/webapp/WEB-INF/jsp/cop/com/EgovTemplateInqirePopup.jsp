@@ -1,12 +1,12 @@
 <%--
-  Class Name : 
-  Description : 
+  Class Name : EgovTemplateInqirePop.jsp
+  Description : 템플릿 목록 조회 팝업화면
   Modification Information
  
       수정일         수정자                   수정내용
     -------    --------    ---------------------------
-     2009.03.18   이삼섭          최초 생성
-     2011.08.31  JJY       경량환경 버전 생성
+     2009.03.18   이삼섭              최초 생성
+     2011.08.31   JJY       경량환경 버전 생성
  
     author   : 공통서비스 개발팀 이삼섭
     since    : 2009.03.18
@@ -43,10 +43,8 @@
     }
     
     function fn_egov_returnTmplatInfo(tmplatId, tmplatNm){
-    	
         var retVal = tmplatId +"|"+tmplatNm;
-        
-        parent.showModalDialogCallback(retVal);
+        parent.fn_egov_returnValue(retVal);
     }
     
     /* ********************************************************
@@ -62,8 +60,14 @@
 </head>
 <body>
 
-	<!-- 템플릿 정보 팝업 -->
-    <div class="popup EgovTemplateInqirePopup" style="background-color: white;">
+	<!-- 템플릿정보 팝업 -->
+    <!-- default : display: none 상태 -->
+    <div class="popup POP_TEMPLATE_INFO" style="display: block;">
+    
+    	<form name="frm" action ="<c:url value='/cop/com/selectTemplateInfsPop.do'/>" method="post">
+    	
+    	<input type="hidden" name="tmplatId" value="" />
+    	
         <div class="pop_inner">
             <div class="pop_header">
                 <h1>템플릿 목록</h1>
@@ -74,9 +78,9 @@
                 <!-- 검색조건 -->
                 <div class="condition">
                     <label class="item f_select" for="sel1">
-                        <select id="sel1" name="searchCnd" title="검색조건" class="select">
-                            <option value="0" <c:if test="${searchVO.searchCnd == '0'}">selected="selected"</c:if> >템플릿명</option>
-                            <option value="1" <c:if test="${searchVO.searchCnd == '1'}">selected="selected"</c:if> >템플릿구분</option>
+                        <select id="sel1" name="searchCnd" class="select" title="검색조건 선택">
+                        	<option value="0" <c:if test="${searchVO.searchCnd == '0'}">selected="selected"</c:if> >템플릿명</option>
+                        	<option value="1" <c:if test="${searchVO.searchCnd == '1'}">selected="selected"</c:if> >템플릿구분</option>
                         </select>
                     </label>
 
@@ -84,18 +88,17 @@
                         <input class="f_input w_500" name="searchWrd" type="text" value='<c:out value="${searchVO.searchWrd}"/>' maxlength="35" onkeypress="press(event);" title="검색어 입력">
                         <button class="btn" type="submit" onclick="javascript:fn_egov_select_tmplatInfo('1'); return false;"><spring:message code='button.inquire' /></button><!-- 조회 -->
                     </span>
-
                 </div>
                 <!--// 검색조건 -->
 
                 <!-- 게시판 -->
                 <div class="board_list">
-                    <table summary="번호, 템플릿명, 템플릿구분, 템플릿경로, 사용여부, 등록일자, 선택 목록입니다">
-                    	<caption>템플릿목록관리</caption>
+                    <table summary="번호, 템플릿명, 템플릿구분, 템플릿경로, 사용여부, 등록일자, 선택  목록입니다">
+                    	<caption>사용자목록관리</caption>
                         <colgroup>
-                            <col style="width: 70px;">
+                            <col style="width: 80px;">
+                            <col style="width: 150px;">
                             <col style="width: 130px;">
-                            <col style="width: 120px;">
                             <col style="width: auto;">
                             <col style="width: 100px;">
                             <col style="width: 150px;">
@@ -125,19 +128,17 @@
                                 <td><c:out value="${(searchVO.pageIndex-1) * searchVO.pageSize + status.count}"/></td>
                                 <td><c:out value="${result.tmplatNm}"/></td>
                                 <td><c:out value="${result.tmplatSeCodeNm}"/></td>
-                                <td class="al"><c:out value="${result.tmplatCours}"/></td>
+                                <td><c:out value="${result.tmplatCours}"/></td>
                                 <td>
                                 	<c:if test="${result.useAt == 'N'}"><spring:message code="button.notUsed" /></c:if>
                                 	<c:if test="${result.useAt == 'Y'}"><spring:message code="button.use" /></c:if>
                                 </td>
                                 <td><c:out value="${result.frstRegisterPnttm}"/></td>
                                 <td>
-                                	<c:if test="${result.useAt == 'Y'}">
                                 	<a href="#LINK" class="btn btn_blue_30 w_80" onClick="javascript:fn_egov_returnTmplatInfo('<c:out value="${result.tmplatId}"/>','<c:out value="${result.tmplatNm}"/>')">
                                 		선택
                                 	</a>
-                                	</c:if>
-                                </td>
+                                </td><!-- 선택 -->
                             </tr>
                             </c:forEach>
                             
@@ -149,7 +150,7 @@
                 <div class="board_list_bot">
                     <div class="paging" id="paging_div">
                         <ul>
-                            <ui:pagination paginationInfo = "${paginationInfo}" type="renew" jsFunction="fn_egov_select_tmplatInfo" />
+                            <ui:pagination paginationInfo = "${paginationInfo}" type="image" jsFunction="fn_egov_select_tmplatInfo" />
                         </ul>
                     </div>
                 </div>
@@ -157,12 +158,13 @@
                 <!--// 게시판 -->
             </div>
         </div>
+        
+        <input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>"/>
+        
+        </form>
+        
     </div>
-    <!-- // 템플릿 정보 팝업 끝 -->
-    
-    <input name="pageIndex" type="hidden" value="<c:out value='${searchVO.pageIndex}'/>"/>
-    
-    </form>
+    <!--// 템플릿정보 팝업 -->
     
 </body>
 </html>

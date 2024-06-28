@@ -22,13 +22,13 @@ public class EgovComTraceHandler implements TraceHandler {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(EgovComTraceHandler.class);
 
-	/**
-	 * 발생된 메시지를 출력한다.
-	 */
-	@Override
+    /**
+     * 발생된 메시지를 출력한다.
+     */
+    @Override
 	public void todo(Class<?> clazz, String message) {
-		LOGGER.debug("[TRACE]CLASS::: {}", clazz.getName());
-		LOGGER.debug("[TRACE]MESSAGE::: {}", message);
-		//이곳에서 후속처리로 필요한 액션을 취할 수 있다.
-	}
+    	LOGGER.debug("[TRACE]CLASS::: {}", clazz.getName());
+    	LOGGER.debug("[TRACE]MESSAGE::: {}", message);
+    	//이곳에서 후속처리로 필요한 액션을 취할 수 있다.
+    }
 }

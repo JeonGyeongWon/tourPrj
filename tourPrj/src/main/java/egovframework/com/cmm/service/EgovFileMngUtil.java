@@ -32,8 +32,6 @@ import egovframework.let.utl.fcc.service.EgovStringUtil;
 //import java.util.HashMap;
 
 /**
- * @author 공통 서비스 개발팀 이삼섭
- * @version 1.0
  * @Class Name  : EgovFileMngUtil.java
  * @Description : 메시지 처리 관련 유틸리티
  * @Modification Information
@@ -43,8 +41,11 @@ import egovframework.let.utl.fcc.service.EgovStringUtil;
  *   2009.02.13       이삼섭                  최초 생성
  *   2011.08.31  JJY            경량환경 템플릿 커스터마이징버전 생성
  *
- * @see
+ * @author 공통 서비스 개발팀 이삼섭
  * @since 2009. 02. 13
+ * @version 1.0
+ * @see
+ *
  */
 @Component("EgovFileMngUtil")
 public class EgovFileMngUtil {
@@ -72,30 +73,30 @@ public class EgovFileMngUtil {
 	String storePathString = "";
 	String atchFileIdString = "";
 
-	if (storePath == null || "".equals(storePath)) {
+	if ("".equals(storePath) || storePath == null) {
 	    storePathString = propertyService.getString("Globals.fileStorePath");
 	} else {
 	    storePathString = propertyService.getString(storePath);
 	}
 
-	if (atchFileId == null || "".equals(atchFileId)) {
+	if ("".equals(atchFileId) || atchFileId == null) {
 	    atchFileIdString = idgenService.getNextStringId();
 	} else {
 	    atchFileIdString = atchFileId;
 	}
-
+	
 	File saveFolder = new File(EgovWebUtil.filePathBlackList(storePathString));
-
+	
 	if (!saveFolder.exists() || saveFolder.isFile()) {
 	    saveFolder.mkdirs();
 	}
-
+	
 	Iterator<Entry<String, MultipartFile>> itr = files.entrySet().iterator();
 	MultipartFile file;
 	String filePath = "";
 	List<FileVO> result  = new ArrayList<FileVO>();
 	FileVO fvo;
-
+	
 	while (itr.hasNext()) {
 	    Entry<String, MultipartFile> entry = itr.next();
 
@@ -174,7 +175,7 @@ public class EgovFileMngUtil {
 		LOGGER.debug("fnfe: {}", fnfe);
 	} catch (IOException ioe) {
 		LOGGER.debug("ioe: {}", ioe);
-	} catch (RuntimeException e) {
+	} catch (Exception e) {
 		LOGGER.debug("e: {}", e);
 	} finally {
 	    if (bos != null) {
@@ -203,8 +204,8 @@ public class EgovFileMngUtil {
      */
     public static void downFile(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    String downFileName = EgovStringUtil.isNullToString(request.getAttribute("downFile")).replaceAll("..", "");
-    String orgFileName = EgovStringUtil.isNullToString(request.getAttribute("orgFileName")).replaceAll("..", "");
+    String downFileName = EgovStringUtil.isNullToString(request.getAttribute("downFile")).replaceAll("..","");
+    String orgFileName = EgovStringUtil.isNullToString(request.getAttribute("orgFileName")).replaceAll("..","");
 
 	/*if ((String)request.getAttribute("downFile") == null) {
 	    downFileName = "";
@@ -327,10 +328,10 @@ public class EgovFileMngUtil {
 		bos.write(buffer, 0, bytesRead);
 	    }
 	} catch (FileNotFoundException fnfe) {
-		LOGGER.debug("fnfe: {}", fnfe);
+		LOGGER.debug("fnfe: {}",fnfe);
 	} catch (IOException ioe) {
 		LOGGER.debug("ioe: {}", ioe);
-	} catch (RuntimeException e) {
+	} catch (Exception e) {
 		LOGGER.debug("e: {}", e);
 	} finally {
 	    if (bos != null) {
@@ -400,6 +401,7 @@ public class EgovFileMngUtil {
 		    try {
 			in.close();
 		    } catch (IOException ignore) {
+
 		    	LOGGER.debug("IGNORED: {}", ignore.getMessage());
 		    }
 		}

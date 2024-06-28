@@ -353,7 +353,6 @@ public class MenuManageVO{
 	public void setTempInt(int tempInt) {
 		this.tempInt = tempInt;
 	}
-	
 	/**
      * toString 메소드를 대치한다.
      */

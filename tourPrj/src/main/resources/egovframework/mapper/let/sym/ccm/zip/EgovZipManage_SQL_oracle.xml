@@ -21,20 +21,20 @@
 			  FROM  LETTCZIP
 			 WHERE	1 = 1
 		
-			<if test="searchCondition == 1">AND
+			<if test='searchCondition == "1"'>AND
 				ZIP = #{searchKeyword}
 			</if>
-			<if test="searchCondition == 2">AND
-				CTPRVN_NM LIKE CONCAT(CONCAT('%', #{searchKeyword}), '%')
+			<if test='searchCondition == "2"'>AND
+				CTPRVN_NM LIKE '%'||#{searchKeyword}||'%'
 			</if>
-			<if test="searchCondition == 3">AND
-				SIGNGU_NM LIKE CONCAT(CONCAT('%', #{searchKeyword}), '%')
+			<if test='searchCondition == "3"'>AND
+				SIGNGU_NM LIKE '%'||#{searchKeyword}||'%'
 			</if>
-			<if test="searchCondition == 4">AND
-				EMD_NM LIKE CONCAT(CONCAT('%', #{searchKeyword}), '%')
+			<if test='searchCondition == "4"'>AND
+				EMD_NM LIKE '%'||#{searchKeyword}||'%'
 			</if>
-			<if test="searchCondition == 5">AND
-				LI_BULD_NM LIKE CONCAT(CONCAT('%', #{searchKeyword}), '%')
+			<if test='searchCondition == "5"'>AND
+				LI_BULD_NM LIKE '%'||#{searchKeyword}||'%'
 			</if>
 		
 			/* 구현 Sql */
@@ -51,19 +51,19 @@
 			  FROM  LETTCZIP
 			 WHERE	1 = 1
 		
-			<if test="searchCondition == 1">AND
+			<if test='searchCondition == "1"'>AND
 				ZIP = #{searchKeyword}
 			</if>
-			<if test="searchCondition == 2">AND
+			<if test='searchCondition == "2"'>AND
 				CTPRVN_NM LIKE '%'||#{searchKeyword}||'%'
 			</if>
-			<if test="searchCondition == 3">AND
+			<if test='searchCondition == "3"'>AND
 				SIGNGU_NM LIKE '%'||#{searchKeyword}||'%'
 			</if>
-			<if test="searchCondition == 4">AND
+			<if test='searchCondition == "4"'>AND
 				EMD_NM LIKE '%'||#{searchKeyword}||'%'
 			</if>
-			<if test="searchCondition == 5">AND
+			<if test='searchCondition == "5"'>AND
 				LI_BULD_NM LIKE '%'||#{searchKeyword}||'%'
 			</if>
 	</select>
@@ -84,7 +84,7 @@
 	</select>
 
 	<insert id="insertZip">
-		<selectKey keyProperty="sn" resultType="int" order="BEFORE">
+		<selectKey keyProperty="sn" resultType="int">
 			SELECT  NVL(MAX(SN)+1, 1) AS	sn
 			  FROM  LETTCZIP
 	    </selectKey>

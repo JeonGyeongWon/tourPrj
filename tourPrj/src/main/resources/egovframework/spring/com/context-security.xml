@@ -38,8 +38,9 @@
 
 		concurrentMaxSessons="1"
 		concurrentExpiredUrl="/uat/uia/actionMain.do"
-		
+
 		defaultTargetUrl="/uat/uia/actionMain.do"
+
     />
 
     <egov-security:secured-object-config id="securedObjectConfig"
