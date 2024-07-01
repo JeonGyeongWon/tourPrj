@@ -145,13 +145,19 @@ public class EgovMainController {
         	menuManageVO.setTmp_UniqId(user.getUniqId());
         	
     		model.addAttribute("list_headmenu", menuManageService.selectMainMenuHead(menuManageVO));
+    		System.out.println("여기~~~");
+    		model.addAttribute("list_submenu", menuManageService.selectMainMenuLeft(menuManageVO));
     		model.addAttribute("list_menulist", menuManageService.selectMainMenuLeft(menuManageVO));
+    		
+//    		model.addAttribute("list_submenu", menuManageService.selectSubmenu(menuManageVO));
+    		
     	}else{
     		menuManageVO.setAuthorCode("ROLE_ANONYMOUS");
     		menuManageVO.setTmp_UniqId("USRCNFRM_ANONYMOUS");
     		
 //    		
     		model.addAttribute("list_headmenu", menuManageService.selectMainMenuHead(menuManageVO));
+    		model.addAttribute("list_submenu", menuManageService.selectMainMenuLeft(menuManageVO));
     		model.addAttribute("list_menulist", menuManageService.selectMainMenuLeft(menuManageVO));
 //    		
     	}
@@ -218,9 +224,17 @@ public class EgovMainController {
         	menuManageVO.setTmp_UniqId(user.getUniqId());
     		model.addAttribute("list_headmenu", menuManageService.selectMainMenuHead(menuManageVO));
     		model.addAttribute("list_menulist", menuManageService.selectMainMenuLeft(menuManageVO));
+    		model.addAttribute("list_submenu", menuManageService.selectMainMenuLeft(menuManageVO));
     	}else{
-    		//model.addAttribute("list_headmenu", menuManageService.selectMainMenuHeadAnonymous(menuManageVO));
-    		//model.addAttribute("list_menulist", menuManageService.selectMainMenuLeftAnonymous(menuManageVO));
+//    		model.addAttribute("list_headmenu", menuManageService.selectMainMenuHead(menuManageVO));
+    		model.addAttribute("list_menulist", menuManageService.selectMainMenuLeft(menuManageVO));
+    		
+    		menuManageVO.setAuthorCode("ROLE_ANONYMOUS");
+    		menuManageVO.setTmp_UniqId("USRCNFRM_ANONYMOUS");
+    		
+//    		
+    		model.addAttribute("list_headmenu", menuManageService.selectMainMenuHead(menuManageVO));
+    		model.addAttribute("list_submenu", menuManageService.selectMainMenuLeft(menuManageVO));
     	}
         return "main/inc/EgovIncTopnav"; // 내부업무의 상단메뉴 화면
     }
