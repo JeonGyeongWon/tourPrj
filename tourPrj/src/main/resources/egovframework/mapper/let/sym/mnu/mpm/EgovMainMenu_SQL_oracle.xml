@@ -29,15 +29,38 @@
 	<select id="selectMainMenuLeft" parameterType="egovframework.let.sym.mnu.mpm.service.MenuManageVO" resultType="egovMap">
 		 
 			SELECT
-			       B.MENU_NO           AS "menuNo"
-				 , B.MENU_ORDR         AS "menuOrdr"
-				 , B.MENU_NM           AS "menuNm"
-				 , B.UPPER_MENU_NO     AS "upperMenuId"
-				 , B.RELATE_IMAGE_PATH AS "relateImagePath"
-				 , B.RELATE_IMAGE_NM   AS "relateImageNm"
-				 , (SELECT C.URL FROM LETTNPROGRMLIST C WHERE B.PROGRM_FILE_NM = C.PROGRM_FILE_NM) AS "chkURL"	
-			FROM   LETTNMENUCREATDTLS A, LETTNMENUINFO B
-			WHERE  A.MENU_NO  = B.MENU_NO 
+			       B.MENU_NO AS "menuNo"
+				 ,
+			B.MENU_ORDR AS "menuOrdr"
+						 ,
+			B.MENU_NM AS "menuNm"
+						 ,
+			B.UPPER_MENU_NO AS "upperMenuId"
+						 ,
+			B.RELATE_IMAGE_PATH AS "relateImagePath"
+						 ,
+			B.RELATE_IMAGE_NM AS "relateImageNm"
+						 ,
+			CASE WHEN C.URL = '/' THEN 
+				(SELECT CC.URL
+				   FROM (SELECT ROW_NUMBER() OVER(ORDER BY BB.MENU_ORDR) AS RN, BB.PROGRM_FILE_NM, C.URL
+						   FROM LETTNMENUINFO BB
+						  WHERE BB.UPPER_MENU_NO = B.MENU_NO) BD
+					   ,LETTNPROGRMLIST CC
+			      WHERE 1=1 
+			        AND BD.PROGRM_FILE_NM = CC.PROGRM_FILE_NM
+			        AND RN = 1
+				)
+			ELSE
+				C.URL
+			END AS "chkURL"
+		FROM
+			LETTNMENUCREATDTLS A,
+			LETTNMENUINFO B,
+			LETTNPROGRMLIST C
+		WHERE
+			A.MENU_NO = B.MENU_NO
+			AND B.PROGRM_FILE_NM = C.PROGRM_FILE_NM
 			AND    A.AUTHOR_CODE = (SELECT AUTHOR_CODE from LETTNEMPLYRSCRTYESTBS
 	                                WHERE  SCRTY_DTRMN_TRGET_ID = #{tmp_UniqId})
 			ORDER BY B.MENU_ORDR

@@ -1,5 +1,6 @@
 package egovframework.let.main.web;
 
+import java.util.List;
 import java.util.Map;
 
 import egovframework.com.cmm.ComDefaultVO;
@@ -154,7 +155,7 @@ public class EgovMainController {
     	}else{
     		menuManageVO.setAuthorCode("ROLE_ANONYMOUS");
     		menuManageVO.setTmp_UniqId("USRCNFRM_ANONYMOUS");
-    		
+    		System.out.println("여기~~~");
 //    		
     		model.addAttribute("list_headmenu", menuManageService.selectMainMenuHead(menuManageVO));
     		model.addAttribute("list_submenu", menuManageService.selectMainMenuLeft(menuManageVO));
@@ -222,9 +223,11 @@ public class EgovMainController {
         	menuManageVO.setTmp_Email(user.getEmail());
         	menuManageVO.setTmp_OrgnztId(user.getOrgnztId());
         	menuManageVO.setTmp_UniqId(user.getUniqId());
+        	
+        	List subList = menuManageService.selectMainMenuLeft(menuManageVO);
     		model.addAttribute("list_headmenu", menuManageService.selectMainMenuHead(menuManageVO));
-    		model.addAttribute("list_menulist", menuManageService.selectMainMenuLeft(menuManageVO));
-    		model.addAttribute("list_submenu", menuManageService.selectMainMenuLeft(menuManageVO));
+    		model.addAttribute("list_menulist", subList);
+    		model.addAttribute("list_submenu", subList);
     	}else{
 //    		model.addAttribute("list_headmenu", menuManageService.selectMainMenuHead(menuManageVO));
     		model.addAttribute("list_menulist", menuManageService.selectMainMenuLeft(menuManageVO));
@@ -232,9 +235,10 @@ public class EgovMainController {
     		menuManageVO.setAuthorCode("ROLE_ANONYMOUS");
     		menuManageVO.setTmp_UniqId("USRCNFRM_ANONYMOUS");
     		
-//    		
+    		List subList = menuManageService.selectMainMenuLeft(menuManageVO);
     		model.addAttribute("list_headmenu", menuManageService.selectMainMenuHead(menuManageVO));
-    		model.addAttribute("list_submenu", menuManageService.selectMainMenuLeft(menuManageVO));
+    		model.addAttribute("list_menulist", subList);
+    		model.addAttribute("list_submenu", subList);
     	}
         return "main/inc/EgovIncTopnav"; // 내부업무의 상단메뉴 화면
     }

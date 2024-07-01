@@ -35,5 +35,5 @@
 <link type="text/css"  rel="stylesheet" href="<c:url value="/resource/pub/css/main_layout.css?v="/>1"/>
 <link type="text/css"  rel="stylesheet" href="<c:url value="/resource/pub/css/map_layout.css?v="/>1"/>
 <link type="text/css"  rel="stylesheet" href="<c:url value="/resource/pub/css/sub_layout.css?v="/>1"/>
-<link type="text/css"  rel="stylesheet" href="<c:url value="/css/rdis/custom.css?v="/>1"/>
+<link type="text/css"  rel="stylesheet" href="<c:url value="/css/custom.css?v="/>1"/>
 
