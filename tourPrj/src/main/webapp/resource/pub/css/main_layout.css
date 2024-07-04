@@ -312,7 +312,7 @@
 	.con_wrap .sec06 .notice02{float:left; padding:10px 0px 0 25px;width:calc(50% - 25px); height:100%;}
 	.con_wrap .sec06 h5{font-family:Sp_r;color:#000;font-size:20px;width:90%; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: inline-block;}
 	.con_wrap .sec06 .date{font-family:Sp_r;color:#666;font-size:15px;padding:15px 0;}
-	.content{height:90px;width:90%;line-height:140%;font-family:Sp_l;color:#777;font-size:16px;word-wrap: break-word;
+	.content{height:1700px;width:90%;line-height:140%;font-family:Sp_l;color:#777;font-size:16px;word-wrap: break-word;
 		overflow:hidden;text-overflow:ellipsis; white-space:normal}
 	.con_wrap .sec06 .content .img_wrap{float:left;margin-right:15px;width:100px;height:90px;border-radius:15px;overflow:hidden;}
 	.con_wrap .sec06 .content ul{float:left; width:170px;}

@@ -58,7 +58,7 @@
 </div>
 <div id="header" class="main_header">
 	<div class="main_header_wrap">
-		<a  href="/cmm/main/mainPage.do" class="logo"><span class="hidden">수소유통정보시스템</span></a>
+		<a  href="/cmm/main/mainPage.do" class="logo"><span class="hidden">넥트레트</span></a>
 		<!--gnb-->
 		<div id="gnb" class="main_gnb">
 			<div class="gnb_head">
@@ -73,21 +73,7 @@
 							<c:forEach var="sub" items="${list_submenu}" varStatus="status">
 								<c:if test="${head.menuNo == sub.upperMenuId}">
 									
-								<c:choose>
-									<c:when test="${sub.menuNo eq 6010000 or sub.menuNo eq '6000000'}">
-			                    		<li>
-			                    		
-			                    		 <a href="javascript:void(0);" onclick="postLink('${sub.chkURL}', {tmp_menuNm: '${sub.menuNo}|${sub.upperMenuId}|${sub.menuNm}|${sub.relateImagePath}|${sub.relateImageNm}|${sub.chkURL}|'});">${sub.menuNm}</a>
-			                    		
-			                    		</li>
-			                    		
-<%-- 			                    		<a href="<c:out value="${sub.chkURL}" />?tmp_menuNm=<c:out value='${sub.menuNo}'/>|<c:out value='${sub.upperMenuId}'/>|<c:out value='${sub.menuNm}'/>|<c:out value='${sub.relateImagePath}'/>|<c:out value='${sub.relateImageNm}'/>|<c:out value='${sub.chkURL}'/>|"><c:out value="${sub.menuNm}" /></a></li> --%>
-			                    	</c:when>
-			                    	<c:otherwise>
-			                    		<li><a href="<c:out value="${sub.chkURL}" />"><c:out value="${sub.menuNm}" /></a></li>
-			                    	</c:otherwise>
-								
-								</c:choose>
+			                    		<li class="head"><a href="<c:out value="${sub.chkURL}" />"><c:out value="${sub.menuNm}" /></a></li>
 <%-- 									${sub} <br> --%>
 <%-- 									<li class="head"><a href="<c:out value="${sub.chkURL}" />"><c:out value="${sub.menuNm}" /></a></li> --%>
 								</c:if>
@@ -122,7 +108,7 @@
 				<a href="<c:url value="/uat/uia/egovLoginUsr.do"/>" class="login_btn">로그인</a>
 			</c:if>
 			<c:if test="${LoginVO != null}" >
-				<a href="<c:url value="/main/myPageVw.do"/>"><div style="margin-top: 10px;" class="my_icon"><span class="hidden">수소유통정보시스템</span></div></a>
+				<a href="<c:url value="/main/myPageVw.do"/>"><div style="margin-top: 10px;" class="my_icon"><span class="hidden">관광뭐시기~</span></div></a>
 				<a href="<c:url value="/uat/uia/actionLogout.do"/>" class="login_btn">로그아웃</a>
 			</c:if>
 		</div>
@@ -167,11 +153,9 @@
 </div><!--//mobile_gnb-->
 <div class="subMenu_bg">
 	<div class="gnb_left">
-		<p class="txt1">수소유통정보시스템은</p>
+		<p class="txt1">넥트레트</p>
 		<p class="txt2">
-			충전소 이용정보를 실시간으로 제공하여<br>
-			수소차 이용자의 편리한 이용환경을<br>
-			제공합니다
+			넥트레트는 김영완 선임의 퇴사를 위한 프로젝트입니다.
 		</p>
 	</div>
 </div>
