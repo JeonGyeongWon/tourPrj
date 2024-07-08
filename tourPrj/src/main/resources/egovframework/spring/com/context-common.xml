@@ -10,7 +10,7 @@
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
-
+	
     <!-- 메시지소스빈 설정 -->
     <bean id="egovMessageSource" class="egovframework.com.cmm.EgovMessageSource">
         <property name="reloadableResourceBundleMessageSource">
