@@ -1,15 +1,3 @@
-<%--
-  Class Name : EgovMainView.jsp 
-  Description : 메인화면
-  Modification Information
- 
-      수정일         수정자                   수정내용
-    -------    --------    ---------------------------
-     2011.08.31   JJY       경량환경 버전 생성
- 
-    author   : 실행환경개발팀 JJY
-    since    : 2011.08.31 
---%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -27,13 +15,15 @@
 	<link rel="stylesheet" href="<c:url value='/'/>css/layout.css">
 	<link rel="stylesheet" href="<c:url value='/'/>css/component.css">
 	<link rel="stylesheet" href="<c:url value='/'/>css/page.css">
+	<link rel="stylesheet" href="<c:url value='/'/>css/main.css">
 	<script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
 	<script src="<c:url value='/'/>js/ui.js"></script>
+	<script src="<c:url value='/'/>js/main.js"></script>
 	
-<title>표준프레임워크 경량환경 내부업무템플릿</title>
+<title>트레넥트! 여행의 시작 ~! 문구</title>
 </head>
 <body>
-<noscript>자바스크립트를 지원하지 않는 브라우저에서는 일부 기능을 사용하실 수 없습니다.</noscript>	
+<noscript>트레넥트! 여행의 시작 ~! 문구</noscript>	
 <!-- 전체 레이어 시작 -->
 
 <body>
@@ -48,70 +38,173 @@
 
         <div class="container main">
             <div class="P_MAIN">
-                <div class="inner">
-                    <p class="visual">
-                        <span class="t_1">표준프레임워크</span>
-                        <span class="t_2">경량환경 내부업무</span>
-                        <span class="t_3">표준프레임워크 경량환경 내부업무에 대한 전반적인 지원을 약속합니다.</span>
-                    </p>
-                </div>
+<!--                 <div class="inner" style="border: 1px solid red;"> -->
+<!--                     <p class="visual"> -->
+<!--                         <span class="t_1">표준프레임워크</span> -->
+<!--                         <span class="t_2">경량환경 내부업무</span> -->
+<!--                         <span class="t_3">표준프레임워크 경량환경 내부업무에 대한 전반적인 지원을 약속합니다.</span> -->
+<!--                     </p> -->
+<!--                 </div> -->
 
                 <div class="bot">
                     <div class="col">
                         <div class="left_col">
-                            <div class="box">
-                                <div class="head">
-                                    <h2>오늘의 <span>할일</span></h2>
-                                    <a href="<c:url value='/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_CCCCCCCCCCCC'/>" class="more">더보기</a>
+                            <div class="box" style="border: 1px solid red;">
+                            	<div class="head">
+                                	<h2>지역정보</h2>
                                 </div>
-                                <ul class="list">
-                                	<c:forEach var="result" items="${bbsList}" varStatus="status">
-                                	<c:if test="${!(result.isExpired=='Y' || result.useAt == 'N')}">
-                                    <li>
-                                        <a href="<c:url value='/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_CCCCCCCCCCCC'/>">
-                                        	<c:out value="${result.nttSj}" />
-                                        </a>
-                                        <span><c:out value="${result.frstRegisterPnttm}"/></span>
-                                    </li>
-                                    </c:if>
-                                    </c:forEach>
-                                </ul>
+                                <div class="list">
+                                	<div class="slide-container">
+								        <h2>Slide Show 1</h2>
+								        <div class="slideshow" id="slideshow1">
+								            <div class="slides">
+								                <div class="slide" style="background-color: red;">Slide 1</div>
+								                <div class="slide" style="background-color: green;">Slide 2</div>
+								                <div class="slide" style="background-color: blue;">Slide 3</div>
+								            </div>
+								            <div class="controls">
+								                <div class="control" onclick="prevSlide('slideshow1')">❮</div>
+								                <div class="control" onclick="nextSlide('slideshow1')">❯</div>
+								            </div>
+								        </div>
+								    </div>
+								    <div class="slide-container">
+								        <h2>Slide Show 2</h2>
+								        <div class="slideshow" id="slideshow2">
+								            <div class="slides">
+								                <div class="slide" style="background-color: purple;">Slide 1</div>
+								                <div class="slide" style="background-color: yellow;">Slide 2</div>
+								                <div class="slide" style="background-color: orange;">Slide 3</div>
+								            </div>
+								            <div class="controls">
+								                <div class="control" onclick="prevSlide('slideshow2')">❮</div>
+								                <div class="control" onclick="nextSlide('slideshow2')">❯</div>
+								            </div>
+								        </div>
+								    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="right_col">
-                            <div class="box">
+                            <div class="box" style="border: 1px solid red;">
                                 <div class="head">
-                                    <h2>최신 업무공지 <span>정보</span></h2>
-                                    <a href="<c:url value='/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_AAAAAAAAAAAA'/>" class="more">더보기</a>
+                                	<h2>지역축제현황</h2>
                                 </div>
                                 <div class="list">
-                                    <table>
-                                        <colgroup>
-                                            <col style="width: auto;">
-                                            <col style="width: 80px">
-                                            <col style="width: 110px">
-                                        </colgroup>
-                                        <c:forEach var="result" items="${notiList}" varStatus="status">
-                                        <c:if test="${!(result.isExpired=='Y' || result.useAt == 'N')}">
-                                        <tr>
-                                            <td>
-                                            	<c:if test="${result.replyLc!=0}">
-                                        			<c:forEach begin="0" end="${result.replyLc}" step="1">
-                                        				&nbsp;
-                                        			</c:forEach>
-                                        			<img src="<c:url value='/'/>images/ico_reply.png" alt="reply arrow">
-                                        		</c:if>
-                                            	<a href="<c:url value='/cop/bbs/selectBoardList.do?bbsId=BBSMSTR_AAAAAAAAAAAA'/>">
-                                            		<c:out value="${result.nttSj}" />
-                                            	</a>
-                                            	<span>NEW</span>
-                                            </td>
-                                            <td class="al_c"><c:out value="${result.frstRegisterNm}" /></td>
-                                            <td class="al_r date"><c:out value="${result.frstRegisterPnttm}" /></td>
-                                        </tr>
-                                        </c:if>
-                                        </c:forEach>
-                                    </table>
+                                
+                                
+        						<div class="sec05">
+						          <div id="mapArea" class="map_area">
+						            <a class="su" title="서울">서울</a>
+						            <div class="data_map data_su">
+						              <p class="txt01">서울</p>
+						              <p class="txt02"></p>
+						              <p class="txt03"></p>
+						            </div>
+						            <a href="#" class="kk" title="경기">경기</a>
+						            <div class="data_map data_kk">
+						              <p class="txt01">경기</p>
+						              <p class="txt02"></p>
+						              <p class="txt03"></p>
+						            </div>
+						            <a href="#"  class="ic" title="인천">인천</a>
+						            <div class="data_map data_ic">
+						              <p class="txt01">인천</p>
+						              <p class="txt02"></p>
+						              <p class="txt03"></p>
+						            </div>
+						            <a href="#"  class="gw" title="강원">강원</a>
+						            <div class="data_map data_gw">
+						              <p class="txt01">강원</p>
+						              <p class="txt02"></p>
+						              <p class="txt03"></p>
+						            </div>
+						            <a href="#"  class="cb" title="충북">충북</a>
+						            <div class="data_map data_cb">
+						              <p class="txt01">충북</p>
+						              <p class="txt02"></p>
+						              <p class="txt03"></p>
+						            </div>
+						            <a href="#"  class="sj" title="세종">세종</a>
+						            <div class="data_map data_sj">
+						              <p class="txt01">세종</p>
+						              <p class="txt02"></p>
+						              <p class="txt03"></p>
+						            </div>
+						            <a href="#"  class="dj" title="대전">대전</a>
+						            <div class="data_map data_dj">
+						              <p class="txt01">대전</p>
+						              <p class="txt02"></p>
+						              <p class="txt03"></p>
+						            </div>
+						            <a href="#"  class="cn" title="충남">충남</a>
+						            <div class="data_map data_cn">
+						              <p class="txt01">충남</p>
+						              <p class="txt02"></p>
+						              <p class="txt03"></p>
+						            </div>
+						            <a href="#"  class="jb" title="전북">전북</a>
+						            <div class="data_map data_jb">
+						              <p class="txt01">전북</p>
+						              <p class="txt02"></p>
+						              <p class="txt03"></p>
+						            </div>
+						            <a href="#"  class="jn" title="전남">전남</a>
+						            <div class="data_map data_jn">
+						              <p class="txt01">전남</p>
+						              <p class="txt02"></p>
+						              <p class="txt03"></p>
+						            </div>
+						            <a href="#"  class="kj" title="광주">광주</a>
+						            <div class="data_map data_kj">
+						              <p class="txt01">광주</p>
+						              <p class="txt02"></p>
+						              <p class="txt03"></p>
+						            </div>
+						            <a href="#"  class="kb" title="경북">경북</a>
+						            <div class="data_map data_kb">
+						              <p class="txt01">경북</p>
+						              <p class="txt02"></p>
+						              <p class="txt03"></p>
+						            </div>
+						            <a href="#"  class="tg" title="대구">대구</a>
+						            <div class="data_map data_tg">
+						              <p class="txt01">대구</p>
+						              <p class="txt02"></p>
+						              <p class="txt03"></p>
+						            </div>
+						            <a  href="#"  class="us" title="울산">울산</a>
+						            <div class="data_map data_us">
+						              <p class="txt01">울산</p>
+						              <p class="txt02"></p>
+						              <p class="txt03"></p>
+						            </div>
+						            <a href="#"  class="kn" title="경남">경남</a>
+						            <div class="data_map data_kn">
+						              <p class="txt01">경남</p>
+						              <p class="txt02"></p>
+						              <p class="txt03"></p>
+						            </div>
+						            <a href="#"  class="bs" title="부산">부산</a>
+						            <div class="data_map data_bs">
+						              <p class="txt01">부산</p>
+						              <p class="txt02"></p>
+						              <p class="txt03"></p>
+						            </div>
+						            <a href="#"  class="ul" title="울릉도,독도">울릉도,독도</a>
+						            <div class="data_map data_ul">
+						              <p class="txt01">울릉도,독도</p>
+						              <p class="txt02"></p>
+						              <p class="txt03"></p>
+						            </div>
+						            <a href="#"  class="jj" title="제주">제주</a>
+						            <div class="data_map data_jj">
+						              <p class="txt01">제주</p>
+						              <p class="txt02">(0개소)</p>
+						              <p class="txt03">0원</p>
+						            </div>
+						          </div><!--map_area-->
+						      </div>
                                 </div>
                             </div>
                         </div>

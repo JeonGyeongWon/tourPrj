@@ -121,7 +121,7 @@ function fnInit() {
 
                         <div class="P_LOGIN">
                             <h1>로그인</h1>
-                            <p class="txt">표준프레임워크 경량환경 내부업무 시스템에 오신것을 환영합니다.</p>
+                            <p class="txt">트레넥트에 오신 것을 환영합니다.</p>
                             <div class="loginbox">
                                 <form:form id="loginForm" name="loginForm" method="post">
                                     <fieldset>
