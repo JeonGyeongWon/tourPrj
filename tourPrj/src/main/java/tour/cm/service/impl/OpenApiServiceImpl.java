@@ -174,11 +174,11 @@ public class OpenApiServiceImpl implements OpenServiceApi{
 				        
 				      //10 지역코드조회
 					case "/areaCode1":
-						urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한페이지결과수*/
+						urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("20", "UTF-8")); /*한페이지결과수*/
 						urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지 번호*/
-				        urlBuilder.append("&" + URLEncoder.encode("areaCode","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*지역코드(지역코드조회 참고)*/
+//				        urlBuilder.append("&" + URLEncoder.encode("areaCode","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*지역코드(지역코드조회 참고)*/
 					    
-				        break;   
+				        break;
 				        
 				      //11 반려동물 동반 여행 정보
 					case "/detailPetTour1":
@@ -186,7 +186,7 @@ public class OpenApiServiceImpl implements OpenServiceApi{
 						urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지 번호*/
 						urlBuilder.append("&" + URLEncoder.encode("contentId","UTF-8") + "=" + URLEncoder.encode("125534", "UTF-8")); /*콘텐츠ID(옵션,미기입시 전체목록조회)*/
 				        
-				        break;   
+				        break;
 				        
 				        //12 서비스 분류 코드 조회
 					case "/categoryCode1":
@@ -201,17 +201,22 @@ public class OpenApiServiceImpl implements OpenServiceApi{
 				        
 				      //13 지역기반 관광정보조회
 					case "/areaBasedList1":
-						urlBuilder.append("&" + URLEncoder.encode("listYN","UTF-8") + "=" + URLEncoder.encode("Y", "UTF-8")); /*목록구분(Y=목록, N=개수)*/
-						urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한페이지결과수*/
-						urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지 번호*/
-						urlBuilder.append("&" + URLEncoder.encode("arrange","UTF-8") + "=" + URLEncoder.encode("A", "UTF-8")); /*정렬 구분 (A=제목순, C=수정일순, D=생성일순) 대표이미지가 반드시 있는 정렬 (O=제목순, Q=수정일순, R=생성일순)*/
-					    urlBuilder.append("&" + URLEncoder.encode("contentTypeId","UTF-8") + "=" + URLEncoder.encode("32", "UTF-8")); /*관광타입(12:관광지, 14:문화시설, 15:축제공연행사, 25:여행코스, 28:레포츠, 32:숙박, 38:쇼핑, 39:음식점) ID*/
-					    urlBuilder.append("&" + URLEncoder.encode("areaCode","UTF-8") + "=" + URLEncoder.encode("4", "UTF-8")); /*지역코드(지역코드조회 참고)*/
-				        urlBuilder.append("&" + URLEncoder.encode("sigunguCode","UTF-8") + "=" + URLEncoder.encode("4", "UTF-8")); /*시군구코드(지역코드조회 참고)*/
-				        urlBuilder.append("&" + URLEncoder.encode("cat1","UTF-8") + "=" + URLEncoder.encode("B02", "UTF-8")); /*대분류코드*/
-						urlBuilder.append("&" + URLEncoder.encode("cat2","UTF-8") + "=" + URLEncoder.encode("B0201", "UTF-8")); /*중분류코드*/
-						urlBuilder.append("&" + URLEncoder.encode("cat3","UTF-8") + "=" + URLEncoder.encode("B02010100", "UTF-8")); /*소분류코드*/
-						urlBuilder.append("&" + URLEncoder.encode("modifiedtime","UTF-8") + "=" + URLEncoder.encode("20220721", "UTF-8")); /*수정일(형식 :YYYYMMDD)*/
+						String pageNo = StringUtil.nullConvert(map.get("pageNo"));
+						String listYn = StringUtil.nullConvert(map.get("listYn"));
+						String arrange = StringUtil.nullConvert(map.get("arrange"));
+						String contentTypeId = StringUtil.nullConvert(map.get("contentTypeId"));
+						String areaCode = StringUtil.nullConvert(map.get("areaCode"));
+						urlBuilder.append("&" + URLEncoder.encode("listYN","UTF-8") + "=" + URLEncoder.encode(listYn, "UTF-8")); /*목록구분(Y=목록, N=개수)*/
+//						urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한페이지결과수*/
+						urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode(pageNo, "UTF-8")); /*페이지 번호*/
+						urlBuilder.append("&" + URLEncoder.encode("arrange","UTF-8") + "=" + URLEncoder.encode(arrange, "UTF-8")); /*정렬 구분 (A=제목순, C=수정일순, D=생성일순) 대표이미지가 반드시 있는 정렬 (O=제목순, Q=수정일순, R=생성일순)*/
+					    urlBuilder.append("&" + URLEncoder.encode("contentTypeId","UTF-8") + "=" + URLEncoder.encode(contentTypeId, "UTF-8")); /*관광타입(12:관광지, 14:문화시설, 15:축제공연행사, 25:여행코스, 28:레포츠, 32:숙박, 38:쇼핑, 39:음식점) ID*/
+					    urlBuilder.append("&" + URLEncoder.encode("areaCode","UTF-8") + "=" + URLEncoder.encode(areaCode, "UTF-8")); /*지역코드(지역코드조회 참고)*/
+//				        urlBuilder.append("&" + URLEncoder.encode("sigunguCode","UTF-8") + "=" + URLEncoder.encode("4", "UTF-8")); /*시군구코드(지역코드조회 참고)*/
+//				        urlBuilder.append("&" + URLEncoder.encode("cat1","UTF-8") + "=" + URLEncoder.encode("B02", "UTF-8")); /*대분류코드*/
+//						urlBuilder.append("&" + URLEncoder.encode("cat2","UTF-8") + "=" + URLEncoder.encode("B0201", "UTF-8")); /*중분류코드*/
+//						urlBuilder.append("&" + URLEncoder.encode("cat3","UTF-8") + "=" + URLEncoder.encode("B02010100", "UTF-8")); /*소분류코드*/
+//						urlBuilder.append("&" + URLEncoder.encode("modifiedtime","UTF-8") + "=" + URLEncoder.encode("20220721", "UTF-8")); /*수정일(형식 :YYYYMMDD)*/
 						         
 				        break;   
 					}

@@ -21,4 +21,10 @@ public class PlanController {
 		return "/tour/tp/tpi/tpiListPage";
 		
 	}
+	
+	@RequestMapping(value = "/tpi/makePlan.do")
+	public String makePlan() throws Exception{
+		
+		return "/tour/tp/tpi/makePlanVw";
+	}
 }
