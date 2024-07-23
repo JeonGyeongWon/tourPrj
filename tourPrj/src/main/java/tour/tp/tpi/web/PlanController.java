@@ -1,13 +1,14 @@
 package tour.tp.tpi.web;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @CrossOrigin(value= "*")
 public class PlanController {
-	
+
 	@RequestMapping(value = "/tpi/tpiList.do")
 	public String tpiListPage() throws Exception{
 		
@@ -18,7 +19,7 @@ public class PlanController {
 	@RequestMapping(value = "/tpi/tpiCalModal.do")
 	public String tpiCalModal() throws Exception{
 		
-		return "/tour/tp/tpi/tpiListPage";
+		return "/tour/tp/tpi/tpiCalModal";
 		
 	}
 	
@@ -26,5 +27,15 @@ public class PlanController {
 	public String makePlan() throws Exception{
 		
 		return "/tour/tp/tpi/makePlanVw";
+	}
+	
+	@RequestMapping(value = "/tpi/tpiPlan.do")
+	public String tpiPlanPage(ModelMap model, String startDate, String endDate) throws Exception{
+		
+		model.addAttribute("startDate", startDate);
+		model.addAttribute("endDate", endDate);
+		
+		return "/tour/tp/tpi/tpiPlanPage";
+		
 	}
 }

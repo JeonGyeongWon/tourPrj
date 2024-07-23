@@ -15,9 +15,11 @@
 	<link rel="stylesheet" href="<c:url value='/'/>css/component.css">
 	<link rel="stylesheet" href="<c:url value='/'/>css/page.css">
 	<link rel="stylesheet" href="<c:url value='/'/>css/main.css">
+	<link rel="stylesheet" href="<c:url value='/'/>css/tour/tp/tpi/tpiPlanPage.css">
 	<script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
 	<script src="<c:url value='/'/>js/ui.js"></script>
-	<script src="<c:url value='/js/tour/tp/tpi/tpiListPage.js'/>"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d20b2ce38e0a6cdfdd3f269a8c89dbd6&libraries=services"></script>
+	<script src="<c:url value='/js/tour/tp/tpi/tpiPlanPage.js'/>"></script>
 </head>
 <body>
     <!-- Skip navigation -->
@@ -29,12 +31,23 @@
         <!--// Header -->
 
         <div class="container main">
-        <button type="button" onclick="tpiCalModal();">여행 추가</button>
-		<form id="dateForm" action="/tpi/tpiPlan.do">
-            <input type="hidden" id="startDate" name="startDate">
-            <input type="hidden" id="endDate" name="endDate">
-        </form>
-		<div class="tpiList"></div>
+         <section id="tour-planner">
+            <h2>관광 코스 짜기</h2>
+            <!-- <label for="start-date">시작일:</label> -->
+            <input type="hidden" id="start-date" name="start-date" value="<c:out value='${startDate}'/>" />
+            <!-- <label for="end-date">종료일:</label> -->
+            <input type="hidden" id="end-date" name="end-date" value="<c:out value='${endDate}'/>" />
+            <!-- <button onclick="generateTimeline()">타임라인 생성</button> -->
+            <div class="planner">
+                <div class="timeline">
+                    <h3>나의 일정</h3>
+                    <div id="timeline-list" class="timeline-list">
+                        <!-- Drop locations here -->
+                    </div>
+                </div>
+                <div id="planMap" class="planMap"></div>
+            </div>
+        </section>
         </div>
 
         <!-- Footer -->
