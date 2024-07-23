@@ -3,7 +3,8 @@ $(function() {
         event.preventDefault();
         $(".pop_bg, #tourInfoPop").show();
         
-        getAreaCode();
+        resetModal(); // 모달창 초기화
+        getAreaCode(); // 지역코드 가져오기
     });
     
     $(".close_button").click(function() {
@@ -17,6 +18,17 @@ $(function() {
         getTourInfo(areaCd, contentType, "1");
     });
 });
+
+// 모달창 초기화
+function resetModal() {
+    $("#tourListContainer").empty();
+    $("#totalCnt").empty();
+    $(".pagination").empty();
+
+    $("#region").val("");
+    $("#contTYpe").val("12");
+    $("#pickBtn").hide();
+}
 
 // 지역코드 가져오기
 function getAreaCode(){
