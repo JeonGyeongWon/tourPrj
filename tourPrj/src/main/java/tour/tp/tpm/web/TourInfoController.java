@@ -12,8 +12,18 @@ public class TourInfoController {
 	* 게획짜기_관광정보 모달창
 	* 24.07.23 njkim
 	**/
-	@RequestMapping(value = "/tpm/tourInfoModal.do")
+	@RequestMapping(value = "/tpm/makePlan.do")
 	public String makePlan() throws Exception{
+		
+		return "/tour/tp/tpm/makePlanVw";
+	}
+	
+	/**
+	* 게획짜기_관광정보 모달창
+	* 24.07.23 njkim
+	**/
+	@RequestMapping(value = "/tpm/tourInfoModal.do")
+	public String tmpModal() throws Exception{
 		
 		return "/tour/tp/tpm/tpmModal";
 	}

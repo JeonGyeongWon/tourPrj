@@ -1,23 +1,21 @@
 $(function() {
-    $("#tourInfoModal").click(function(event) {
-        event.preventDefault();
-        $(".pop_bg, #tourInfoPop").show();
-        
-        resetModal(); // 모달창 초기화
-        getAreaCode(); // 지역코드 가져오기
-    });
+    //event.preventDefault();
+    //$(".pop_bg, #tourInfoPop").show();
     
-    $(".close_button").click(function() {
-        $(".pop_bg, #tourInfoPop").hide();
-    });
-    
-
+    resetModal(); // 모달창 초기화
+    getAreaCode(); // 지역코드 가져오기
+ 
     $("#srchBtn").click(function() {
         var areaCd = $("#region").val();
         var contentType = $("#contTYpe").val();
         getTourInfo(areaCd, contentType, "1");
     });
 });
+
+function closePop() {
+    $("#modalPan").dialog('close');
+    $("#modalPan").remove();
+}
 
 // 모달창 초기화
 function resetModal() {

@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="<c:url value='/'/>css/tour/tp/tpm/tpmModal.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
     <script src="<c:url value='/'/>js/ui.js"></script>
     <script src="<c:url value='/'/>js/main.js"></script>
@@ -29,64 +30,45 @@
     </style>
     <script src="<c:url value='/js/tour/tp/tpm/tourInfo_ui.js'/>"></script>
 </head>
-<body>
-    <!-- Skip navigation -->
-    <a href="#contents" class="skip_navi">본문 바로가기</a>
-
-    <div class="wrap">
-        <!-- Header -->
-        <c:import url="/sym/mms/EgovHeader.do" />
-        <!--// Header -->
-
-        <div class="container main">
-            <span>#혼자 떠나기 좋은 여행</span>
-            <div>
-                <label for="startDate">시작일</label>
-                <input type="text" id="startDate" name="startDate"> ~ 
-                <label for="endDate">종료일</label>
-                <input type="text" id="endDate" name="endDate">
+<body onload="parent.iframeLoaded();">
+    <div class="popup">
+        <div class="pop_inner">
+            <div class="pop_header">
+                <h1>관광지 찾기</h1>
+                <button type="button" class="close" onclick="closePop(); return false;">닫기</button>
             </div>
-            <a href="#" id="tourInfoModal">관광지 찾기</a>
-        </div>
-        <!-- 모달창 -->
-        <div class="pop_bg"></div>
-        <div id="tourInfoPop" class="modal_content">
-            <span class="close_button">X</span>
-            <h2>관광지 찾기</h2>
-            <form id="searchForm" method="post" action="<c:url value='/tpi/searchTourInfo.do'/>">
-            	<div class="search_container">
-            		<div>
-		                <label for="region">지역 선택:</label>
-		                <select id="region" name="region">
-		                    <option value="서울">서울</option>
-		                    <option value="부산">부산</option>
-		                    <option value="대구">대구</option>
-		                </select>
-		                
-		                <label for="contTYpe">관광 유형:</label>
-		                <select id="contTYpe" name="contTYpe">
-		                    <option value="12">관광지</option>
-		                    <option value="14">문화시설</option>
-		                    <option value="15">축제공연행사</option>
-		                    <option value="28">레포츠</option>
-		                    <option value="32">숙박</option>
-		                    <option value="38">쇼핑</option>
-		                    <option value="39">음식점</option>
-		                </select>
-		                <button type="button" id="srchBtn" class="srchBtn">검색</button>
-            		</div>
-            		<button type="button" id="pickBtn" class="pickBtn">담기</button>
-            	</div>		    
-            </form>
-            <!-- 검색 결과 -->
-            <div style="margin: 20px 0;" id="totalCnt"></div>
-            <div id="tourListContainer" class="list_container"></div>
-            <div class="pagination"></div>
-        </div>
 
-        <!-- Footer -->
-        <c:import url="/sym/mms/EgovFooter.do" />
-        <!--// Footer -->
+            <div class="pop_container">
+                <form id="searchForm" method="post" action="<c:url value='/tpi/searchTourInfo.do'/>">
+                    <div class="search_container">
+                        <div>
+                            <label for="region">지역 선택:</label>
+                            <select id="region" name="region">
+                                <option value="서울">서울</option>
+                                <option value="부산">부산</option>
+                                <option value="대구">대구</option>
+                            </select>
+                            
+                            <label for="contTYpe">관광 유형:</label>
+                            <select id="contTYpe" name="contTYpe">
+                                <option value="12">관광지</option>
+                                <option value="14">문화시설</option>
+                                <option value="15">축제공연행사</option>
+                                <option value="28">레포츠</option>
+                                <option value="32">숙박</option>
+                                <option value="38">쇼핑</option>
+                                <option value="39">음식점</option>
+                            </select>
+                            <button type="button" id="srchBtn" class="srchBtn">검색</button>
+                        </div>
+                        <button type="button" id="pickBtn" class="pickBtn">담기</button>
+                    </div>         
+                </form>
+                <div style="margin: 20px 0;" id="totalCnt"></div>
+                <div id="tourListContainer" class="list_container"></div>
+                <div class="pagination"></div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
