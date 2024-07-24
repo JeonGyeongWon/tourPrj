@@ -1,0 +1,15 @@
+package tour.ti.tir.web;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@CrossOrigin(value= "*")
+public class RstrntController {
+
+	@RequestMapping(value = "/tir/tirList.do")
+	public String tirListPage() throws Exception{
+		return "/tour/ti/tir/tirListPage";
+	}
+}
