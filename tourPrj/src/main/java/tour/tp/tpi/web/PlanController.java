@@ -23,12 +23,6 @@ public class PlanController {
 		
 	}
 	
-	@RequestMapping(value = "/tpi/makePlan.do")
-	public String makePlan() throws Exception{
-		
-		return "/tour/tp/tpi/makePlanVw";
-	}
-	
 	@RequestMapping(value = "/tpi/tpiPlan.do")
 	public String tpiPlanPage(ModelMap model, String startDate, String endDate) throws Exception{
 		

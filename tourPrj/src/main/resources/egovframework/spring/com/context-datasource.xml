@@ -7,7 +7,7 @@
         class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
-                <value>classpath:/egovframework/egovProps/globals_${prj_flag}.properties</value>
+                <value>classpath:/egovframework/egovProps/globals_local.properties</value>
                 <!-- value>file:/product/jeus/egovProps/globals.properties</value-->
             </list>
         </property>

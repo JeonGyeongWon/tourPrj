@@ -12,7 +12,7 @@ $(function() {
     });
     
 
-    $("#searchButton").click(function() {
+    $("#srchBtn").click(function() {
         var areaCd = $("#region").val();
         var contentType = $("#contTYpe").val();
         getTourInfo(areaCd, contentType, "1");
