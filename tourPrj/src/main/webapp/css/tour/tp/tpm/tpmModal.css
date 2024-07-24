@@ -1,0 +1,118 @@
+.ui-timepicker-container {
+    z-index: 99999;
+}
+.modal_content {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 25px;
+    border: 1px solid #888;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    width: 50%;
+    height: 80%;
+    overflow: hidden;
+}
+.pop_bg {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 9998;
+}
+.close_button {
+    float: right;
+    cursor: pointer;
+}
+.tour_item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.tour_item .info {
+    display: flex;
+    align-items: center;
+}
+.tour_item .checkbox {
+	display: block !important;
+	width: 15px !important;
+	height: 15px !important;
+    margin-right: 30px;
+}
+.tour_item img {
+    min-width: 100px;
+    max-width: 150px;
+    min-height: 100px;
+    max-height: 150px;
+    margin-left: auto;
+    margin-right: 15px;
+}
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+    display: flex !important;
+    justify-content: center;
+}
+.pagination a {
+    margin: 0 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.title_txt {
+	display: flex;
+	font-family: Sp_r;
+	font-size: 18px;
+	margin-bottom: 10px;
+}
+.txt01 {
+	display: flex;
+	font-family: Sp_l;
+	font-size: 16px;
+	margin-bottom: 10px;
+}
+.modal_content h2 {
+	margin-bottom: 15px;
+}
+.modal_content select {
+	margin-right: 20px;
+}
+.modal_content label {
+    font-family: Sp_r;
+	font-size: 15px;
+}
+.list_container {
+    height: calc(100% - 150px);
+    overflow-y: auto;
+}
+.search_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.search_container select {
+	margin-right: 10px;
+}
+.search_container button {
+	margin-right: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.srchBtn {
+    background-color: #ccc;
+    color: black;
+}
+.pickBtn {
+    background-color: #007BFF;
+    color: white;
+}
