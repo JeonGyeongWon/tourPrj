@@ -10,11 +10,17 @@ $(function() {
         var contentType = $("#contTYpe").val();
         getTourInfo(areaCd, contentType, "1");
     });
+    
+    $('#pickBtn').click(function() {
+        putCheckedItems();
+    });
 });
 
 function closePop() {
-    $("#modalPan").dialog('close');
-    $("#modalPan").remove();
+    //$("#modalPan").dialog('close');
+    //$("#modalPan").remove();
+    parent.$("#modalPan").dialog('close');
+    parent.$("#modalPan").remove();
 }
 
 // 모달창 초기화
@@ -57,9 +63,6 @@ function getAreaCode(){
 function getTourInfo(areaCd, contentType, pageNo){
     var chkUrl = "/areaBasedList1"; // 지역기반 관광정보
     var url = "/api/test.do";
-    //var contentType = contentType;
-    //var areaCode = areaCd;
-    //var pageNo = pageNo;
     $.ajax({
         url: url,
         type: "post",
@@ -96,17 +99,28 @@ function drawTourList(data, areaCd, contentType, currentPage) {
 	$.each(items, function(index, item){
 		var name = item.title; // 이름
 		var address = item.addr1; // 주소
+		var areaCd = item.areacode; // 지역코드
+		var telNo = item.tel ? item.tel : '-'; // 전화번호
+		var contentId = item.contentid; // 컨텐츠ID
+		var sigunguCd= item.sigungucode; // 신군구코드
 		var mapx = item.mapx; // 위도값
 		var mapy = item.mapy; // 경도값
+		var image = item.firstimage2; // 이미지
 		var image = item.firstimage2; // 이미지
 		
         var listhtml = `
             <div class="tour_item">
             	<div class="info">
-	                <input type="checkbox" class="checkbox">
+	                <input type="checkbox" class="checkbox" 
+	                	data-name="${name}" data-address="${address}" data-telNo="${telNo}" data-contentId="${contentId}"
+	                	data-areaCd="${areaCd}" data-sigunguCd="${sigunguCd}" data-mapx="${mapx}" data-mapy="${mapy}">
 	                <div>
 	                    <span class="title_txt">${name}</span>
 	                    <span class="txt01">주소: ${address}</span>
+	                    <span class="txt01">전화번호: ${telNo}</span>
+	                    <span style="display:none;">컨텐츠ID: ${contentId}</span>
+	                    <span style="display:none;">지역코드: ${areaCd}</span>
+	                    <span style="display:none;">시군구코드: ${sigunguCd}</span>
 	                    <span style="display:none;">위도: ${mapx}, 경도: ${mapy}</span>
 	                </div>
                 </div>
@@ -147,10 +161,30 @@ function drawTourList(data, areaCd, contentType, currentPage) {
         
         getTourInfo(areaCd, contentType, pageNo);
     });
-    
-    // 담기 버튼 클릭 이벤트
-    $("#pickBtn").click(function() {
-        alert("담기 버튼 클릭");
-    });
-	
 }
+
+// 담기 버튼 클릭 이벤트
+function putCheckedItems() {
+    var retVal = [];
+    
+    $("#tourListContainer .checkbox:checked").each(function() {
+        var item = {
+            name: $(this).attr("data-name"),
+            address: $(this).attr("data-address"),
+            telNo: $(this).attr("data-telNo"),
+            areaCd: $(this).attr("data-areaCd"),
+            contentId: $(this).attr("data-contentId"),
+            sigunguCd: $(this).attr("data-sigunguCd"),
+            mapx: $(this).attr("data-mapx"),
+            mapy: $(this).attr("data-mapy")
+        };
+        retVal.push(item);
+    });
+    
+    if (retVal.length > 0) {
+        parent.returnValue(retVal);
+        closePop();
+    } else {
+        alert("항목을 선택해주세요.");
+    }
+}	

@@ -64,7 +64,7 @@
                         <button type="button" id="pickBtn" class="pickBtn">담기</button>
                     </div>         
                 </form>
-                <div style="margin: 20px 0;" id="totalCnt"></div>
+                <div style="margin: 10px 0;" id="totalCnt"></div>
                 <div id="tourListContainer" class="list_container"></div>
                 <div class="pagination"></div>
             </div>
