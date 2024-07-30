@@ -25,14 +25,24 @@
 }
 
 
-
 .popup .pop_inner{
     width: 50% !important;
-    height: 80% !important;
+    height: 85% !important;
+    top: 5% !important;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    overflow: hidden;
 }
+.pop_container{
+	padding: 20px 30px;
+    height: calc(100% - 80px);
+    overflow: hidden;
+}
+
 .tour_item {
     border-bottom: 1px solid #ddd;
-    padding: 10px 0;
+    padding: 10px;
     margin-bottom: 10px;
     display: flex;
     align-items: center;
@@ -46,7 +56,7 @@
 	display: block !important;
 	width: 15px !important;
 	height: 15px !important;
-    margin-right: 30px;
+    margin-right: 40px;
 }
 .tour_item img {
     min-width: 100px;
@@ -54,7 +64,7 @@
     min-height: 100px;
     max-height: 150px;
     margin-left: auto;
-    margin-right: 15px;
+    margin-right: 10px;
 }
 .pagination {
     margin-top: 20px;
@@ -70,13 +80,14 @@
 .title_txt {
 	display: flex;
 	font-family: Sp_r;
-	font-size: 18px;
-	margin-bottom: 10px;
+	font-size: 16px;
+	font-weight: bold;
+	margin-bottom: 20px;
 }
 .txt01 {
 	display: flex;
 	font-family: Sp_l;
-	font-size: 16px;
+	font-size: 14px;
 	margin-bottom: 10px;
 }
 .modal_content h2 {
@@ -90,7 +101,7 @@
 	font-size: 15px;
 }
 .list_container {
-    height: calc(100% - 150px);
+    height: calc(100% - 140px);
     overflow-y: auto;
 }
 .search_container {
@@ -99,17 +110,18 @@
     justify-content: space-between;
 }
 .search_container select {
-	margin-right: 10px;
+	padding: 5px;
+	margin: 0 20px 0 10px;
 }
 .search_container button {
 	margin-right: 10px;
-    padding: 10px 20px;
+    padding: 7px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 .srchBtn {
-    background-color: #ccc;
+    background-color: #ddd;
     color: black;
 }
 .pickBtn {
