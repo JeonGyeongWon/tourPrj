@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	console.log(document.getElementById('contentId').value);
 	var url = "/api/test.do";
 	var chkUrl = "/searchStay1";
 	$.ajax({
@@ -45,8 +46,3 @@ $(document).ready(function() {
 		}
 	});
 });
-
-function moveTihDetail(contentId){
-	var contentId = contentId;
-	window.location.href = '/tih/tihDetail.do?contentId=' + contentId;
-}

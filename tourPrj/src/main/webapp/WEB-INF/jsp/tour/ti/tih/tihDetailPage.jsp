@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="<c:url value='/'/>css/main.css">
 	<script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
 	<script src="<c:url value='/'/>js/ui.js"></script>
-	<script src="<c:url value='/js/tour/ti/tih/tihListPage.js'/>"></script>
+	<script src="<c:url value='/js/tour/ti/tih/tihDetailPage.js'/>"></script>
 		<style>
         .tih_list_ui {
             list-style-type: none;
@@ -92,6 +92,7 @@
 								<h2 class="tit_2">숙박정보</h2>
 								<div class="board_list"></div>
 							</div>
+							<input id="contentId" name="contentId" type="hidden" value="<c:out value='${contentId}'/>">
 						</div>
 					</div>
 				</div>
