@@ -30,6 +30,10 @@ $(function() {
         datePicker.clear();
     }
 	
+	$('.close').on('click', function(event) {
+        parent.fn_egov_modal_remove();
+    });
+	
     // 폼 제출 처리
     $('.tpiCalbtn').on('click', function(event) {
         event.preventDefault();

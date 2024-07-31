@@ -28,7 +28,7 @@
         <div class="pop_inner">
             <div class="pop_header">
                 <h1>여행 일정 선택</h1>
-                <button type="button" class="close" onclick="fn_egov_cancel_popup(); return false;">닫기</button>
+                <button type="button" class="close" >닫기</button>
             </div>
 
             <div class="pop_container">

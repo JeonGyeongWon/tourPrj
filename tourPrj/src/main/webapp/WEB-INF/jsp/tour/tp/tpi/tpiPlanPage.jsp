@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="<c:url value='/'/>css/component.css">
 	<link rel="stylesheet" href="<c:url value='/'/>css/page.css">
 	<link rel="stylesheet" href="<c:url value='/'/>css/main.css">
-	<link rel="stylesheet" href="<c:url value='/'/>css/tour/tp/tpi/tpiPlanPage.css">
+	<link rel="stylesheet" href="<c:url value='/'/>css/tour/tp/tpi/tpi.css">
 	<script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
 	<script src="<c:url value='/'/>js/ui.js"></script>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d20b2ce38e0a6cdfdd3f269a8c89dbd6&libraries=services"></script>

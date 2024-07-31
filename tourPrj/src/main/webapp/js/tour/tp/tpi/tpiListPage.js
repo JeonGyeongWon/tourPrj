@@ -20,3 +20,7 @@ function returnValue(retVal){
 	
 	$('#dateForm').submit();
 }
+
+function fn_egov_modal_remove() {
+	$('#modalPan').remove();
+}
