@@ -43,6 +43,7 @@ tourPrj/src/main/webapp/js/tour/ti/tih/tihListPage.js <br/>
 tourPrj/src/main/java/tour/ti/tif/web/FstvlController.java <br/>
 tourPrj/src/main/java/tour/ti/tih/web/HotelController.java <br/>
 tourPrj/src/main/java/tour/ti/tir/web/RstrntController.java <br/>
+
 ### 20240731 <br/>
 소현 <br/>
 - 파일 수정 <br/>
