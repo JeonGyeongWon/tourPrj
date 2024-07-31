@@ -43,3 +43,13 @@ tourPrj/src/main/webapp/js/tour/ti/tih/tihListPage.js <br/>
 tourPrj/src/main/java/tour/ti/tif/web/FstvlController.java <br/>
 tourPrj/src/main/java/tour/ti/tih/web/HotelController.java <br/>
 tourPrj/src/main/java/tour/ti/tir/web/RstrntController.java <br/>
+### 20240731 <br/>
+소현 <br/>
+- 파일 수정 <br/>
+tourPrj/src/main/webapp/WEB-INF/jsp/tour/tp/tpi/tpiCalModal.jsp <br/>
+tourPrj/src/main/webapp/WEB-INF/jsp/tour/tp/tpi/tpiListPage.jsp <br/>
+tourPrj/src/main/webapp/WEB-INF/jsp/tour/tp/tpi/tpiPlanPage.jsp <br/>
+tourPrj/src/main/webapp/js/tour/tp/tpi/tpiCalModal.js <br/>
+tourPrj/src/main/webapp/js/tour/tp/tpi/tpiListPage.js <br/>
+- 파일 삭제 <br/>
+tourPrj/src/main/webapp/css/tour/tp/tpi/tpiPlanPage.css <br/>
