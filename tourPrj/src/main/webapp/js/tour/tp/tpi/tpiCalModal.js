@@ -10,10 +10,6 @@ $(function() {
             showMonths: 2,
             minDate: "today",
             onChange: function(selectedDates, dateStr, instance) {
-				console.log(selectedDates);
-				console.log(dateStr);
-				console.log(instance);
-				
                 if (selectedDates.length === 2) {
                     $('#startDate').val(selectedDates[0].toISOString().slice(0, 10));
                     $('#endDate').val(selectedDates[1].toISOString().slice(0, 10));
@@ -29,10 +25,6 @@ $(function() {
     } else {
         datePicker.clear();
     }
-	
-	$('.close').on('click', function(event) {
-        parent.fn_egov_modal_remove();
-    });
 	
     // 폼 제출 처리
     $('.tpiCalbtn').on('click', function(event) {

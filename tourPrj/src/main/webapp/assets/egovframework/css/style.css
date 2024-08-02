@@ -160,14 +160,16 @@ pre {
 }
 
 .container {
-  max-width: 1229px;
+  /* max-width: 1229px; */
+  /*jsh - 임시로 바꿉니다*/
+  width: 100%
 }
 
 /*레이아웃*/
 
 .container {
   margin-top: 100px;
-  width: 1229px !important;
+  /* width: 1229px !important; */
   margin-right: auto;
   margin-left: auto;
   padding-left: 20px;

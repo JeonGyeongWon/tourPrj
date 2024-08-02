@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-body {min-width: 1400px;}
+body {/* min-width: 1400px; */}
 
 .header .inner {position: relative; width: 1400px; height: 180px; margin: 0 auto; padding: 0 50px;}
 .header .left_col {padding-top: 40px; font-size: 0;}
@@ -86,7 +86,7 @@ body {min-width: 1400px;}
 
 
 .footer {border-top: 1px solid #d7d7d7;}
-.footer .inner {position: relative; width: 1400px; height: 179px; margin: 0 auto; padding: 0 50px;}
+.footer .inner {position: relative; /* width: 1400px; */ height: 179px; margin: 0 auto; padding: 0 50px;}
 .footer .inner::after {content: ""; display: block; clear: both;}
 .footer h1 {float: left; padding-top: 49px;}
 .footer h1 a {display: block;}

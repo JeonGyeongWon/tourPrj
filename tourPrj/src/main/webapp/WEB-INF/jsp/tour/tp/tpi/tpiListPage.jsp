@@ -15,8 +15,6 @@
 	<link rel="stylesheet" href="<c:url value='/'/>css/page.css">
 	<link rel="stylesheet" href="<c:url value='/'/>css/main.css">
 	<link rel="stylesheet" href="<c:url value='/'/>css/tour/tp/tpi/tpi.css">
-	<script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
-	<script src="<c:url value='/'/>js/ui.js"></script>
 	<script src="<c:url value='/js/tour/tp/tpi/tpiListPage.js'/>"></script>
 </head>
 <body>
@@ -47,8 +45,8 @@
 						        <button type="button" class="tpi-button" onclick="tpiCalModal();">여행 추가</button>
 						        <hr class="tit_hr">
 								<form id="dateForm" action="/tpi/tpiPlan.do">
-						            <input type="hidden" id="startDate" name="startDate">
-						            <input type="hidden" id="endDate" name="endDate">
+						            <input type="hidden" id="startDate" name="tourStart">
+						            <input type="hidden" id="endDate" name="tourEnd">
 						        </form>
 								<div class="tpiList"></div>
 							</div>

@@ -11,7 +11,7 @@ function tpiCalModal(){
 	$dialog.dialog('open');
 }
 
-function returnValue(retVal){
+/*function returnValue(retVal){
 	
 	if (retVal) {
 		document.getElementById("startDate").value  = retVal.startDate;
@@ -19,8 +19,33 @@ function returnValue(retVal){
 	}
 	
 	$('#dateForm').submit();
-}
+}*/
 
 function fn_egov_modal_remove() {
 	$('#modalPan').remove();
+}
+
+function returnValue(retVal){
+	
+	if (retVal) {
+		var url = "/tpi/insertTourPlan.do";
+		$.ajax({
+	        url: url,
+	        type: "post",
+	        dataType: "json",    
+	        async : false,
+	        data: {
+	        	tourStart : retVal.startDate,
+	        	tourEnd : retVal.endDate,
+	        },
+	        success: function (data) {
+				console.log(data);
+	        },
+	        error: function(error){
+	        	console.log(error);
+	        	
+	        }
+	    });
+	}
+	
 }

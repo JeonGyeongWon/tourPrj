@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="<c:url value='/'/>css/layout.css">
 	<link rel="stylesheet" href="<c:url value='/'/>css/component.css">
 	<link rel="stylesheet" href="<c:url value='/'/>css/page.css">
+	<link rel="stylesheet" href="<c:url value='/'/>css/tour/tp/tpi/tpi.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 	<script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
 	<script src="<c:url value='/'/>js/ui.js"></script>
@@ -25,7 +26,7 @@
    <!-- default : display: none 상태 -->
     <div class="popup ">
     
-        <div class="pop_inner">
+        <div class="pop_inner tpiCal_pop">
             <div class="pop_header">
                 <h1>여행 일정 선택</h1>
                 <button type="button" class="close" >닫기</button>
@@ -35,7 +36,7 @@
 	            <div class="datepicker" id="datePicker"></div>
 	            <input type="hidden" id="startDate" name="startDate">
 	            <input type="hidden" id="endDate" name="endDate">
-                <button type="button" class="tpiCalbtn">확인</button>
+                <button type="button" class="tpiCalbtn tpi-button">확인</button>
             </div>
         </div>
        
