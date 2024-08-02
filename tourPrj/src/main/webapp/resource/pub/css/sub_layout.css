@@ -2413,7 +2413,7 @@ input:read-only {background-color: #eaf0f3;}
  }
  /* line 8, scss/newCommon.scss */
  .main_header .logo {
-  margin: 22px 0 0 0px !important;
+  margin: 15px 30px 0px 30px !important;
  }
  /* line 11, scss/newCommon.scss */
  #header .main_header_wrap a.h1_over ~ .search_wrap .btnSrch {

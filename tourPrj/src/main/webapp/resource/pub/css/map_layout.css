@@ -6,7 +6,7 @@
     .header_tog {z-index:3;position:absolute;top:-80px !important;left:0;;width:100%;/* min-width:1280px; */height:70px;background:#fff;z-index:10;transition:background-color 300ms , top 300ms ease;}
 
     #header h1 {float: left;width: 235px;height: 41px;	margin: 20px 0 0 30px;background: url("../images/logo.png") no-repeat; }
-    #header .h1_over {float: left;width: 235px;height: 41px;	margin: 20px 0 0 30px;background: url("../images/logo_over.png") no-repeat;}
+    #header .h1_over {float: left;width: 69px; height: 41px;	margin: 20px 0 0 30px;background: url("../images/logo.png") no-repeat;}
     #gnb{position:relative;float:left;width:840px;height:70px;}
     #gnb > ul > li{width:120px;float:left;text-align:center;height:70px;}
     #gnb > ul > li > a {display:block;line-height:74px;height:70px;font-size:18px;font-family:G_m; color:#111;letter-spacing:-1px;}
