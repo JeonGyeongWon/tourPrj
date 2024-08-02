@@ -10,7 +10,7 @@
 	.mainPupup .pop_foot .pop_close02{position:absolute;top:10px;right:10px;display:block;width:80px;height:34px;line-height:34px;background:#313e4f;font-family:Sp_l;color:#fff;font-size:16px;text-align:center;}
 
 	.main_header_wrap{width:1200px;margin:0 auto;}
-	.main_header .logo{float: left;width: 235px;height: 33px;	margin: 18px 0 0 0px !important;background: url("../images/logo.png") no-repeat;}
+	.main_header .logo{float: left;width: 69px;height: 41px;	margin: 18px 0 0 0px !important;background: url("../images/logo.png") no-repeat;}
 	.main_header .main_gnb{float:left;}
 	.subMenu_bg .gnb_left{position:absolute;left:calc((100% - 1260px) / 2);display:none;padding-top:40px;background: url("../images/menu_img.png")bottom right no-repeat;width:235px;height:310px;margin-left:30px;}
 	.subMenu_bg .gnb_left .txt1{line-height:130%;font-family:G_m; color:#000;font-size:24px;letter-spacing:-1px;}

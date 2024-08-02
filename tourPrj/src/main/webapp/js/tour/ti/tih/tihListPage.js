@@ -1,6 +1,11 @@
 $(document).ready(function() {
+	getSearchStay();
+});
+
+function getSearchStay(){
 	var url = "/api/test.do";
 	var chkUrl = "/searchStay1";
+	var numOfRows = 50;
 	$.ajax({
 		url: url,
 		type: "post",
@@ -8,17 +13,18 @@ $(document).ready(function() {
 		async: false,
 		data: {
 			chkUrl: chkUrl,
+			numOfRows: numOfRows,
 		},
 		success: function(data) {
 			var items = data.response.body.items.item;
 			var ul = $("<ul class='tih_list_ui'></ul>");
 
 			items.forEach(function(item) {
-				var li = $("<li class='tih_list_li' onclick='moveTihDetail("+item.contentid+")'></li>");
+				var li = $("<li class='tih_list_li' onclick='moveTihDetail(" + item.contentid + ")'></li>");
 
 				var imageDiv = $("<div class='image'></div>");
 				var img = $("<img>")
-					.attr("src", item.firstimage || "/resource/images/sample/no_image.png")
+					.attr("src", item.firstimage2 || "/resource/images/sample/no_image.png")
 					.attr("alt", item.title)
 					.on("error", function() {
 						this.onerror = null;
@@ -31,7 +37,6 @@ $(document).ready(function() {
 				var titleDiv = $("<div class='title'></div>").text(item.title);
 				var addrDiv = $("<div class='addr1'></div>").text(item.addr1);
 				var telDiv = $("<div class='tel'></div>").text("전화: " + (item.tel || "정보 없음"));
-
 				detailsDiv.append(titleDiv).append(addrDiv).append(telDiv);
 
 				li.append(imageDiv).append(detailsDiv);
@@ -44,9 +49,10 @@ $(document).ready(function() {
 			console.log("error: " + error);
 		}
 	});
-});
+}
 
-function moveTihDetail(contentId){
+
+function moveTihDetail(contentId) {
 	var contentId = contentId;
 	window.location.href = '/tih/tihDetail.do?contentId=' + contentId;
 }
