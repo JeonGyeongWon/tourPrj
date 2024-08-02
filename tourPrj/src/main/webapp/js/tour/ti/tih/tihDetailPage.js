@@ -32,7 +32,7 @@ function getDetailCommon(url, contentId, contentTypeId){
 				});
 			gallery.append(firstImage);
 
-			var detailInfo = $(".detail-info");
+			var detailInfo = $(".detail-left");
 			var titleDiv = $("<div class='title'></div>").text(item.title);
 			var addrDiv = $("<div class='addr1'></div>").text(item.addr1);
 			var telDiv = $("<div class='tel'></div>").text("전화: " + (item.tel || "정보 없음"));
@@ -41,7 +41,7 @@ function getDetailCommon(url, contentId, contentTypeId){
 			var homepageUrl = item.homepage; // 올바른 URL을 설정
 			// 홈페이지 링크 생성
 			detailInfo.append(titleDiv).append(addrDiv).append(telDiv).append(homepageUrl).append(overviewDiv);
-
+			pointAddrToMap(item.title, item.addr1);
 		},
 		error: function(error) {
 			console.log("error: " + error);
@@ -62,7 +62,6 @@ function getDetailImage(url, contentId, contentTypeId){
 			contentTypeId: contentTypeId,
 		},
 		success: function(data) {
-			$(".board_list").html(JSON.stringify(data));
 			var item = data.response.body.items.item;
 			var numOfRows = data.response.body.numOfRows;
 			var gallery = $(".gallery");
@@ -111,6 +110,45 @@ function getDetailImage(url, contentId, contentTypeId){
 		},
 		error: function(error) {
 			console.log("error: " + error);
+		}
+	});
+}
+
+function pointAddrToMap(title, addr) {
+	var mapContainer = $('.detail-right'), // 지도를 표시할 div
+		mapOption = {
+			center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			level: 3 // 지도의 확대 레벨
+		};
+
+	// 지도를 생성
+	var map = new kakao.maps.Map(mapContainer, mapOption);
+
+	// 주소-좌표 변환 객체를 생성
+	var geocoder = new kakao.maps.services.Geocoder();
+
+	// 주소로 좌표를 검색
+	geocoder.addressSearch(addr, function(result, status) {
+
+		// 정상적으로 검색이 완료됐을 시
+		if (status === kakao.maps.services.Status.OK) {
+
+			var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+			// 결과값으로 받은 위치를 마커로 표시
+			var marker = new kakao.maps.Marker({
+				map: map,
+				position: coords
+			});
+
+			// 인포윈도우로 장소에 대한 설명을 표시
+			var infowindow = new kakao.maps.InfoWindow({
+				content: '<div style="width:150px;text-align:center;padding:6px 0;">'+title+'</div>'
+			});
+			infowindow.open(map, marker);
+
+			// 지도의 중심을 결과값으로 받은 위치로 이동
+			map.setCenter(coords);
 		}
 	});
 }

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
@@ -16,10 +15,10 @@
 <link rel="stylesheet" href="<c:url value='/'/>css/component.css">
 <link rel="stylesheet" href="<c:url value='/'/>css/page.css">
 <link rel="stylesheet" href="<c:url value='/'/>css/main.css">
-<link rel="stylesheet"
-	href="<c:url value='/'/>css/tour/ti/tih/tihDetailPage.css">
+<link rel="stylesheet" href="<c:url value='/'/>css/tour/ti/tih/tihDetailPage.css">
 <script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
 <script src="<c:url value='/'/>js/ui.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d20b2ce38e0a6cdfdd3f269a8c89dbd6&libraries=services"></script>
 <script src="<c:url value='/js/tour/ti/tih/tihDetailPage.js'/>"></script>
 </head>
 <body>
@@ -50,46 +49,11 @@
 								</div>
 								<!--// Location -->
 
-
-								<!-- 갤러리 start -->
-								<div class="gallery">
-									<!-- 첫 번째 이미지 -->
-									<!-- <img src="/resource/images/sample/no_image.png" alt="Image 1"
-										class="main-image">
-
-									<div class="grid-container">
-										<div class="grid-item">
-											<img
-												src="https://image.goodchoice.kr/resize_1280x1024/exhibition/itemContents/5166033f6bca0b1f3363c494c628e8a6.jpg"
-												alt="Image 2">
-										</div>
-										<div class="grid-item">
-											<img
-												src="https://image.goodchoice.kr/exhibition/itemContents/60bd0f992d7ac6e04001518aaeb92718.jpg"
-												alt="Image 3">
-										</div>
-										<div class="grid-item">
-											<img
-												src="https://image.goodchoice.kr/exhibition/itemContents/b8dab7806322b7b30161df10bc1b60f8.jpg"
-												alt="Image 4">
-										</div>
-										<div class="grid-item">
-											<img
-												src="https://image.goodchoice.kr/exhibition/itemContents/0a4dc78e64f56dda30ff9458595dfb21.jpg"
-												alt="Image 5">
-											더보기 버튼 (마지막 그리드 아이템 내)
-											<button class="more-button" type="button">
-												<span class="css-122rql6">사진 모두보기</span>
-											</button>
-										</div>
-									</div> -->
+								<div class="gallery"></div>
+								<div class="detail-info">
+									<div class="detail-left"></div>
+									<div class="detail-right"></div>
 								</div>
-								<!-- 갤러리 end -->
-
-
-								<div class="detail-info"></div>
-								<div class="board_list"></div>
-
 							</div>
 
 							<input id="contentId" name="contentId" type="hidden"
