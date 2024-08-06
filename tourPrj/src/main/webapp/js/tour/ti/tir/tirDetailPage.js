@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	var url = "/api/test.do";
 	var contentId = $("#contentId").val();
-	var contentTypeId = 32;
+	var contentTypeId = 39;
 	
 	getDetailCommon(url, contentId, contentTypeId);
 	getDetailImage(url, contentId, contentTypeId);
@@ -20,6 +20,7 @@ function getDetailCommon(url, contentId, contentTypeId){
 			contentTypeId: contentTypeId,
 		},
 		success: function(data) {
+			$(".board_list_all").html(JSON.stringify(data));
 			var item = data.response.body.items.item[0];
 			var gallery = $(".gallery");
 			var firstImage = $("<img class='main-image'></img>");

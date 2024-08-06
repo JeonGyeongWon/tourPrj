@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
@@ -16,16 +15,17 @@
 <link rel="stylesheet" href="<c:url value='/'/>css/component.css">
 <link rel="stylesheet" href="<c:url value='/'/>css/page.css">
 <link rel="stylesheet" href="<c:url value='/'/>css/main.css">
-<link rel="stylesheet" href="<c:url value='/'/>css/tour/ti/tif/tifListPage.css">
+<link rel="stylesheet" href="<c:url value='/'/>css/tour/ti/tif/tifDetailPage.css">
 <script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
 <script src="<c:url value='/'/>js/ui.js"></script>
-<script src="<c:url value='/js/tour/ti/tif/tifListPage.js'/>"></script>
+<script src="<c:url value='/js/tour/ti/tif/tifDetailPage.js'/>"></script>
 </head>
 <body>
 	<!-- Skip navigation -->
 	<a href="#contents" class="skip_navi">본문 바로가기</a>
-
 	<div class="wrap">
+
+
 		<!-- Header -->
 		<c:import url="/sym/mms/EgovHeader.do" />
 		<!--// Header -->
@@ -34,9 +34,10 @@
 			<div class="sub_layout">
 				<div>
 					<div class="layout">
-
 						<div class="content_wrap">
 							<div id="contents" class="content" style="overflow: auto;">
+
+
 								<!-- Location -->
 								<div class="location">
 									<ul>
@@ -46,11 +47,15 @@
 									</ul>
 								</div>
 								<!--// Location -->
-								<h1 class="tit_1">관광정보</h1>
 
-								<h2 class="tit_2">축제정보</h2>
-								<div class="board_list"></div>
+								<div class="gallery"></div>
+								<div class="detail-info">
+									<div class="detail-left"></div>
+									<div class="detail-right"></div>
+								</div>
 							</div>
+
+							<input id="contentId" name="contentId" type="hidden" value="<c:out value='${contentId}'/>">
 						</div>
 					</div>
 				</div>

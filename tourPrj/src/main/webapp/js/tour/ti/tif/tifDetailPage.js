@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	var url = "/api/test.do";
 	var contentId = $("#contentId").val();
-	var contentTypeId = 32;
+	var contentTypeId = 15;
 	
 	getDetailCommon(url, contentId, contentTypeId);
 	getDetailImage(url, contentId, contentTypeId);
