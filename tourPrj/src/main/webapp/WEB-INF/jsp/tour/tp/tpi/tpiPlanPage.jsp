@@ -22,7 +22,7 @@
 	<script src="<c:url value='/js/tour/tp/tpi/tpiPlanPage.js'/>"></script>
 </head>
 <body>
-    <!-- Skip navigation -->
+ 	<!-- Skip navigation -->
     <a href="#contents" class="skip_navi">본문 바로가기</a>
 
     <div class="wrap">
@@ -30,24 +30,45 @@
         <c:import url="/sym/mms/EgovHeader.do" />
         <!--// Header -->
 
-        <div class="container main">
-         <section id="tour-planner">
-            <h2>관광 코스 짜기</h2>
-            <!-- <label for="start-date">시작일:</label> -->
-            <input type="hidden" id="start-date" name="start-date" value="<c:out value='${startDate}'/>" />
-            <!-- <label for="end-date">종료일:</label> -->
-            <input type="hidden" id="end-date" name="end-date" value="<c:out value='${endDate}'/>" />
-            <!-- <button onclick="generateTimeline()">타임라인 생성</button> -->
-            <div class="planner">
-                <div class="timeline">
-                    <h3>나의 일정</h3>
-                    <div id="timeline-list" class="timeline-list">
-                        <!-- Drop locations here -->
-                    </div>
-                </div>
-                <div id="planMap" class="planMap"></div>
+        <div class="container">
+       		<div class="sub_layout">
+                <div>
+					<div class="layout">
+						<div class="content_wrap">
+							<div id="contents" class="content">
+						        <!-- Location -->
+								<div class="location">
+									<ul>
+										<li><a class="home" href="/cmm/main/mainPage.do">Home</a></li>
+										<li><a href="">계획</a></li>
+										<li>여행계획</li>
+									</ul>
+								</div>
+								<!--// Location -->
+								<h1 class="tit_1">여행계획</h1>
+						       <section id="tour-planner">
+						            <h2 class="tourNm"></h2>
+						            <input type="hidden" id="tourPlanNo" name="tourPlanNo" value="<c:out value='${tourPlanNo}'/>" />
+						            <!-- <label for="start-date">시작일:</label> -->
+						            <input type="hidden" id="startDate" name="startDate" />
+						            <!-- <label for="end-date">종료일:</label> -->
+						            <input type="hidden" id="endDate" name="endDate" />
+						            <!-- <button onclick="generateTimeline()">타임라인 생성</button> -->
+						            <div class="planner">
+						                <div class="timeline">
+						                    <h3 class="tourDt"></h3>
+						                    <div id="timeline-list" class="timeline-list">
+						                        <!-- Drop locations here -->
+						                    </div>
+						                </div>
+						                <div id="planMap" class="planMap"></div>
+						            </div>
+						        </section>
+							</div>
+						</div>
+					</div>
+				</div>
             </div>
-        </section>
         </div>
 
         <!-- Footer -->

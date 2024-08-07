@@ -44,10 +44,6 @@
 								<h1 class="tit_1">여행계획</h1>
 						        <button type="button" class="tpi-button" onclick="tpiCalModal();">여행 추가</button>
 						        <hr class="tit_hr">
-								<form id="dateForm" action="/tpi/tpiPlan.do">
-						            <input type="hidden" id="startDate" name="tourStart">
-						            <input type="hidden" id="endDate" name="tourEnd">
-						        </form>
 								<div class="tpiList"></div>
 							</div>
 						</div>

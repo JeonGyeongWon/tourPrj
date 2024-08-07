@@ -33,6 +33,7 @@
             </div>
 
             <div class="pop_container">
+            	<input type="text" id="tourNm" name="tourNm" placeholder="여행 이름" maxlength="30" autocomplete='off'>
 	            <div class="datepicker" id="datePicker"></div>
 	            <input type="hidden" id="startDate" name="startDate">
 	            <input type="hidden" id="endDate" name="endDate">
