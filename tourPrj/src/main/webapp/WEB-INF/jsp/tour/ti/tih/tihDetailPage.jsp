@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="<c:url value='/'/>css/tour/ti/tih/tihDetailPage.css">
 <script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
 <script src="<c:url value='/'/>js/ui.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d20b2ce38e0a6cdfdd3f269a8c89dbd6&libraries=services"></script>
+<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d20b2ce38e0a6cdfdd3f269a8c89dbd6&libraries=services"></script> -->
 <script src="<c:url value='/js/tour/ti/tih/tihDetailPage.js'/>"></script>
 </head>
 <body>

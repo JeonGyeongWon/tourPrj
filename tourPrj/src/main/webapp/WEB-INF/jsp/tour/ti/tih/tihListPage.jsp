@@ -24,12 +24,10 @@
 <body>
 	<!-- Skip navigation -->
 	<a href="#contents" class="skip_navi">본문 바로가기</a>
-
 	<div class="wrap">
 		<!-- Header -->
 		<c:import url="/sym/mms/EgovHeader.do" />
 		<!--// Header -->
-
 		<div class="container">
 			<div class="sub_layout">
 				<div>
@@ -47,7 +45,6 @@
 								</div>
 								<!--// Location -->
 								<h1 class="tit_1">관광정보</h1>
-
 								<h2 class="tit_2">숙박정보</h2>
 								<div class="board_list"></div>
 							</div>
@@ -56,7 +53,6 @@
 				</div>
 			</div>
 		</div>
-
 		<!-- Footer -->
 		<c:import url="/sym/mms/EgovFooter.do" />
 		<!--// Footer -->
