@@ -29,7 +29,7 @@ public interface PlanService {
 	/**
 	 * 계획정보 등록
 	 */
-	public Map<String, Object> insertPlanInfo(List<PlanInfo> infoList, PlanInfo planInfo)
+	public Map<String, Object> insertPlanInfo(PlanInfoDTO planInfo)
 	  throws Exception;
 	
 }

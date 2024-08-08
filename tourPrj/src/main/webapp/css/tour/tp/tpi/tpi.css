@@ -89,11 +89,65 @@
 	
 }
 
+.timeline {
+    border-left: 4px solid #122a59;
+    padding-left: 20px;
+    position: relative;
+}
 
+.tLine-svg {
+	position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
 
+.tLine {
+	stroke: #122a59; 
+    stroke-width: 4px;
+    stroke-dasharray: 4; /* 점선 */
+}
 
+.timeline-day {
+    margin-bottom: 20px;
+    z-index: 2;
+    position: relative;
+}
 
+.timeline-day h4 {
+    display: inline-block;
+    margin: 10px 0;
+    padding: 10px;
+    background: #122a59;
+    color: white;
+    border-radius: 5px;
+}
 
+.add-button {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 1px 5px;
+    background: white;
+    color: #122a59;
+    border: 2px solid #122a59;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.add-button:hover {
+    background: #122a59;
+    color: white;
+}
+
+.planMap {
+    height: 600px;
+    border: 2px solid #122a59;
+    border-radius: 10px;
+}
+
+/*  */
 
 
 
@@ -145,58 +199,19 @@ input[type="date"]{
     width: 45%;
 }
 
-.timeline {
-    border-left: 4px solid #87cefa;
-    padding-left: 20px;
-    position: relative;
-}
-
-.timeline::before {
-    content: '';
-    position: absolute;
-    left: -2px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: #87cefa;
-}
-
 .timeline-list {
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
 
-.timeline-day {
-    margin-bottom: 20px;
-}
 
-.timeline-day h4 {
-    display: inline-block;
-    margin: 10px 0;
-    padding: 10px;
-    background: #87cefa;
-    color: white;
-    border-radius: 5px;
-}
 
-.add-button {
-    display: inline-block;
-    margin-left: 10px;
-    padding: 5px;
-    background: white;
-    color: #87cefa;
-    border: 2px solid #87cefa;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    line-height: 0;
-}
 
-.add-button:hover {
-    background: #87cefa;
-    color: white;
-}
+
+
+
+
 
 .timeline-item {
     margin: 10px 0;
@@ -270,11 +285,6 @@ input[type="date"]{
     margin-right: 5px;
 }
 
-.planMap {
-    height: 600px;
-    border: 2px solid #87cefa;
-    border-radius: 10px;
-}
 
 /* Modal styles */
 .modal {

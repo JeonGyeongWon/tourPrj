@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import egovframework.com.cmm.LoginVO;
 import tour.tp.tpi.service.Plan;
 import tour.tp.tpi.service.PlanInfo;
+import tour.tp.tpi.service.PlanInfoDTO;
 import tour.tp.tpi.service.PlanService;
 import tour.tp.tpi.service.PlanVO;
 
@@ -122,17 +123,20 @@ public class PlanController {
 	
 	@RequestMapping(value = "/tpi/insertPlanInfo.do")
 	@ResponseBody
-	public ResponseEntity<Map<String, Object>> insertPlanInfo(@RequestParam(value="infoList") List<Map<String, Object>> infoList, PlanInfo planInfo) throws Exception{
+	public ResponseEntity<Map<String, Object>> insertPlanInfo(PlanInfoDTO planInfo) throws Exception{
+		
+		System.out.println(planInfo.getInfoList());
+		System.out.println(planInfo.getTourPlanNo());
+		System.out.println(planInfo.getPlanDt());
+		
 		
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		Map<String, Object> resMap = new HashMap<String, Object>();
 		resMap.put("result", "000");
 		if(isAuthenticated) {
-			/*
-			 * LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
-			 * planInfo.setFrstRegId(user.getUniqId()); resMap =
-			 * planService.insertPlanInfo(infoList, planInfo);
-			 */
+			 LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+			 planInfo.setFrstRegId(user.getUniqId()); 
+			 resMap = planService.insertPlanInfo(planInfo);
 		}else {
 			resMap.put("result", "-1");
 		}

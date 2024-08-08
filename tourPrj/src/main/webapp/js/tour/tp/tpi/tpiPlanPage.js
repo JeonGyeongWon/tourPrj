@@ -66,7 +66,7 @@ function generateTimeline() {
         while (currentDate <= end) {
             const dayContainer = document.createElement('div');
             dayContainer.className = 'timeline-day';
-
+			dayContainer.setAttribute('date', currentDate.toISOString().split('T')[0]);
             const dayHeader = document.createElement('h4');
             dayHeader.textContent = `${currentDate.toISOString().split('T')[0]} (${['일', '월', '화', '수', '목', '금', '토'][currentDate.getDay()]})`;
             dayContainer.appendChild(dayHeader);
@@ -87,11 +87,43 @@ function generateTimeline() {
 
             currentDate.setDate(currentDate.getDate() + 1);
         }
+        
+        let tourDt = document.querySelector('.tourDt').getBoundingClientRect();
+        let dayRect = timelineList.firstChild.getBoundingClientRect();
+        let dayCss = getComputedStyle(timelineList.firstChild);
+        let dayH2Rect = timelineList.firstChild.firstChild.getBoundingClientRect();
+		let timelineCss = getComputedStyle(document.querySelector('.timeline'));
+		let timelineCtn = document.querySelectorAll('.timeline-day').length;
+		console.log(document.querySelectorAll('.timeline-day').length);
+		console.log(tourDt);
+		console.log(dayRect);
+		console.log(dayH2Rect);
+		console.log( Number(timelineCss.paddingLeft.replace('px', '')));
+        
+        let tSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+		tSvg.setAttribute('class', 'tLine-svg');
+		tSvg.setAttribute('style', `width: ${dayRect.width}px; height: -webkit-fill-available;`);
+        
+        let startX = Number(timelineCss.paddingLeft.replace('px', '')) + dayH2Rect.width/2;
+        let startY = tourDt.height + dayH2Rect.height/2;
+        let endX = Number(timelineCss.paddingLeft.replace('px', '')) + dayH2Rect.width/2;
+        let endY = tourDt.height + dayH2Rect.height/2 + (dayRect.height + Number(dayCss.marginBottom.replace('px', '')))*(timelineCtn - 1);
+        let tLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        tLine.setAttribute('class', 'tLine');
+        tLine.setAttribute('x1', startX);
+        tLine.setAttribute('y1', startY);
+        tLine.setAttribute('x2', endX);
+        tLine.setAttribute('y2', endY);
+        tSvg.appendChild(tLine);
+        
+        timelineList.appendChild(tSvg);
+        
+        
     }
 }
 
 function openModal(dList) {
-	dayList = dList;
+	dayList = dList.parentNode.getAttribute('date');
    var $dialog = $('<div id="modalPan"></div>')
         .html('<iframe id="modalIframe" style="border: 0px;" src="/tpm/tourInfoModal.do" width="100%" height="100%"></iframe>')
         .dialog({
@@ -116,6 +148,8 @@ function openModal(dList) {
 
 function returnValue(retVal) {
     console.log(retVal);
+    console.log(tourPlanNo);
+    console.log(dayList);
     
     if (retVal) {
 		var url = "/tpi/insertPlanInfo.do";
@@ -123,6 +157,7 @@ function returnValue(retVal) {
 	        url: url,
 	        type: "post",
 	        async : false,
+	        traditional: true,
 	        data: {
 	        	infoList : JSON.stringify(retVal),
 	        	tourPlanNo : tourPlanNo,

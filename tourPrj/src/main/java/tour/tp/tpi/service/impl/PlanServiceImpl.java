@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import egovframework.com.cmm.LoginVO;
 import tour.tp.tpi.service.Plan;
 import tour.tp.tpi.service.PlanInfo;
+import tour.tp.tpi.service.PlanInfoDTO;
 import tour.tp.tpi.service.PlanService;
 import tour.tp.tpi.service.PlanVO;
 
@@ -64,11 +65,12 @@ public class PlanServiceImpl extends EgovAbstractServiceImpl implements PlanServ
 	}
 
 	@Override
-	public Map<String, Object> insertPlanInfo(List<PlanInfo> infoList, PlanInfo planInfo) throws Exception {
+	public Map<String, Object> insertPlanInfo(PlanInfoDTO planInfo) throws Exception {
 		
 		Map<String, Object> resMap = new HashMap<String, Object>();
 		String result = "000";
 		int res = 0;
+		List<PlanInfo> infoList = planInfo.getInfoList();
 		if(infoList.size() > 0) {
 			for(PlanInfo info : infoList) {
 				info.setFrstRegId(planInfo.getFrstRegId());
@@ -78,8 +80,12 @@ public class PlanServiceImpl extends EgovAbstractServiceImpl implements PlanServ
 				res += planDAO.insertPlanInfo(info);
 			}
 		}
+		if(res > 0) {
+			result = "001";
+		}
+		resMap.put("result", result);
 		
-		return null;
+		return resMap;
 	}
 	
 	

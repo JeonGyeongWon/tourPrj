@@ -95,7 +95,7 @@
 			LPAD(NVL(MAX(INFO_NO),0)+1,8,0) AS INFO_NO
 			,NVL(MAX(PLAN_ORDER),0)+1 AS PLAN_ORDER
 		  FROM TB_TOUR_PLAN_INFO
-		 WHERE TOUR_PLAN_NO
+		 WHERE TOUR_PLAN_NO = #{tourPlanNo}
  		
  	</select>
 	
@@ -104,7 +104,7 @@
 		INSERT INTO TB_TOUR_PLAN_INFO(
 			TOUR_PLAN_NO
 			,INFO_NO
-			,CONTENTID
+			,CONTENT_ID
 			,NAME
 			,MAPX
 			,FRST_REG_ID
@@ -113,16 +113,17 @@
 			,LAST_MDFR_DT
 			,MAPY
 			,ADDRESS
-			,AREACD
-			,SIGUNGUCD
+			,AREA_CD
+			,SIGUNGU_CD
 			,PLAN_ORDER
 			,PLAN_START
 			,PLAN_END
+			,PLAN_DT
 			)
 		VALUES(
 			#{tourPlanNo}
 			,#{infoNo}
-			,#{contentid}
+			,#{contentId}
 			,#{name}
 			,#{mapx}
 			,#{frstRegId}
@@ -131,11 +132,12 @@
 			,SYSDATE
 			,#{mapy}
 			,#{address}
-			,#{areacd}
-			,#{sigungucd}
+			,#{areaCd}
+			,#{sigunguCd}
 			,#{planOrder}
 			,#{planStart}
 			,#{planEnd}
+			,TO_DATE(#{planDt}, 'YYYY-MM-DD')
 		)
 	
 	</insert>
