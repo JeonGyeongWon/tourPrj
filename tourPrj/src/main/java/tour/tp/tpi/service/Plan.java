@@ -36,6 +36,12 @@ public class Plan implements Serializable {
 	 * 수정일자
 	 */
 	private String lastMdfrDt = "";
+	/**
+	 * 상태
+	 */
+	private String useyn = "";
+	
+	
 	public String getTourPlanNo() {
 		return tourPlanNo;
 	}

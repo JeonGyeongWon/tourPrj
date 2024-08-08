@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PlanDAO">
+
+	<select id="selectMaxPlanNo" resultType="string">
+ 		
+		SELECT LPAD(NVL(MAX(TOUR_PLAN_NO),0)+1,8,0) AS TOUR_PLAN_NO  FROM TB_TOUR_PLAN
+ 		
+ 	</select>
+	
+	<insert id="insertTourPlan" parameterType="tour.tp.tpi.service.Plan">
+	
+		INSERT INTO TB_TOUR_PLAN(
+			TOUR_PLAN_NO
+			,TOUR_NM
+			,TOUR_START
+			,TOUR_END
+			,FRST_REG_ID
+			,FRST_MDFR_DT
+			,LAST_REG_ID
+			,LAST_MDFR_DT
+			,USEYN
+			)
+		VALUES(
+			#{tourPlanNo}
+			,#{tourNm}
+			,TO_DATE(#{tourStart}, 'YYYY-MM-DD')
+			,TO_DATE(#{tourEnd}, 'YYYY-MM-DD')
+			,#{frstRegId}
+			,SYSDATE
+			,#{lastRegId}
+			,SYSDATE
+			,'00'
+		)
+	
+	</insert>
+	
+	<insert id="insertPlanUser" parameterType="tour.tp.tpi.service.Plan">
+	
+		INSERT INTO TB_PLAN_USER_REL(
+			TOUR_PLAN_NO
+			,ESNTL_ID
+			,FRST_REG_ID
+			,FRST_MDFR_DT
+			,LAST_REG_ID
+			,LAST_MDFR_DT
+			)
+		VALUES(
+			#{tourPlanNo}
+			,#{frstRegId}
+			,#{frstRegId}
+			,SYSDATE
+			,#{lastRegId}
+			,SYSDATE
+		)
+	
+	</insert>
+	
+	<select id="selectTourPlan" parameterType="tour.tp.tpi.service.Plan" resultType="tour.tp.tpi.service.Plan">
+		SELECT
+			TP.TOUR_PLAN_NO
+			,TP.TOUR_NM
+			,TO_CHAR(TP.TOUR_START, 'YYYY.MM.DD') AS TOUR_START
+			,TO_CHAR(TP.TOUR_END, 'YYYY.MM.DD') AS TOUR_END
+			,TP.FRST_MDFR_DT
+			,TP.LAST_MDFR_DT
+		FROM TB_TOUR_PLAN TP, 
+			TB_PLAN_USER_REL PU
+		WHERE TP.TOUR_PLAN_NO = PU.TOUR_PLAN_NO
+		  AND PU.ESNTL_ID = #{frstRegId}
+		  AND TP.TOUR_PLAN_NO = #{tourPlanNo}
+		  AND TP.USEYN = '00'
+	</select>
+	
+	<select id="selectTourPlanList" parameterType="tour.tp.tpi.service.PlanVO" resultType="tour.tp.tpi.service.Plan">
+		SELECT
+			TP.TOUR_PLAN_NO
+			,TP.TOUR_NM
+			,TO_CHAR(TP.TOUR_START, 'YYYY.MM.DD') AS TOUR_START
+			,TO_CHAR(TP.TOUR_END, 'YYYY.MM.DD') AS TOUR_END
+			,TP.FRST_MDFR_DT
+			,TP.LAST_MDFR_DT
+		FROM TB_TOUR_PLAN TP, 
+			TB_PLAN_USER_REL PU
+		WHERE TP.TOUR_PLAN_NO = PU.TOUR_PLAN_NO
+		  AND PU.ESNTL_ID = #{frstRegId}
+		  AND TP.USEYN = '00'
+		ORDER BY PU.LAST_MDFR_DT DESC
+	</select>
+	
+	<select id="selectMaxInfoNo" parameterType="tour.tp.tpi.service.PlanInfo" resultType="tour.tp.tpi.service.PlanInfo">
+ 		
+		SELECT 
+			LPAD(NVL(MAX(INFO_NO),0)+1,8,0) AS INFO_NO
+			,NVL(MAX(PLAN_ORDER),0)+1 AS PLAN_ORDER
+		  FROM TB_TOUR_PLAN_INFO
+		 WHERE TOUR_PLAN_NO
+ 		
+ 	</select>
+	
+	<insert id="insertPlanInfo" parameterType="tour.tp.tpi.service.PlanInfo">
+	
+		INSERT INTO TB_TOUR_PLAN_INFO(
+			TOUR_PLAN_NO
+			,INFO_NO
+			,CONTENTID
+			,NAME
+			,MAPX
+			,FRST_REG_ID
+			,FRST_MDFR_DT
+			,LAST_REG_ID
+			,LAST_MDFR_DT
+			,MAPY
+			,ADDRESS
+			,AREACD
+			,SIGUNGUCD
+			,PLAN_ORDER
+			,PLAN_START
+			,PLAN_END
+			)
+		VALUES(
+			#{tourPlanNo}
+			,#{infoNo}
+			,#{contentid}
+			,#{name}
+			,#{mapx}
+			,#{frstRegId}
+			,SYSDATE
+			,#{lastRegId}
+			,SYSDATE
+			,#{mapy}
+			,#{address}
+			,#{areacd}
+			,#{sigungucd}
+			,#{planOrder}
+			,#{planStart}
+			,#{planEnd}
+		)
+	
+	</insert>
+	
+</mapper>
