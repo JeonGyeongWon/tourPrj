@@ -18,6 +18,13 @@ $(function() {
 
         slides.style.transform = `translateX(${-slideIndex * 100}%)`;
         currentSlide[slideshowId] = slideIndex;
+        
+        $("#localPestivalContainer h2").hide();
+        $("#localPestivalContainer h2").eq(slideIndex).show();
+        /*
+        $("#localPestivalContainer h2").hide();
+		$("#localPestivalContainer h2").eq(0).show();
+		*/
     }
 
     window.nextSlide = function(slideshowId) {
@@ -34,9 +41,9 @@ $(function() {
     showSlide('slideshow2', 0);
     showSlide('localPestival', 0);
     
-    $('.data_map').on("mouseover",function(){       
+    $('#mapArea a').on("click",function(){       
     
-    	fn_useMainfetchSearchFestival($(this).prev().attr("title"));
+    	fn_useMainfetchSearchFestival($(this).text());
     });
     
 });
@@ -45,7 +52,7 @@ $(function() {
 function fn_useMainfetchSearchFestival(text){
 	var url = "/api/test.do";
 	var chkUrl = "/searchFestival1";
-	var numOfRows = 5;
+	var numOfRows = 500;
 	$.ajax({
 		url: url,
 		type: "post",
@@ -67,10 +74,13 @@ function fn_useMainfetchSearchFestival(text){
 			  console.log("dd");
 			let i = 0;
 			$("#localPestival .slides").html("");
+			$("#localPestivalContainer h2").remove();
 			$(".info-card-header").text(text);
 			items.forEach(function(item) {
 				
-				
+			if(i == 3){
+				return false;
+			}	
 				
 				
 				var img = $("<img>")
@@ -96,6 +106,9 @@ function fn_useMainfetchSearchFestival(text){
 				detailsDiv.append(titleDiv);//.append(addrDiv).append(telDiv);
 				
 				$("#localPestival .slides .info-icon").eq(i).append(img);
+				$("#localPestivalContainer").eq(0).append("<h2>"+item.title+"</h2>");
+				$("#localPestivalContainer h2").hide();
+				$("#localPestivalContainer h2").eq(0).show();
 				//$("#localPestival .slides .info-icon").eq(i).append("<h2>"+item.title+"</h2>");
 				//li.append(imageDiv).append(detailsDiv);
 				//ul.append(li);

@@ -99,7 +99,6 @@
 	width: 118px;
 	height: 140px;
 	padding-top: 45px;
-	background: url(../images/main/map/map_text01.png) no-repeat
 }
 
 .sec05 .data_kk {
@@ -111,7 +110,7 @@
 	width: 135px;
 	height: 118px;
 	padding: 25px 0 0 12px;
-	background: url(../images/main/map/map_text02.png) no-repeat
+	/*background: url(../images/main/map/map_text02.png) no-repeat*/
 }
 
 .sec05 .data_ic {
@@ -123,7 +122,6 @@
 	width: 118px;
 	height: 140px;
 	padding-top: 45px;
-	background: url(../images/main/map/map_text01.png) no-repeat
 }
 
 .sec05 .data_gw {
@@ -135,7 +133,6 @@
 	width: 118px;
 	height: 140px;
 	padding-top: 45px;
-	background: url(../images/main/map/map_text01.png) no-repeat
 }
 
 .sec05 .data_cb {
@@ -147,7 +144,6 @@
 	width: 118px;
 	height: 140px;
 	padding-top: 45px;
-	background: url(../images/main/map/map_text01.png) no-repeat
 }
 
 .sec05 .data_sj {
@@ -159,7 +155,6 @@
 	width: 118px;
 	height: 140px;
 	padding-top: 45px;
-	background: url(../images/main/map/map_text01.png) no-repeat
 }
 
 .sec05 .data_dj {
@@ -171,7 +166,6 @@
 	width: 118px;
 	height: 140px;
 	padding-top: 45px;
-	background: url(../images/main/map/map_text01.png) no-repeat
 }
 
 .sec05 .data_cn {
@@ -183,7 +177,6 @@
 	width: 135px;
 	height: 118px;
 	padding: 25px 0 0 12px;
-	background: url(../images/main/map/map_text02.png) no-repeat
 }
 
 .sec05 .data_jb {
@@ -195,7 +188,6 @@
 	width: 118px;
 	height: 140px;
 	padding-top: 45px;
-	background: url(../images/main/map/map_text01.png) no-repeat
 }
 
 .sec05 .data_jn {
@@ -207,7 +199,6 @@
 	width: 135px;
 	height: 118px;
 	padding: 25px 0 0 12px;
-	background: url(../images/main/map/map_text02.png) no-repeat
 }
 
 .sec05 .data_kj {
@@ -219,7 +210,6 @@
 	width: 135px;
 	height: 118px;
 	padding: 25px 0 0 12px;
-	background: url(../images/main/map/map_text02.png) no-repeat
 }
 
 .sec05 .data_kb {
@@ -231,7 +221,6 @@
 	width: 135px;
 	height: 118px;
 	padding: 25px 15px 0 0px;
-	background: url(../images/main/map/map_text03.png) no-repeat
 }
 
 .sec05 .data_tg {
@@ -243,7 +232,6 @@
 	width: 135px;
 	height: 118px;
 	padding: 25px 15px 0 0px;
-	background: url(../images/main/map/map_text03.png) no-repeat
 }
 
 .sec05 .data_us {
@@ -255,7 +243,6 @@
 	width: 135px;
 	height: 118px;
 	padding: 25px 15px 0 0px;
-	background: url(../images/main/map/map_text03.png) no-repeat
 }
 
 .sec05 .data_kn {
@@ -267,7 +254,6 @@
 	width: 118px;
 	height: 140px;
 	padding-top: 30px;
-	background: url(../images/main/map/map_text04.png) no-repeat
 }
 
 .sec05 .data_bs {
@@ -279,7 +265,6 @@
 	width: 118px;
 	height: 140px;
 	padding-top: 30px;
-	background: url(../images/main/map/map_text04.png) no-repeat
 }
 
 .sec05 .data_ul {
@@ -291,7 +276,6 @@
 	width: 135px;
 	height: 118px;
 	padding: 25px 15px 0 0px;
-	background: url(../images/main/map/map_text03.png) no-repeat
 }
 
 .sec05 .data_jj {
@@ -303,7 +287,6 @@
 	width: 118px;
 	height: 140px;
 	padding-top: 30px;
-	background: url(../images/main/map/map_text04.png) no-repeat
 }
 
 .sec05 .map_area {
@@ -319,7 +302,7 @@
 
 .sec05 .map_area  a {
 	cursor: pointer;
-	display: block;
+	/*display: block;*/
 	text-indent: -9999px;
 }
 
