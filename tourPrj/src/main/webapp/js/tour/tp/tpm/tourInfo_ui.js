@@ -1,3 +1,5 @@
+let selectedItems = [];
+
 $(function() {
     //event.preventDefault();
     //$(".pop_bg, #tourInfoPop").show();
@@ -69,13 +71,13 @@ function getTourInfo(areaCd, contentType, pageNo){
         dataType: "json",
         async: false,
         data: {
-			chkUrl: chkUrl,
-			listYn: 'Y',
-			arrange: 'O',
-			contentTypeId: contentType,
-			areaCode: areaCd,
-			pageNo: pageNo,
-		},
+            chkUrl: chkUrl,
+            listYn: 'Y',
+            arrange: 'O',
+            contentTypeId: contentType,
+            areaCode: areaCd,
+            pageNo: pageNo,
+        },
         success: function (data) {
 			drawTourList(data, areaCd, contentType, pageNo);
         },
@@ -108,12 +110,15 @@ function drawTourList(data, areaCd, contentType, currentPage) {
 		var image = item.firstimage2; // 이미지
 		var image = item.firstimage2; // 이미지
 		
+        // 선택 상태 유지
+        var checked = selectedItems.some(function(i) { return i.contentId === contentId; }) ? 'checked' : '';
+		
         var listhtml = `
             <div class="tour_item">
             	<div class="info">
 	                <input type="checkbox" class="checkbox" 
 	                	data-name="${name}" data-address="${address}" data-telNo="${telNo}" data-contentId="${contentId}"
-	                	data-areaCd="${areaCd}" data-sigunguCd="${sigunguCd}" data-mapx="${mapx}" data-mapy="${mapy}">
+	                	data-areaCd="${areaCd}" data-sigunguCd="${sigunguCd}" data-mapx="${mapx}" data-mapy="${mapy}" ${checked}>
 	                <div>
 	                    <span class="title_txt">${name}</span>
 	                    <span class="txt01">주소: ${address}</span>
@@ -161,30 +166,37 @@ function drawTourList(data, areaCd, contentType, currentPage) {
         
         getTourInfo(areaCd, contentType, pageNo);
     });
-}
-
-// 담기 버튼 클릭 이벤트
-function putCheckedItems() {
-    var retVal = [];
     
-    $("#tourListContainer .checkbox:checked").each(function() {
+    // 체크박스 클릭 이벤트
+    $(".checkbox").click(function() {
         var item = {
             name: $(this).attr("data-name"),
             address: $(this).attr("data-address"),
             telNo: $(this).attr("data-telNo"),
-            areaCd: $(this).attr("data-areaCd"),
             contentId: $(this).attr("data-contentId"),
+            areaCd: $(this).attr("data-areaCd"),
             sigunguCd: $(this).attr("data-sigunguCd"),
             mapx: $(this).attr("data-mapx"),
             mapy: $(this).attr("data-mapy")
         };
-        retVal.push(item);
+
+        if (this.checked) {
+            selectedItems.push(item);
+        } else {
+            selectedItems = selectedItems.filter(function(i) {
+                return i.contentId !== item.contentId;
+            });
+        }
     });
-    
-    if (retVal.length > 0) {
-        parent.returnValue(retVal);
+}
+
+// 담기 버튼 클릭 이벤트
+// 담기 버튼 클릭 이벤트
+function putCheckedItems() {
+    if (selectedItems.length > 0) {
+        parent.returnValue(selectedItems);
         closePop();
     } else {
         alert("항목을 선택해주세요.");
     }
-}	
+}

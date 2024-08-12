@@ -22,7 +22,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="<c:url value='/'/>js/jquery-1.11.2.min.js"></script>
     <script src="<c:url value='/'/>js/ui.js"></script>
-    <script src="<c:url value='/'/>js/main.js"></script>
+<%--     <script src="<c:url value='/'/>js/main.js"></script> --%>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 
@@ -30,7 +30,7 @@
     </style>
     <script src="<c:url value='/js/tour/tp/tpm/tourInfo_ui.js'/>"></script>
 </head>
-<body onload="parent.iframeLoaded();">
+<body>
     <div class="popup">
         <div class="pop_inner">
             <div class="pop_header">

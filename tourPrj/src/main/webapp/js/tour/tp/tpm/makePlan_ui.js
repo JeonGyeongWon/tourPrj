@@ -10,16 +10,12 @@ function tourInfoModal() {
 
     $(".ui-dialog-titlebar").hide();
     $dialog.dialog('open');
-    
-    $('#modalIframe').on('load', function() {
-        var iframeContent = $(this).contents();
-
-        iframeContent.find('.close').click(function() {
-            $("#modalPan").dialog('close');
-            $("#modalPan").remove();
-        });
-    });
 }
+
+function modal_remove() {
+	$('#modalPan').remove();
+}
+
 
 function returnValue(retVal) {
     if (retVal) {

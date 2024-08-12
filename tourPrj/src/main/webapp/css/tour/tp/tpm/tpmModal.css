@@ -54,8 +54,8 @@
 }
 .tour_item .checkbox {
 	display: block !important;
-	width: 15px !important;
-	height: 15px !important;
+	width: 18px !important;
+	height: 18px !important;
     margin-right: 40px;
 }
 .tour_item img {
@@ -112,6 +112,7 @@
 .search_container select {
 	padding: 5px;
 	margin: 0 20px 0 10px;
+	width: 150px;
 }
 .search_container button {
 	margin-right: 10px;
@@ -121,8 +122,8 @@
     cursor: pointer;
 }
 .srchBtn {
-    background-color: #ddd;
-    color: black;
+    background-color: #122a59;
+    color: white;
 }
 .pickBtn {
     background-color: #007BFF;
