@@ -42,4 +42,9 @@ public class PlanDAO extends EgovAbstractMapper {
 	
 		return insert("PlanDAO.insertPlanInfo", info);
     }
+	
+	public List<PlanInfo> selectPlanInfoList(PlanInfo info) throws Exception {
+		
+		return selectList("PlanDAO.selectPlanInfoList", info);
+    }
 }

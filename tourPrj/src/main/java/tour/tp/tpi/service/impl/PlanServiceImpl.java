@@ -87,6 +87,15 @@ public class PlanServiceImpl extends EgovAbstractServiceImpl implements PlanServ
 		
 		return resMap;
 	}
+
+	@Override
+	public List<PlanInfo> selectPlanInfoList(PlanInfo info) throws Exception {
+		
+		List<PlanInfo> list = new ArrayList<>();
+		list = planDAO.selectPlanInfoList(info);
+		
+		return list;
+	}
 	
 	
 }

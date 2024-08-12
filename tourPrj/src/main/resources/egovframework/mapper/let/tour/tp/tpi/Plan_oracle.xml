@@ -119,6 +119,7 @@
 			,PLAN_START
 			,PLAN_END
 			,PLAN_DT
+			,USEYN
 			)
 		VALUES(
 			#{tourPlanNo}
@@ -138,8 +139,40 @@
 			,#{planStart}
 			,#{planEnd}
 			,TO_DATE(#{planDt}, 'YYYY-MM-DD')
+			,'00'
 		)
 	
 	</insert>
+	
+	<select id="selectPlanInfoList" parameterType="tour.tp.tpi.service.PlanInfo" resultType="tour.tp.tpi.service.PlanInfo">
+		SELECT
+			TPI.TOUR_PLAN_NO
+			,TPI.INFO_NO
+			,TPI.CONTENT_ID
+			,TPI.NAME
+			,TPI.MAPX
+			,TPI.FRST_REG_ID
+			,TPI.FRST_MDFR_DT
+			,TPI.LAST_REG_ID
+			,TPI.LAST_MDFR_DT
+			,TPI.MAPY
+			,TPI.ADDRESS
+			,TPI.AREA_CD
+			,TPI.SIGUNGU_CD
+			,TPI.PLAN_ORDER
+			,TPI.PLAN_START
+			,TPI.PLAN_END
+			,TO_CHAR(TPI.PLAN_DT, 'YYYY-MM-DD') AS PLAN_DT
+		FROM TB_TOUR_PLAN_INFO TPI,
+			TB_TOUR_PLAN TP,  
+			TB_PLAN_USER_REL PU
+		WHERE TPI.TOUR_PLAN_NO = TP.TOUR_PLAN_NO
+		  AND TP.TOUR_PLAN_NO = PU.TOUR_PLAN_NO
+		  AND TPI.TOUR_PLAN_NO = #{tourPlanNo}
+		  AND PU.ESNTL_ID = #{frstRegId}
+		  AND TP.USEYN = '00'
+		  AND TPI.USEYN = '00'
+		ORDER BY TPI.PLAN_DT, TPI.PLAN_ORDER
+	</select>
 	
 </mapper>

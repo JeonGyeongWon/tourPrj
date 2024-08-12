@@ -32,4 +32,10 @@ public interface PlanService {
 	public Map<String, Object> insertPlanInfo(PlanInfoDTO planInfo)
 	  throws Exception;
 	
+	/**
+	 * 여행계획 리스트조회
+	 */
+	public List<PlanInfo> selectPlanInfoList(PlanInfo info)
+	  throws Exception;
+	
 }

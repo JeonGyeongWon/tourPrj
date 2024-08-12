@@ -144,4 +144,23 @@ public class PlanController {
 		return ResponseEntity.ok(resMap);
 		
 	}
+	
+	@RequestMapping(value = "/tpi/selectPlanInfoList.do")
+	@ResponseBody
+	public ResponseEntity<Map<String, Object>> selectPlanInfoList(PlanInfo info) throws Exception{
+		
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		resMap.put("result", "000");
+		if(isAuthenticated) {
+			 LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+			 info.setFrstRegId(user.getUniqId()); 
+			 resMap.put("infoList", planService.selectPlanInfoList(info));
+		}else {
+			resMap.put("result", "-1");
+		}
+		
+		return ResponseEntity.ok(resMap);
+		
+	}
 }

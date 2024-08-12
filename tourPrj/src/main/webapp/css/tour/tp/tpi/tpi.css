@@ -114,7 +114,7 @@
     position: relative;
 }
 
-.timeline-day h4 {
+.timeline-head h4 {
     display: inline-block;
     margin: 10px 0;
     padding: 10px;
@@ -147,6 +147,135 @@
     border-radius: 10px;
 }
 
+#tour-planner {
+    margin: 20px 0;
+    padding: 0 10px;
+}
+
+#tour-planner h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+@media screen and (min-width: 1281px){ 
+
+	.planMap {
+	    width: calc(100% - 620px);
+	}
+	
+	.timeline{
+		width: 600px;
+	}
+}
+
+@media (max-width: 1280px){ 
+	
+	.planMap {
+	    width: calc(100% - 380px);
+	}
+	
+	.timeline{
+		width: 350px;
+	}
+}
+
+
+
+.timeline .item-head{
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.timeline .item-time{
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.timeline input{
+	width: 46%;
+}
+
+.timeline-item button {
+	width: 25px;
+    height: 25px;
+    padding: 3px 3px;
+    border: none;
+    border-radius: 5px;
+    background: #122a59;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.timeline-item button:hover {
+    background: #627290;
+}
+
+.timeline-item button svg {
+    width: 100%;
+	height: auto;
+}
+
+.timeline-item .delete-btn {
+    background: red;
+    color: white;
+}
+
+.timeline-item .delete-btn:hover {
+    background: darkred;
+}
+
+.timeline-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.timeline-list .item-List{
+	
+}
+
+
+.timeline-item {
+    margin: 10px 0;
+    padding: 10px;
+    background: #f4f8ff;
+    border: 2px solid #122a59;
+    border-radius: 5px;
+    position: relative;
+    transition: background 0.3s;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: -24px;
+    width: 16px;
+    height: 4px;
+    background: #122a59;
+}
+
+.timeline-item input, .timeline-item textarea {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.item-time input{
+    text-align: center;
+    width: 45%;
+    min-width: 150px;
+}
+
+.timeline-item textarea {
+    width: 100%;
+}
+
 /*  */
 
 
@@ -155,19 +284,9 @@
 
 
 
-#tour-planner {
-    margin: 20px 0;
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
 
-#tour-planner h2 {
-    font-size: 1.8em;
-    margin-bottom: 20px;
-    color: #333;
-}
+
+
 
 label {
     display: block;
@@ -195,86 +314,15 @@ input[type="date"]{
     justify-content: space-between;
 }
 
-.timeline, .planMap {
-    width: 45%;
-}
 
-.timeline-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-
-
-
-
-
-
-
-
-.timeline-item {
-    margin: 10px 0;
-    padding: 20px;
-    background: #f0f8ff;
-    border: 2px solid #87cefa;
-    border-radius: 10px;
-    position: relative;
-    transition: background 0.3s;
-}
-
-.timeline-item::before {
-    content: '';
-    position: absolute;
-    top: 20px;
-    left: -24px;
-    width: 16px;
-    height: 16px;
-    background: #87cefa;
-    border-radius: 50%;
-    border: 2px solid #fff;
-}
 
 .timeline-item:hover {
     background: #e0f7ff;
 }
 
-.timeline-item input, .timeline-item textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
 
-.timeline-item .buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-}
 
-.timeline-item button {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    background: #87cefa;
-    color: white;
-    cursor: pointer;
-    transition: background 0.3s;
-}
 
-.timeline-item button:hover {
-    background: #4682b4;
-}
-
-.delete-button {
-    background: red;
-    color: white;
-}
-
-.delete-button:hover {
-    background: darkred;
-}
 
 .map-icon {
     width: 16px;
@@ -283,63 +331,4 @@ input[type="date"]{
     background-size: cover;
     display: inline-block;
     margin-right: 5px;
-}
-
-
-/* Modal styles */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-    padding-top: 60px;
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 500px;
-    border-radius: 10px;
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-#location-list {
-    list-style-type: none;
-    padding: 0;
-}
-
-#location-list li {
-    padding: 10px;
-    margin: 10px 0;
-    background: #87cefa;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-#location-list li:hover {
-    background: #4682b4;
 }

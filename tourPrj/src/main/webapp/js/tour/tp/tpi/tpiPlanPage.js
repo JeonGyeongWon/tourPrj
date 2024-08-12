@@ -1,7 +1,4 @@
-let modal;
 let map;
-let markers = [];
-let polyline;
 let tourPlanNo;
 let plan;
 let dayList;
@@ -21,12 +18,12 @@ function initPlan() {
 				location.href = "/uat/uia/egovLoginUsr.do";
 			}else if(res == "000"){
 				alert("여행을 찾을 수 없습니다");
-				location.href = "/tpi/tpiList.do";
+				//location.href = "/tpi/tpiList.do";
 			}else {
 				plan = data.plan;
 				document.querySelector('.tourNm').innerHTML = plan.tourNm;
 				document.querySelector('.tourDt').innerHTML = plan.tourStart + " ~ " + plan.tourEnd;
-				generateTimeline();
+				initTimeline();
 			}
         },
         error: function(error){
@@ -43,17 +40,19 @@ function initMap() {
         };
 
     map = new kakao.maps.Map(mapContainer, mapOption);
-    polyline = new kakao.maps.Polyline({
+    
+    
+    /*polyline = new kakao.maps.Polyline({
         map: map,
         path: [],
         strokeWeight: 5,
         strokeColor: '#FF0000',
         strokeOpacity: 0.8,
         strokeStyle: 'solid'
-    });
+    });*/
 }
 
-function generateTimeline() {
+function initTimeline() {
     const startDate =  new Date(plan.tourStart);
     const endDate = new Date(plan.tourEnd);
     const timelineList = document.getElementById('timeline-list');
@@ -67,9 +66,11 @@ function generateTimeline() {
             const dayContainer = document.createElement('div');
             dayContainer.className = 'timeline-day';
 			dayContainer.setAttribute('date', currentDate.toISOString().split('T')[0]);
+			const timelineheader = document.createElement('div');
+            timelineheader.className = 'timeline-head';
             const dayHeader = document.createElement('h4');
             dayHeader.textContent = `${currentDate.toISOString().split('T')[0]} (${['일', '월', '화', '수', '목', '금', '토'][currentDate.getDay()]})`;
-            dayContainer.appendChild(dayHeader);
+            timelineheader.appendChild(dayHeader);
 
             const addButton = document.createElement('button');
             addButton.className = 'add-button';
@@ -77,10 +78,11 @@ function generateTimeline() {
             addButton.onclick = function() {
                 openModal(dayList);
             };
-            dayContainer.appendChild(addButton);
+            timelineheader.appendChild(addButton);
+            dayContainer.appendChild(timelineheader);
 
             const dayList = document.createElement('div');
-            dayList.className = 'timeline-list';
+            dayList.className = 'item-List';
             dayContainer.appendChild(dayList);
 
             timelineList.appendChild(dayContainer);
@@ -88,38 +90,105 @@ function generateTimeline() {
             currentDate.setDate(currentDate.getDate() + 1);
         }
         
-        let tourDt = document.querySelector('.tourDt').getBoundingClientRect();
-        let dayRect = timelineList.firstChild.getBoundingClientRect();
-        let dayCss = getComputedStyle(timelineList.firstChild);
-        let dayH2Rect = timelineList.firstChild.firstChild.getBoundingClientRect();
-		let timelineCss = getComputedStyle(document.querySelector('.timeline'));
-		let timelineCtn = document.querySelectorAll('.timeline-day').length;
-		console.log(document.querySelectorAll('.timeline-day').length);
-		console.log(tourDt);
-		console.log(dayRect);
-		console.log(dayH2Rect);
-		console.log( Number(timelineCss.paddingLeft.replace('px', '')));
+        initLine();
         
-        let tSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-		tSvg.setAttribute('class', 'tLine-svg');
-		tSvg.setAttribute('style', `width: ${dayRect.width}px; height: -webkit-fill-available;`);
-        
-        let startX = Number(timelineCss.paddingLeft.replace('px', '')) + dayH2Rect.width/2;
-        let startY = tourDt.height + dayH2Rect.height/2;
-        let endX = Number(timelineCss.paddingLeft.replace('px', '')) + dayH2Rect.width/2;
-        let endY = tourDt.height + dayH2Rect.height/2 + (dayRect.height + Number(dayCss.marginBottom.replace('px', '')))*(timelineCtn - 1);
-        let tLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        tLine.setAttribute('class', 'tLine');
-        tLine.setAttribute('x1', startX);
-        tLine.setAttribute('y1', startY);
-        tLine.setAttribute('x2', endX);
-        tLine.setAttribute('y2', endY);
-        tSvg.appendChild(tLine);
-        
-        timelineList.appendChild(tSvg);
-        
-        
+        initInfoList();
     }
+}
+
+function initLine() {
+	console.log(window.innerWidth);
+	
+	if(document.querySelector('.tLine-svg')){
+		document.querySelector('.tLine-svg').remove();
+	}
+	
+	let timelineList = document.getElementById('timeline-list');
+	let tourDt = document.querySelector('.tourDt');
+    let dayRect = timelineList.firstChild.getBoundingClientRect();
+	let timelineCss = getComputedStyle(document.querySelector('.timeline'));
+    
+	let days = timelineList.querySelectorAll(".timeline-day");
+	let dayH = 0;
+	let tSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+	tSvg.setAttribute('class', 'tLine-svg');
+	tSvg.setAttribute('style', `width: ${dayRect.width}px; height: -webkit-fill-available;`);
+	days.forEach (function (el, index) {
+		let dayHead = el.querySelector('.timeline-head');
+		let dayHeadRect = dayHead.getBoundingClientRect();
+		let dayCss = getComputedStyle(el);
+		
+		let startX = 0;
+	    let startY = tourDt.scrollHeight + dayHead.scrollHeight/2 + dayH;
+	    let endX = Number(timelineCss.paddingLeft.replace('px', '')) + dayHeadRect.x;
+	    let endY = tourDt.scrollHeight + dayHead.scrollHeight/2 + dayH;
+	    let tLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+	    tLine.setAttribute('class', 'tLine');
+	    tLine.setAttribute('x1', startX);
+	    tLine.setAttribute('y1', startY);
+	    tLine.setAttribute('x2', endX);
+	    tLine.setAttribute('y2', endY);
+	    tSvg.appendChild(tLine);
+	    
+	    dayH += el.scrollHeight + Number(dayCss.marginBottom.replace('px', ''));
+	});
+	
+	timelineList.appendChild(tSvg);
+	
+}
+
+function initInfoList() {
+	let url = "/tpi/selectPlanInfoList.do";
+	$.ajax({
+        url: url,
+        type: "post",
+        async : false,
+        data: {
+			tourPlanNo : tourPlanNo,
+        },
+        success: function (data) {
+			let res = data.result;
+			if(res == "-1"){
+				location.href = "/uat/uia/egovLoginUsr.do";
+			}else {
+				console.log(data);
+				data.infoList.forEach (function (el, index) {
+					
+					let listItem = document.createElement('div');
+				    listItem.className = 'timeline-item';
+				    listItem.innerHTML = `
+				    	<div class="item-head" name="${el.name}" mapx="${el.mapx}" mapy="${el.mapy}">
+				    		<span>${el.name}</span>
+				    		<div class="buttons">
+				    			<button class="marker-btn" onclick="panTo(this)">
+					            	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+										<path d="M12 2C8.13 2 5 5.13 5 9c0 3.88 3.09 7 7 11.25C15.91 16 19 12.88 19 9c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5 14.5 7.62 14.5 9 13.38 11.5 12 11.5z"/>
+									</svg>
+				            	</button>
+				    			<button class="delete-btn" onclick="deleteItem(this)">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+										<path d="M9 3v1H4v2h16V4h-5V3h-6zm-3 5v13a2 2 0 002 2h8a2 2 0 002-2V8H6zm2 2h2v9H8v-9zm4 0h2v9h-2v-9z"/>
+									</svg>
+								</button>
+				        	</div>
+				    	</div>
+				        <div class="item-time">
+					        <input type="time" name="planStart">
+					        <span> - </span>
+					        <input type="time" name="planEnd">
+				        </div>
+				        <textarea placeholder="세부 정보"></textarea>
+				    `;
+					document.querySelector(`.timeline-day[date='${el.planDt}'] .item-List`).appendChild(listItem);
+				});
+				initLine();
+				makeMaker();
+			}
+        },
+        error: function(error){
+        	console.log(error);
+        }
+     });
 }
 
 function openModal(dList) {
@@ -147,9 +216,6 @@ function openModal(dList) {
 }
 
 function returnValue(retVal) {
-    console.log(retVal);
-    console.log(tourPlanNo);
-    console.log(dayList);
     
     if (retVal) {
 		var url = "/tpi/insertPlanInfo.do";
@@ -169,7 +235,7 @@ function returnValue(retVal) {
 				if(res == "000"){
 					alert("계획 등록 실패");
 				}else if(res == "001"){
-					
+					initPlan();
 				}else if(res == "-1"){
 					location.href = "/uat/uia/egovLoginUsr.do";
 				}
@@ -180,22 +246,51 @@ function returnValue(retVal) {
 	    });
 	}
 }
+
+function makeMaker(){
+	
+	console.log("???")
+	console.log(map)
+	
+	let makerImg = "/images/tour/tp/tpi/285659_marker_map_icon.png"; 
+	
+	let spotList = document.querySelectorAll(".timeline-item .item-head");
+	spotList.forEach (function (el, index) {
+		
+		console.log(el);
+		// 마커 이미지의 이미지 크기 입니다
+	    let imgSize = new kakao.maps.Size(35, 35); 
+	    
+	    // 마커 이미지를 생성합니다    
+	    let markerImage = new kakao.maps.MarkerImage(makerImg, imgSize);
+	    let position = new kakao.maps.LatLng(el.getAttribute("mapy"), el.getAttribute("mapx"))
+		let marker = new kakao.maps.Marker({
+	        map: map, // 마커를 표시할 지도
+	        position: position, // 마커를 표시할 위치
+	        title : el.getAttribute("name"), // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+	        image : markerImage // 마커 이미지 
+	    });
+	    console.log(marker);
+	    marker.setMap(map);
+
+	});
+	
+    
+
+}
+
+function panTo(e) {
+	
+	let el = e.closest(".item-head");
+   
+    let moveLatLon = new kakao.maps.LatLng(el.getAttribute("mapy"), el.getAttribute("mapx"));
+
+    map.panTo(moveLatLon);            
+}      
+
 /*
 function addTouristSpotToDay(touristSpot) {
-    const listItem = document.createElement('div');
-    listItem.className = 'timeline-item';
-    listItem.innerHTML = `
-        <span>${touristSpot.name}</span>
-        <input type="time" placeholder="시간">
-        <textarea placeholder="세부 정보"></textarea>
-        <div class="buttons">
-            <button class="map-button" onclick="moveToLocation(${touristSpot.coordinates})"><span class="map-icon"></span>지도에서 보기</button>
-            <button class="delete-button" onclick="deleteItem(this)">삭제</button>
-        </div>
-    `;
-    listItem.dataset.coordinates = touristSpot.coordinates;  // Store coordinates
-    modal.currentDayList.appendChild(listItem);
-
+    
     // Add marker to map
     const coordinates = touristSpot.coordinates.split(', ');
     const marker = new kakao.maps.Marker({
@@ -236,22 +331,10 @@ function updatePolyline() {
 document.addEventListener('DOMContentLoaded', () => {
     modal = document.getElementById('locationModal');
     tourPlanNo = document.getElementById('tourPlanNo').value;
-
+	initMap();
 	initPlan();
-    initMap();
 
-/*    fetch('tourist_spots.json')
-        .then(response => response.json())
-        .then(data => {
-            const locationList = document.getElementById('location-list');
-            data.forEach(spot => {
-                const listItem = document.createElement('li');
-                listItem.textContent = spot.name;  // Coordinates removed from display
-                listItem.addEventListener('click', () => addTouristSpotToDay(spot));
-                locationList.appendChild(listItem);
-            });
-        });
-
+/*
     const timelineList = document.getElementById('timeline-list');
     timelineList.addEventListener('dragover', dragOver);
     timelineList.addEventListener('drop', drop);
@@ -271,11 +354,10 @@ document.addEventListener('DOMContentLoaded', () => {
             <textarea placeholder="세부 정보"></textarea>
             <div class="buttons">
                 <button class="map-button" onclick="moveToLocation(${touristSpot.coordinates})"><span class="map-icon"></span>지도에서 보기</button>
-                <button class="delete-button" onclick="deleteItem(this)">삭제</button>
+                <button class="delete-btn" onclick="deleteItem(this)">삭제</button>
             </div>
         `;
         event.target.closest('.timeline-day').querySelector('.timeline-list').appendChild(listItem);
     }
-    
-    generateTimeline();*/
+*/
 });

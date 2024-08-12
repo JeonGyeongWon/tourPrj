@@ -94,6 +94,11 @@ public class PlanInfo implements Serializable  {
 	 * 전화번호
 	 */
 	private String telNo = "";
+	
+	/**
+	 * 사용여부
+	 */
+	private String useyn = "";
 
 	public String getTourPlanNo() {
 		return tourPlanNo;
@@ -237,6 +242,14 @@ public class PlanInfo implements Serializable  {
 
 	public void setSigunguCd(String sigunguCd) {
 		this.sigunguCd = sigunguCd;
+	}
+
+	public String getUseyn() {
+		return useyn;
+	}
+
+	public void setUseyn(String useyn) {
+		this.useyn = useyn;
 	}
 	
 	
