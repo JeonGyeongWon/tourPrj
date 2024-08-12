@@ -175,7 +175,7 @@
 										    <div class="info-card-header">경북</div>
 										    <div class="info-card-body">
 										        <div class="info-item">
-										        	<div style="width: 250px;" class="slide-container">
+										        	<div style="width: 250px;" class="slide-container" id="localPestivalContainer">
 														<div class="slideshow" id="localPestival">
 															<div class="slides">
 																<div class="info-icon">
