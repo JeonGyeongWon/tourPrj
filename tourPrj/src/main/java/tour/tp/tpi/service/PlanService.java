@@ -38,4 +38,10 @@ public interface PlanService {
 	public List<PlanInfo> selectPlanInfoList(PlanInfo info)
 	  throws Exception;
 	
+	/**
+	 * 여행계획 삭제
+	 */
+	public Map<String, Object> deletePlanInfo(PlanInfo info)
+	  throws Exception;
+	
 }

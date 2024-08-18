@@ -47,4 +47,9 @@ public class PlanDAO extends EgovAbstractMapper {
 		
 		return selectList("PlanDAO.selectPlanInfoList", info);
     }
+	
+	public int deletePlanInfo(PlanInfo info) throws Exception {
+		
+		return update("PlanDAO.deletePlanInfo", info);
+    }
 }

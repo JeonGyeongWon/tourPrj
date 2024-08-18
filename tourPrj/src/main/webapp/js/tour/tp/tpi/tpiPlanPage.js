@@ -97,7 +97,6 @@ function initTimeline() {
 }
 
 function initLine() {
-	console.log(window.innerWidth);
 	
 	if(document.querySelector('.tLine-svg')){
 		document.querySelector('.tLine-svg').remove();
@@ -165,7 +164,7 @@ function initInfoList() {
 										<path d="M12 2C8.13 2 5 5.13 5 9c0 3.88 3.09 7 7 11.25C15.91 16 19 12.88 19 9c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5 14.5 7.62 14.5 9 13.38 11.5 12 11.5z"/>
 									</svg>
 				            	</button>
-				    			<button class="delete-btn" onclick="deleteItem(this)">
+				    			<button class="delete-btn">
 									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
 										<path d="M9 3v1H4v2h16V4h-5V3h-6zm-3 5v13a2 2 0 002 2h8a2 2 0 002-2V8H6zm2 2h2v9H8v-9zm4 0h2v9h-2v-9z"/>
 									</svg>
@@ -179,6 +178,10 @@ function initInfoList() {
 				        </div>
 				        <textarea placeholder="세부 정보"></textarea>
 				    `;
+				    
+				    listItem.querySelector(`.delete-btn`).addEventListener("click",function(){
+						deleteItem(el);
+					})
 					document.querySelector(`.timeline-day[date='${el.planDt}'] .item-List`).appendChild(listItem);
 				});
 				initLine();
@@ -230,7 +233,6 @@ function returnValue(retVal) {
 	        	planDt : dayList,
 	        },
 	        success: function (data) {
-				console.log(data);
 				let res = data.result;
 				if(res == "000"){
 					alert("계획 등록 실패");
@@ -249,15 +251,11 @@ function returnValue(retVal) {
 
 function makeMaker(){
 	
-	console.log("???")
-	console.log(map)
-	
 	let makerImg = "/images/tour/tp/tpi/285659_marker_map_icon.png"; 
 	
 	let spotList = document.querySelectorAll(".timeline-item .item-head");
 	spotList.forEach (function (el, index) {
 		
-		console.log(el);
 		// 마커 이미지의 이미지 크기 입니다
 	    let imgSize = new kakao.maps.Size(35, 35); 
 	    
@@ -270,13 +268,78 @@ function makeMaker(){
 	        title : el.getAttribute("name"), // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
 	        image : markerImage // 마커 이미지 
 	    });
-	    console.log(marker);
+	    
 	    marker.setMap(map);
 
 	});
 	
-    
+    makeNavi()
 
+}
+
+function makeNavi(){
+	
+	/*let makerImg = "/images/tour/tp/tpi/285659_marker_map_icon.png"; 
+	
+	let spotList = document.querySelectorAll(".timeline-item .item-head");
+	spotList.forEach (function (el, index) {
+		
+		// 마커 이미지의 이미지 크기 입니다
+	    let imgSize = new kakao.maps.Size(35, 35); 
+	    
+	    // 마커 이미지를 생성합니다    
+	    let markerImage = new kakao.maps.MarkerImage(makerImg, imgSize);
+	    let position = new kakao.maps.LatLng(el.getAttribute("mapy"), el.getAttribute("mapx"))
+		let marker = new kakao.maps.Marker({
+	        map: map, // 마커를 표시할 지도
+	        position: position, // 마커를 표시할 위치
+	        title : el.getAttribute("name"), // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+	        image : markerImage // 마커 이미지 
+	    });
+	    
+	    marker.setMap(map);
+
+	});*/
+	
+   	let url = "https://apis-navi.kakaomobility.com/v1/waypoints/directions";
+   	
+   	let data = {"origin": {
+			        "x": "127.11024293202674",
+			        "y": " 37.394348634049784"
+			    },
+			    "destination": {
+			        "x": "127.10860518470294",
+			        "y": "37.401999820065534"
+			    },
+			    "waypoints": [
+			        {
+			            "name": "name0",
+			            "x": 127.11341936045922,
+			            "y": 37.39639094915999
+			        }
+			    ],
+			    "priority": "RECOMMEND",
+			    "car_fuel": "GASOLINE",
+			    "car_hipass": false,
+			    "alternatives": false,
+			    "road_details": false}
+   	
+	$.ajax({
+	        url: url,
+	        type: "post",
+	        async : false,
+	        beforeSend: function (xhr) {
+		        xhr.setRequestHeader("Authorization", "KakaoAK e377707180c8f707d97f83ef3cedc515");
+		        xhr.setRequestHeader("Content-Type", "application/json");
+		    },
+	        data: JSON.stringify(data),
+	        success: function (data) {
+				console.log(data);
+	        },
+	        error: function(error){
+	        	console.log(error);
+	        }
+	    });
 }
 
 function panTo(e) {
@@ -287,6 +350,37 @@ function panTo(e) {
 
     map.panTo(moveLatLon);            
 }      
+
+
+function deleteItem(ev) {
+    if (ev) {
+		var url = "/tpi/deletePlanInfo.do";
+		$.ajax({
+	        url: url,
+	        type: "post",
+	        async : false,
+	        traditional: true,
+	        data: {
+	        	tourPlanNo : ev.tourPlanNo,
+	        	infoNo : ev.infoNo,
+	        },
+	        success: function (data) {
+				console.log(data);
+				let res = data.result;
+				if(res == "000"){
+					alert("삭제 실패");
+				}else if(res == "001"){
+					initPlan();
+				}else if(res == "-1"){
+					location.href = "/uat/uia/egovLoginUsr.do";
+				}
+	        },
+	        error: function(error){
+	        	console.log(error);
+	        }
+	    });
+	}
+}
 
 /*
 function addTouristSpotToDay(touristSpot) {
@@ -304,20 +398,6 @@ function addTouristSpotToDay(touristSpot) {
     closeModal();
 }
 
-function deleteItem(button) {
-    const listItem = button.parentElement.parentElement; // Updated to get the correct parent element
-    const coordinates = listItem.dataset.coordinates.split(', ').map(Number);
-    const markerIndex = markers.findIndex(m => m.coordinates[0] === coordinates[0] && m.coordinates[1] === coordinates[1]);
-
-    if (markerIndex !== -1) {
-        markers[markerIndex].marker.setMap(null);
-        markers.splice(markerIndex, 1);
-        updatePolyline();
-    }
-
-    listItem.remove();
-}
-
 function moveToLocation(lat, lng) {
     const moveLatLon = new kakao.maps.LatLng(lat, lng);
     map.setCenter(moveLatLon);
@@ -329,6 +409,8 @@ function updatePolyline() {
 }*/
 
 document.addEventListener('DOMContentLoaded', () => {
+	Kakao.init('d20b2ce38e0a6cdfdd3f269a8c89dbd6');
+	
     modal = document.getElementById('locationModal');
     tourPlanNo = document.getElementById('tourPlanNo').value;
 	initMap();

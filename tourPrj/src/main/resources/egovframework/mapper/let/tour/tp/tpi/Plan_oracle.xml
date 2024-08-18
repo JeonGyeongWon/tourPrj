@@ -175,4 +175,14 @@
 		ORDER BY TPI.PLAN_DT, TPI.PLAN_ORDER
 	</select>
 	
+	<update id="deletePlanInfo">
+		UPDATE TB_TOUR_PLAN_INFO
+		   SET 
+		   	USEYN = '01'
+		   	,LAST_REG_ID = #{frstRegId}
+			,LAST_MDFR_DT = SYSDATE
+		 WHERE TOUR_PLAN_NO = #{tourPlanNo}
+		   AND INFO_NO = #{infoNo}
+	</update>
+	
 </mapper>

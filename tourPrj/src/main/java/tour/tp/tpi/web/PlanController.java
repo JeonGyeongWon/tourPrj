@@ -125,11 +125,6 @@ public class PlanController {
 	@ResponseBody
 	public ResponseEntity<Map<String, Object>> insertPlanInfo(PlanInfoDTO planInfo) throws Exception{
 		
-		System.out.println(planInfo.getInfoList());
-		System.out.println(planInfo.getTourPlanNo());
-		System.out.println(planInfo.getPlanDt());
-		
-		
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		Map<String, Object> resMap = new HashMap<String, Object>();
 		resMap.put("result", "000");
@@ -156,6 +151,25 @@ public class PlanController {
 			 LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
 			 info.setFrstRegId(user.getUniqId()); 
 			 resMap.put("infoList", planService.selectPlanInfoList(info));
+		}else {
+			resMap.put("result", "-1");
+		}
+		
+		return ResponseEntity.ok(resMap);
+		
+	}
+	
+	@RequestMapping(value = "/tpi/deletePlanInfo.do")
+	@ResponseBody
+	public ResponseEntity<Map<String, Object>> deletePlanInfo(PlanInfo info) throws Exception{
+		
+		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		resMap.put("result", "000");
+		if(isAuthenticated) {
+			 LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+			 info.setFrstRegId(user.getUniqId()); 
+			 resMap = planService.deletePlanInfo(info);
 		}else {
 			resMap.put("result", "-1");
 		}

@@ -96,6 +96,19 @@ public class PlanServiceImpl extends EgovAbstractServiceImpl implements PlanServ
 		
 		return list;
 	}
+
+	@Override
+	public Map<String, Object> deletePlanInfo(PlanInfo info) throws Exception {
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		String result = "000";
+		int res = 0;
+		res += planDAO.deletePlanInfo(info);
+		if(res > 0) {
+			result = "001";
+		}
+		resMap.put("result", result);
+		return resMap;
+	}
 	
 	
 }
