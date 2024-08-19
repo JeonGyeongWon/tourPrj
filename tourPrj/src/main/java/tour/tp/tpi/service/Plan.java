@@ -40,6 +40,10 @@ public class Plan implements Serializable {
 	 * 상태
 	 */
 	private String useyn = "";
+	/**
+	 * 순서
+	 */
+	private long planOrder = 0;
 	
 	
 	public String getTourPlanNo() {
@@ -90,6 +94,19 @@ public class Plan implements Serializable {
 	public void setLastMdfrDt(String lastMdfrDt) {
 		this.lastMdfrDt = lastMdfrDt;
 	}
+	public String getUseyn() {
+		return useyn;
+	}
+	public void setUseyn(String useyn) {
+		this.useyn = useyn;
+	}
+	public long getPlanOrder() {
+		return planOrder;
+	}
+	public void setPlanOrder(long planOrder) {
+		this.planOrder = planOrder;
+	}
+	
 	
 	
 }

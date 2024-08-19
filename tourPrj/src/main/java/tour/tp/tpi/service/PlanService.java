@@ -15,6 +15,12 @@ public interface PlanService {
 	  throws Exception;
 	
 	/**
+	 * 여행계획 상세조회시 관계테이블에 수정날짜 업데이트
+	 */
+	public Map<String, Object> updatePlanUserDt(Plan plan)
+	  throws Exception;
+	
+	/**
 	 * 여행계획 상세조회
 	 */
 	public Map<String, Object> selectTourPlan(Plan plan)

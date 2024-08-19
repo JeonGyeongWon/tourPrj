@@ -57,6 +57,49 @@
 	
 	</insert>
 	
+	<insert id="insertInfoCss" parameterType="tour.tp.tpi.service.Plan">
+	
+		INSERT INTO TB_PLAN_INFO_CSS(
+			PLAN_ORDER
+			,TOUR_PLAN_NO
+			,COLOR_NO
+			,FRST_REG_ID
+			,FRST_MDFR_DT
+			,LAST_REG_ID
+			,LAST_MDFR_DT
+			)
+		SELECT
+			ROWNUM
+			,#{tourPlanNo}
+			,COLOR_NO
+			,#{frstRegId}
+			,SYSDATE
+			,#{lastRegId}
+			,SYSDATE
+		  FROM (
+			SELECT 
+				COLOR_NO
+				,COLOR_CD 
+			  FROM TB_PLAN_COLOR
+			 ORDER BY DBMS_RANDOM.RANDOM
+		)
+		<![CDATA[
+		WHERE ROWNUM <= #{planOrder}	
+		]]>
+	
+	</insert>
+	
+	<update id="updatePlanUserDt" parameterType="tour.tp.tpi.service.Plan">
+	
+		UPDATE TB_PLAN_USER_REL
+		   SET
+		    LAST_REG_ID = #{frstRegId}
+			,LAST_MDFR_DT = SYSDATE
+		 WHERE TOUR_PLAN_NO = #{tourPlanNo}
+		   AND ESNTL_ID = #{frstRegId}
+	
+	</update>
+	
 	<select id="selectTourPlan" parameterType="tour.tp.tpi.service.Plan" resultType="tour.tp.tpi.service.Plan">
 		SELECT
 			TP.TOUR_PLAN_NO
@@ -71,6 +114,23 @@
 		  AND PU.ESNTL_ID = #{frstRegId}
 		  AND TP.TOUR_PLAN_NO = #{tourPlanNo}
 		  AND TP.USEYN = '00'
+	</select>
+	
+	<select id="selectplanCss" parameterType="tour.tp.tpi.service.Plan" resultType="tour.tp.tpi.service.PlanCss">
+		SELECT
+			PIC.PLAN_ORDER
+			,PC.COLOR_CD
+		FROM TB_TOUR_PLAN TP,  
+			TB_PLAN_USER_REL PU,
+			TB_PLAN_INFO_CSS PIC,
+			TB_PLAN_COLOR PC
+		WHERE TP.TOUR_PLAN_NO = PU.TOUR_PLAN_NO
+		  AND TP.TOUR_PLAN_NO = PIC.TOUR_PLAN_NO
+		  AND PIC.COLOR_NO = PC.COLOR_NO
+		  AND TP.TOUR_PLAN_NO = #{tourPlanNo}
+		  AND PU.ESNTL_ID = #{frstRegId}
+		  AND TP.USEYN = '00'
+		ORDER BY PIC.PLAN_ORDER
 	</select>
 	
 	<select id="selectTourPlanList" parameterType="tour.tp.tpi.service.PlanVO" resultType="tour.tp.tpi.service.Plan">

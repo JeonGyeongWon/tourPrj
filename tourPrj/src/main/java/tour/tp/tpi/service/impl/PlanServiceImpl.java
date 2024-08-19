@@ -1,6 +1,7 @@
 package tour.tp.tpi.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +11,8 @@ import javax.annotation.Resource;
 import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
 import org.springframework.stereotype.Service;
 
-import egovframework.com.cmm.LoginVO;
+import com.ibm.icu.text.SimpleDateFormat;
+
 import tour.tp.tpi.service.Plan;
 import tour.tp.tpi.service.PlanInfo;
 import tour.tp.tpi.service.PlanInfoDTO;
@@ -32,12 +34,34 @@ public class PlanServiceImpl extends EgovAbstractServiceImpl implements PlanServ
 		if(res > 0) {
 			result = "001";
 			planDAO.insertPlanUser(plan);
+			String dateFormatType = "yyyy-MM-dd";
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormatType);
+			Date startDate = simpleDateFormat.parse(plan.getTourStart());
+			Date endDate = simpleDateFormat.parse(plan.getTourEnd());
+			long days = (endDate.getTime() - startDate.getTime())/86400000L + 1;
+			plan.setPlanOrder(days);
+			planDAO.insertInfoCss(plan);
 		}
 		
 		resMap.put("plan", plan);
 		resMap.put("result", result);
 		
 		return resMap;
+	}
+	
+	@Override
+	public Map<String, Object> updatePlanUserDt(Plan plan) throws Exception {
+		
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		String result = "000";
+		int res = planDAO.updatePlanUserDt(plan);
+		if(res > 0) {
+			result = "001";
+		}
+		
+		resMap.put("result", result);
+		
+		return null;
 	}
 
 	@Override
@@ -49,6 +73,7 @@ public class PlanServiceImpl extends EgovAbstractServiceImpl implements PlanServ
 		
 		if(selectPlan != null) {
 			resMap.put("plan", selectPlan);
+			resMap.put("planCss", planDAO.selectplanCss(plan));
 			resMap.put("result", "001");
 		}
 		
@@ -109,6 +134,6 @@ public class PlanServiceImpl extends EgovAbstractServiceImpl implements PlanServ
 		resMap.put("result", result);
 		return resMap;
 	}
-	
+
 	
 }

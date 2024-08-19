@@ -77,6 +77,12 @@ public class PlanController {
 			return "uat/uia/EgovLoginUsr";
 		}
 		
+		Plan plan = new Plan();
+		LoginVO user = (LoginVO) EgovUserDetailsHelper.getAuthenticatedUser();
+		plan.setFrstRegId(user.getUniqId()); 
+		plan.setTourPlanNo(tourPlanNo);
+		planService.updatePlanUserDt(plan);
+		
 		model.addAttribute("tourPlanNo", tourPlanNo);
 		
 		return "/tour/tp/tpi/tpiPlanPage";

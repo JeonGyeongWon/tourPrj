@@ -99,7 +99,8 @@ public class PlanInfo implements Serializable  {
 	 * 사용여부
 	 */
 	private String useyn = "";
-
+	
+	
 	public String getTourPlanNo() {
 		return tourPlanNo;
 	}
@@ -251,7 +252,7 @@ public class PlanInfo implements Serializable  {
 	public void setUseyn(String useyn) {
 		this.useyn = useyn;
 	}
-	
+
 	
 	
 }

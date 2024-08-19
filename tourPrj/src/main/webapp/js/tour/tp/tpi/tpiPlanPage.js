@@ -1,7 +1,10 @@
 let map;
 let tourPlanNo;
 let plan;
+let planCss;
 let dayList;
+let markers=[];
+let polylines=[];
 
 function initPlan() {
    let url = "/tpi/selectTourPlan.do";
@@ -13,6 +16,7 @@ function initPlan() {
 			tourPlanNo : tourPlanNo,
         },
         success: function (data) {
+			console.log(data);
 			let res = data.result;
 			if(res == "-1"){
 				location.href = "/uat/uia/egovLoginUsr.do";
@@ -21,6 +25,7 @@ function initPlan() {
 				//location.href = "/tpi/tpiList.do";
 			}else {
 				plan = data.plan;
+				planCss = data.planCss;
 				document.querySelector('.tourNm').innerHTML = plan.tourNm;
 				document.querySelector('.tourDt').innerHTML = plan.tourStart + " ~ " + plan.tourEnd;
 				initTimeline();
@@ -41,15 +46,6 @@ function initMap() {
 
     map = new kakao.maps.Map(mapContainer, mapOption);
     
-    
-    /*polyline = new kakao.maps.Polyline({
-        map: map,
-        path: [],
-        strokeWeight: 5,
-        strokeColor: '#FF0000',
-        strokeOpacity: 0.8,
-        strokeStyle: 'solid'
-    });*/
 }
 
 function initTimeline() {
@@ -250,81 +246,107 @@ function returnValue(retVal) {
 }
 
 function makeMaker(){
-	
+	removeMaker();
 	let makerImg = "/images/tour/tp/tpi/285659_marker_map_icon.png"; 
 	
-	let spotList = document.querySelectorAll(".timeline-item .item-head");
-	spotList.forEach (function (el, index) {
-		
-		// 마커 이미지의 이미지 크기 입니다
-	    let imgSize = new kakao.maps.Size(35, 35); 
-	    
-	    // 마커 이미지를 생성합니다    
-	    let markerImage = new kakao.maps.MarkerImage(makerImg, imgSize);
-	    let position = new kakao.maps.LatLng(el.getAttribute("mapy"), el.getAttribute("mapx"))
-		let marker = new kakao.maps.Marker({
-	        map: map, // 마커를 표시할 지도
-	        position: position, // 마커를 표시할 위치
-	        title : el.getAttribute("name"), // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-	        image : markerImage // 마커 이미지 
-	    });
-	    
-	    marker.setMap(map);
-
+	let dayList = document.querySelectorAll(".timeline-day");
+	dayList.forEach (function (day, i) {
+		let spotList = day.querySelectorAll(".item-head");
+		spotList.forEach (function (el, index) {
+			// 마커 이미지의 이미지 크기 입니다
+		    let imgSize = new kakao.maps.Size(35, 35); 
+		    
+		    // 마커 이미지를 생성합니다    
+		    let markerImage = new kakao.maps.MarkerImage(makerImg, imgSize);
+		    let position = new kakao.maps.LatLng(el.getAttribute("mapy"), el.getAttribute("mapx"))
+			let marker = new kakao.maps.Marker({
+		        map: map, // 마커를 표시할 지도
+		        position: position, // 마커를 표시할 위치
+		        title : el.getAttribute("name"), // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+		        image : markerImage // 마커 이미지 
+		    });
+		    
+		    marker.setMap(map);
+		    
+		    if(i == 0 && index == 0){
+				map.panTo(position);    
+			}
+			
+			markers.push(marker);
+		});
 	});
 	
-    makeNavi()
+    getNavi();
 
 }
 
-function makeNavi(){
-	
-	/*let makerImg = "/images/tour/tp/tpi/285659_marker_map_icon.png"; 
-	
-	let spotList = document.querySelectorAll(".timeline-item .item-head");
-	spotList.forEach (function (el, index) {
-		
-		// 마커 이미지의 이미지 크기 입니다
-	    let imgSize = new kakao.maps.Size(35, 35); 
-	    
-	    // 마커 이미지를 생성합니다    
-	    let markerImage = new kakao.maps.MarkerImage(makerImg, imgSize);
-	    let position = new kakao.maps.LatLng(el.getAttribute("mapy"), el.getAttribute("mapx"))
-		let marker = new kakao.maps.Marker({
-	        map: map, // 마커를 표시할 지도
-	        position: position, // 마커를 표시할 위치
-	        title : el.getAttribute("name"), // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-	        image : markerImage // 마커 이미지 
-	    });
-	    
-	    marker.setMap(map);
+function removeMaker(){
+	markers.forEach (function (el, index) {
+		el.setMap(null);
+	});
+	markers = [];
+}
 
-	});*/
+function removepath(){
+	polylines.forEach (function (el, index) {
+		   el.setMap(null);
+	});
+   	polylines=[];
+}
+
+function getNavi(){
 	
    	let url = "https://apis-navi.kakaomobility.com/v1/waypoints/directions";
-   	
-   	let data = {"origin": {
-			        "x": "127.11024293202674",
-			        "y": " 37.394348634049784"
-			    },
-			    "destination": {
-			        "x": "127.10860518470294",
-			        "y": "37.401999820065534"
-			    },
-			    "waypoints": [
-			        {
-			            "name": "name0",
-			            "x": 127.11341936045922,
-			            "y": 37.39639094915999
-			        }
-			    ],
-			    "priority": "RECOMMEND",
-			    "car_fuel": "GASOLINE",
-			    "car_hipass": false,
-			    "alternatives": false,
-			    "road_details": false}
-   	
-	$.ajax({
+   	removepath();
+   	let paths=[];
+   	let dayList = document.querySelectorAll(".timeline-day");
+	dayList.forEach (function (day, i) {
+		let spotList = day.querySelectorAll(".item-head");
+		if(spotList.length > 0){
+			let path = {
+				priority: "RECOMMEND",
+			    car_fuel: "GASOLINE",
+			    car_hipass: false,
+			    alternatives: false,
+			    road_details: false
+			};
+			let waypoints = [];
+			spotList.forEach (function (el, index) {
+				
+				if(index == 0){
+					let origin = {
+						x : el.getAttribute("mapx")
+						,y : el.getAttribute("mapy")
+					};
+					path.origin = origin;
+				}else if(index == spotList.length - 1){
+					let destination = {
+						x : el.getAttribute("mapx")
+						,y : el.getAttribute("mapy")
+					};
+					path.destination = destination;
+				}else{
+					let waypoint = {
+						x : el.getAttribute("mapx")
+						,y : el.getAttribute("mapy")
+					};
+					waypoints.push(waypoint);
+				}
+				
+			});
+			if(waypoints.length > 0){
+				path.waypoints = waypoints;
+			}
+			let obj = {
+				index : i,
+				path : path
+				};
+			paths.push(obj);
+		}
+	});
+	
+   paths.forEach (function (el, index) {
+		   $.ajax({
 	        url: url,
 	        type: "post",
 	        async : false,
@@ -332,14 +354,44 @@ function makeNavi(){
 		        xhr.setRequestHeader("Authorization", "KakaoAK e377707180c8f707d97f83ef3cedc515");
 		        xhr.setRequestHeader("Content-Type", "application/json");
 		    },
-	        data: JSON.stringify(data),
+	        data: JSON.stringify(el.path),
 	        success: function (data) {
 				console.log(data);
+				makePath(data.routes[0].sections, el.index);
 	        },
 	        error: function(error){
 	        	console.log(error);
 	        }
 	    });
+	});
+	
+}
+
+function makePath(e, ei){
+	
+	let linePath = [];
+	e.forEach (function (el, i) {
+		el.roads.forEach (function (road, j) {
+			road.vertexes.forEach (function (vertex, index) {
+				if(index%2===0){
+					linePath.push(new kakao.maps.LatLng(road.vertexes[index + 1], vertex));
+				}
+			});
+		});
+	});
+	
+	// 지도에 표시할 선을 생성합니다
+	var polyline = new kakao.maps.Polyline({
+	    path: linePath, // 선을 구성하는 좌표배열 입니다
+	    strokeWeight: 6, // 선의 두께 입니다
+	    strokeColor: planCss[ei].colorCd, // 선의 색깔입니다
+	    strokeOpacity: 0.9, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+	    strokeStyle: 'solid' // 선의 스타일입니다
+	});
+	
+	// 지도에 선을 표시합니다 
+	polyline.setMap(map);
+	polylines.push(polyline);
 }
 
 function panTo(e) {
@@ -381,32 +433,6 @@ function deleteItem(ev) {
 	    });
 	}
 }
-
-/*
-function addTouristSpotToDay(touristSpot) {
-    
-    // Add marker to map
-    const coordinates = touristSpot.coordinates.split(', ');
-    const marker = new kakao.maps.Marker({
-        position: new kakao.maps.LatLng(coordinates[0], coordinates[1])
-    });
-    marker.setMap(map);
-    markers.push({ marker, coordinates: coordinates.map(Number) });
-
-    updatePolyline();
-
-    closeModal();
-}
-
-function moveToLocation(lat, lng) {
-    const moveLatLon = new kakao.maps.LatLng(lat, lng);
-    map.setCenter(moveLatLon);
-}
-
-function updatePolyline() {
-    const path = markers.map(m => m.marker.getPosition());
-    polyline.setPath(path);
-}*/
 
 document.addEventListener('DOMContentLoaded', () => {
 	Kakao.init('d20b2ce38e0a6cdfdd3f269a8c89dbd6');
