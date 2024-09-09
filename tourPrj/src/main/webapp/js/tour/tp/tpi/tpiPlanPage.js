@@ -64,9 +64,34 @@ function initTimeline() {
 			dayContainer.setAttribute('date', currentDate.toISOString().split('T')[0]);
 			const timelineheader = document.createElement('div');
             timelineheader.className = 'timeline-head';
+            const ck = document.createElement('input');
+            ck.setAttribute('type', 'checkbox');
+            ck.id = 'head-checkbox';
+            ck.className = 'head-checkbox';
+            const ckSpan = document.createElement('span');
+            ckSpan.className = 'check-icon';
+            const ckLabel = document.createElement('label');
+            ckLabel.className = 'timeline-check';
+            ckLabel.setAttribute('for', 'head-checkbox');
+            const dayHDiv = document.createElement('div');
             const dayHeader = document.createElement('h4');
-            dayHeader.textContent = `${currentDate.toISOString().split('T')[0]} (${['일', '월', '화', '수', '목', '금', '토'][currentDate.getDay()]})`;
-            timelineheader.appendChild(dayHeader);
+            dayHeader.innerHTML = `${currentDate.toISOString().split('T')[0]} (${['일', '월', '화', '수', '목', '금', '토'][currentDate.getDay()]})`;
+            const dayHBtn = document.createElement('button');
+            let svg = `
+            	<svg id="arrow-icon" class="icon arrow-up" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+				   	<line x1="20" y1="35" x2="53" y2="65"></line>
+  					<line x1="47" y1="65" x2="80" y2="35"></line>
+				</svg>`
+			dayHBtn.innerHTML = svg;
+			dayHBtn.querySelector("svg").addEventListener("click",function(){
+				this.classList.toggle("arrow-up");
+			});
+			dayHDiv.appendChild(ck);
+			ckSpan.appendChild(ckLabel);
+			dayHDiv.appendChild(ckSpan);
+            dayHDiv.appendChild(dayHeader);
+            dayHDiv.appendChild(dayHBtn);
+            timelineheader.appendChild(dayHDiv);
 
             const addButton = document.createElement('button');
             addButton.className = 'add-button';
@@ -86,7 +111,7 @@ function initTimeline() {
             currentDate.setDate(currentDate.getDate() + 1);
         }
         
-        initLine();
+        /*initLine();*/
         
         initInfoList();
     }
@@ -167,12 +192,7 @@ function initInfoList() {
 								</button>
 				        	</div>
 				    	</div>
-				        <div class="item-time">
-					        <input type="time" name="planStart">
-					        <span> - </span>
-					        <input type="time" name="planEnd">
-				        </div>
-				        <textarea placeholder="세부 정보"></textarea>
+				        <div class="item-text"></div>
 				    `;
 				    
 				    listItem.querySelector(`.delete-btn`).addEventListener("click",function(){
@@ -180,7 +200,7 @@ function initInfoList() {
 					})
 					document.querySelector(`.timeline-day[date='${el.planDt}'] .item-List`).appendChild(listItem);
 				});
-				initLine();
+				/*initLine();*/
 				makeMaker();
 			}
         },

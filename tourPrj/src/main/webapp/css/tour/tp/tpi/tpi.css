@@ -5,6 +5,10 @@
 	padding: initial !important;
 }
 
+.tit_hr{
+	clear: both;
+}
+
 .tpi-button {
 	display: block;
 	padding: 10px;
@@ -91,16 +95,25 @@
 
 
 .planDiv .planDt{
-	font-size: 14px;
+	font-size: 11px;
+}
+
+.tline{
+	width: 20px;
+}
+
+.tline .line{
+	width: 4px;
+	background-color: #122a59;
+	height: 100%;
 }
 
 .timeline {
-    border-left: 4px solid #122a59;
-    padding-left: 20px;
     position: relative;
     height: 98%;
     overflow-y: scroll;
-    padding-right: 5px;
+    display: flex;
+}
 }
 
 .timeline::-webkit-scrollbar {
@@ -113,32 +126,98 @@
     border-radius: 5px;
 }
 
-.tLine-svg {
-	position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-}
-
-.tLine {
-	stroke: #122a59; 
-    stroke-width: 4px;
-    stroke-dasharray: 4; /* 점선 */
-}
-
 .timeline-day {
     margin-bottom: 20px;
     z-index: 2;
     position: relative;
 }
 
+.timeline-day::before {
+    content: '';
+    position: absolute;
+    top: 26px;
+    left: -24px;
+    width: 30px;
+    height: 0px;
+    border: 2px dashed #122a59;
+}
+
+.timeline-head{
+	display: flex;
+    align-items: center;
+}
+
+.timeline-head div{
+	display: flex;
+    align-items: center;
+    background: #122a59;
+    border-radius: 5px;
+    padding: 7px;
+    margin: 10px 0;
+    gap: 5px
+}
+
+.check-icon{
+	z-index: 3;
+}
+
+.head-checkbox{
+	display: none;
+}
+
+.head-checkbox+span label{
+	width: 15px;
+    height: 15px;
+    background-repeat: no-repeat;
+    background-image: url(/images/tour/tp/tpi/shape_icon.png);
+    background-size: 19px;
+    background-position: center center;
+    border: none;
+    display: block;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 1px;
+}
+
+/* checked */
+.head-checkbox:checked+span label{
+	width: 15px;
+	height: 15px;
+	background-repeat: no-repeat;
+  	background-image: url(/images/tour/tp/tpi/check_icon.png);
+  	background-size: 19px;
+    background-position: center center;
+    border: none;
+    display: block;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 1px;
+}
+
 .timeline-head h4 {
     display: inline-block;
-    margin: 10px 0;
-    padding: 10px;
-    background: #122a59;
     color: white;
-    border-radius: 5px;
+}
+
+.timeline-head div button{
+	border: none;
+	width: 20px;
+	cursor: pointer;
+}
+
+.timeline-head svg{
+	fill: none ;
+	stroke: white;
+	stroke-width: 13;
+	transition: transform 0.3s ease;
+}
+
+.timeline-head .arrow-icon{
+	transition: transform 0.3s ease;
+}
+
+.timeline-head .arrow-up{
+	 transform: scaleY(-1);
 }
 
 .add-button {
@@ -163,6 +242,12 @@
     height: 98%;
     border: 2px solid #122a59;
     border-radius: 10px;
+    margin-left: 5px;
+}
+
+.planner {
+    display: flex;
+    height: calc(100vh - 10px);
 }
 
 #tour-planner {
@@ -179,22 +264,22 @@
 @media screen and (min-width: 1281px){ 
 
 	.planMap {
-	    width: calc(100% - 620px);
+	    width: calc(100% - 440px);
 	}
 	
 	.timeline{
-		width: 600px;
+		width: 420px;
 	}
 }
 
 @media (max-width: 1280px){ 
 	
 	.planMap {
-	    width: calc(100% - 380px);
+	    width: calc(100% - 340px);
 	}
 	
 	.timeline{
-		width: 370px;
+		width: 320px;
 	}
 }
 
@@ -260,11 +345,16 @@
 .timeline-item {
     margin: 10px 0;
     padding: 10px;
-    background: #f4f8ff;
+    /* background: #f4f8ff; */
     border: 2px solid #122a59;
     border-radius: 5px;
     position: relative;
     transition: background 0.3s;
+}
+
+.timeline-item:hover {
+    /* background: #e0f7ff; */
+    cursor: pointer;
 }
 
 .timeline-item::before {
@@ -296,58 +386,3 @@
 
 /*  */
 
-
-
-
-
-
-
-
-
-
-
-label {
-    display: block;
-    margin-bottom: 10px;
-}
-
-input[type="date"]{
-    display: block;
-    margin-bottom: 20px;
-    padding: 10px;
-    font-size: 1em;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 100%;
-    max-width: 300px;
-}
-
-
-.tit_hr{
-	clear: both;
-}
-
-.planner {
-    display: flex;
-    justify-content: space-between;
-    height: calc(100vh - 10px);
-}
-
-
-
-.timeline-item:hover {
-    background: #e0f7ff;
-}
-
-
-
-
-
-.map-icon {
-    width: 16px;
-    height: 16px;
-    background-image: url('https://cdn-icons-png.flaticon.com/512/684/684908.png');
-    background-size: cover;
-    display: inline-block;
-    margin-right: 5px;
-}

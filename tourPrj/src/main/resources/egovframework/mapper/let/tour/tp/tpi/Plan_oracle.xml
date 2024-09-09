@@ -63,6 +63,7 @@
 			PLAN_ORDER
 			,TOUR_PLAN_NO
 			,COLOR_NO
+			,ESNTL_ID
 			,FRST_REG_ID
 			,FRST_MDFR_DT
 			,LAST_REG_ID
@@ -72,6 +73,7 @@
 			ROWNUM
 			,#{tourPlanNo}
 			,COLOR_NO
+			,#{frstRegId}
 			,#{frstRegId}
 			,SYSDATE
 			,#{lastRegId}
@@ -129,6 +131,7 @@
 		  AND PIC.COLOR_NO = PC.COLOR_NO
 		  AND TP.TOUR_PLAN_NO = #{tourPlanNo}
 		  AND PU.ESNTL_ID = #{frstRegId}
+		  AND PIC.ESNTL_ID = #{frstRegId}
 		  AND TP.USEYN = '00'
 		ORDER BY PIC.PLAN_ORDER
 	</select>

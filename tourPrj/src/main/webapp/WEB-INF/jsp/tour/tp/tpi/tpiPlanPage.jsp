@@ -57,10 +57,15 @@
 						            <!-- <button onclick="generateTimeline()">타임라인 생성</button> -->
 						            <div class="planner">
 						                <div class="timeline">
-						                    <h3 class="tourDt"></h3>
+						                	<div id="tline" class="tline">
+						            			<div id="line" class="line"></div>
+						            		</div>
+						            		<div>
+						            		<h3 class="tourDt"></h3>
 						                    <div id="timeline-list" class="timeline-list">
 						                        <!-- Drop locations here -->
 						                    </div>
+						            		</div>
 						                </div>
 						                <div id="planMap" class="planMap"></div>
 						            </div>
